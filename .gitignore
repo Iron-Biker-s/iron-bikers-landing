@@ -1,0 +1,22 @@
+# Entorno virtual
+.venv/
+
+# Scripts temporales de optimización
+optimize_images.py
+update_html.py
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Dependencias
+node_modules/
+
+# Variables de entorno
+.env
+.env.local
