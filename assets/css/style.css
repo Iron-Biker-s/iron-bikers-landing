@@ -133,9 +133,9 @@
 }
 
 .event-panel {
-    display: none;
+    display: none !important;
 }
 
 .event-panel.active {
-    display: grid;
+    display: grid !important;
 }
