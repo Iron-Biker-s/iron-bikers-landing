@@ -115,3 +115,27 @@
         background-position: 0% 50%;
     }
 }
+
+/* Event Tabs */
+.event-tab {
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.event-tab.active {
+    color: var(--amber-gold);
+    border-bottom-color: var(--ruby-red);
+}
+
+.event-tab:hover {
+    color: var(--amber-gold);
+}
+
+.event-panel {
+    display: none;
+}
+
+.event-panel.active {
+    display: grid;
+}
