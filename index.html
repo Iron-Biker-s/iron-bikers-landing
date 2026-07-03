@@ -610,11 +610,12 @@
                 <div class="glass-panel p-12 rounded-sm border border-white/10 shadow-2xl">
                     <h2 class="font-headline text-4xl font-bold uppercase chrome-text text-center mb-10">SOLICITA TU
                         INGRESO</h2>
-                    <form class="space-y-8">
+                    <form class="space-y-8" id="contactForm"
+                        action="https://script.google.com/macros/s/AKfycbzcoj5u70gse5R7p5xn3bZgrTO_xGpXrBVvG9ciR8PTSsMx95wpvvcomC4BB6KpzAE/exec" method="POST">
                         <div class="relative group">
                             <input
                                 class="peer w-full bg-transparent border-b-2 border-white/10 py-3 text-white focus:outline-none focus:border-tertiary transition-all"
-                                placeholder=" " type="text" />
+                                name="nombre" placeholder=" " required type="text" />
                             <label
                                 class="absolute left-0 top-3 text-secondary text-xs uppercase tracking-widest font-bold pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-tertiary peer-[:not(:placeholder-shown)]:-top-4">Nombre
                                 Completo</label>
@@ -622,21 +623,38 @@
                         <div class="relative group">
                             <input
                                 class="peer w-full bg-transparent border-b-2 border-white/10 py-3 text-white focus:outline-none focus:border-tertiary transition-all"
-                                placeholder=" " type="email" />
+                                name="telefono" placeholder=" " required type="tel" />
                             <label
-                                class="absolute left-0 top-3 text-secondary text-xs uppercase tracking-widest font-bold pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-tertiary peer-[:not(:placeholder-shown)]:-top-4">Correo
-                                Corporativo</label>
+                                class="absolute left-0 top-3 text-secondary text-xs uppercase tracking-widest font-bold pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-tertiary peer-[:not(:placeholder-shown)]:-top-4">Número
+                                de Teléfono</label>
                         </div>
-                        <div class="relative group">
-                            <input
-                                class="peer w-full bg-transparent border-b-2 border-white/10 py-3 text-white focus:outline-none focus:border-tertiary transition-all"
-                                placeholder=" " type="text" />
-                            <label
-                                class="absolute left-0 top-3 text-secondary text-xs uppercase tracking-widest font-bold pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-tertiary peer-[:not(:placeholder-shown)]:-top-4">Modelo
-                                de Motocicleta (cc)</label>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="relative group">
+                                <input
+                                    class="peer w-full bg-transparent border-b-2 border-white/10 py-3 text-white focus:outline-none focus:border-tertiary transition-all"
+                                    name="marca" placeholder=" " required type="text" />
+                                <label
+                                    class="absolute left-0 top-3 text-secondary text-xs uppercase tracking-widest font-bold pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-tertiary peer-[:not(:placeholder-shown)]:-top-4">Marca</label>
+                            </div>
+                            <div class="relative group">
+                                <input
+                                    class="peer w-full bg-transparent border-b-2 border-white/10 py-3 text-white focus:outline-none focus:border-tertiary transition-all"
+                                    name="modelo" placeholder=" " required type="text" />
+                                <label
+                                    class="absolute left-0 top-3 text-secondary text-xs uppercase tracking-widest font-bold pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-tertiary peer-[:not(:placeholder-shown)]:-top-4">Modelo</label>
+                            </div>
+                            <div class="relative group">
+                                <input
+                                    class="peer w-full bg-transparent border-b-2 border-white/10 py-3 text-white focus:outline-none focus:border-tertiary transition-all"
+                                    name="placa" placeholder=" " required type="text" />
+                                <label
+                                    class="absolute left-0 top-3 text-secondary text-xs uppercase tracking-widest font-bold pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-tertiary peer-[:not(:placeholder-shown)]:-top-4">Placa</label>
+                            </div>
                         </div>
+                        <p class="hidden text-center text-sm font-bold" id="formResponse"></p>
                         <button
-                            class="w-full ruby-gold-gradient py-5 text-background font-headline font-bold text-lg uppercase tracking-tighter hover:scale-[1.02] active:scale-95 transition-all shadow-xl">
+                            class="w-full ruby-gold-gradient py-5 text-background font-headline font-bold text-lg uppercase tracking-tighter hover:scale-[1.02] active:scale-95 transition-all shadow-xl"
+                            type="submit">
                             ENVIAR SOLICITUD
                         </button>
                     </form>

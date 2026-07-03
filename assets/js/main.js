@@ -25,4 +25,46 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById(target).classList.add('active');
         });
     });
+
+    // Contact Form to Google Sheets
+    const form = document.getElementById('contactForm');
+    const responseEl = document.getElementById('formResponse');
+
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const btn = form.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            btn.innerText = 'ENVIANDO...';
+            btn.disabled = true;
+
+            try {
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.result === 'success') {
+                    responseEl.classList.remove('hidden', 'text-red-500');
+                    responseEl.classList.add('text-green-500');
+                    responseEl.innerText = 'Solicitud enviada exitosamente.';
+                    form.reset();
+                } else {
+                    throw new Error(data.error || 'Error al enviar.');
+                }
+            } catch (err) {
+                responseEl.classList.remove('hidden', 'text-green-500');
+                responseEl.classList.add('text-red-500');
+                responseEl.innerText = 'Error al enviar. Intenta de nuevo.';
+                console.error(err);
+            } finally {
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        });
+    }
 });
