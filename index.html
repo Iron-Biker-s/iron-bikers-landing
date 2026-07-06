@@ -87,19 +87,36 @@
     </header>
     <!-- Status Bar -->
     <div
-        class="bg-surface border-y border-white/5 h-[60px] flex items-center justify-center overflow-hidden relative z-30">
-        <div class="flex items-center gap-6 whitespace-nowrap animate-marquee">
-            <span class="flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-on-surface">
+        class="bg-surface border-y border-white/5 h-[50px] sm:h-[60px] flex items-center overflow-hidden relative z-30">
+        <!-- Mobile version -->
+        <div class="md:hidden w-full flex flex-col items-center justify-center gap-1 px-4">
+            <span class="flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase text-on-surface">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse-dot"></span>
+                Próxima rodada: 15 de Julio
+            </span>
+            <span class="text-[10px] font-bold tracking-widest uppercase">
+                <span class="text-on-surface">Destino: Playa Blanca</span>
+                <span class="text-white/20 mx-2">—</span>
+                <span class="text-tertiary">Cupos: 12</span>
+            </span>
+        </div>
+        <!-- Desktop marquee -->
+        <div class="hidden md:flex items-center gap-4 sm:gap-6 whitespace-nowrap animate-marquee px-4">
+            <span
+                class="flex items-center gap-2 text-[10px] sm:text-xs font-bold tracking-widest uppercase text-on-surface">
                 <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse-dot"></span>
                 Próxima rodada: 15 de Julio
             </span>
             <span class="text-white/20">—</span>
-            <span class="text-xs font-bold tracking-widest uppercase text-on-surface">Destino: Playa Blanca</span>
+            <span class="text-[10px] sm:text-xs font-bold tracking-widest uppercase text-on-surface">Destino: Playa
+                Blanca</span>
             <span class="text-white/20">—</span>
-            <span class="text-xs font-bold tracking-widest uppercase text-tertiary">Cupos: 12 disponibles</span>
+            <span class="text-[10px] sm:text-xs font-bold tracking-widest uppercase text-tertiary">Cupos: 12
+                disponibles</span>
             <!-- Duplicated for seamless loop if needed -->
-            <span class="text-white/20 ml-10">/</span>
-            <span class="flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-on-surface ml-10">
+            <span class="text-white/20 ml-6 sm:ml-10">/</span>
+            <span
+                class="flex items-center gap-2 text-[10px] sm:text-xs font-bold tracking-widest uppercase text-on-surface ml-6 sm:ml-10">
                 <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse-dot"></span>
                 Próxima rodada: 15 de Julio
             </span>
@@ -110,7 +127,8 @@
         <section class="py-section_padding px-gutter max-w-[1400px] mx-auto" id="nosotros">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center mb-20">
                 <div class="max-w-xl">
-                    <h2 class="font-headline text-6xl font-bold uppercase chrome-text mb-8">FORJADOS EN EL<br />HIERRO
+                    <h2 class="font-headline text-4xl md:text-6xl font-bold uppercase chrome-text mb-8">FORJADOS EN
+                        EL<br />HIERRO
                     </h2>
                     <p class="text-secondary text-lg leading-relaxed mb-8">
                         En Iron Biker's Club Cartagena, no solo rodamos; definimos el estándar del motociclismo de alta
@@ -122,36 +140,38 @@
                         <p class="font-quote italic text-xl text-tertiary">Pasión, Respeto y Kilómetros de Historia.</p>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-stack_md">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-stack_md">
                     <!-- Card 01 -->
-                    <div class="glass-panel p-8 relative overflow-hidden group">
+                    <div class="glass-panel p-6 md:p-8 relative overflow-hidden group">
                         <span
-                            class="absolute -bottom-4 -right-4 text-7xl font-headline font-bold text-[#1A1A1A] group-hover:text-primary/10 transition-colors">01</span>
-                        <h3 class="font-headline text-xl text-white uppercase mb-2 relative z-10">Lealtad</h3>
+                            class="absolute -bottom-4 -right-4 text-6xl md:text-7xl font-headline font-bold text-[#1A1A1A] group-hover:text-primary/10 transition-colors">01</span>
+                        <h3 class="font-headline text-lg md:text-xl text-white uppercase mb-2 relative z-10">Lealtad
+                        </h3>
                         <p class="text-secondary text-sm relative z-10">Hermanos antes que conductores. Siempre cuidamos
                             la espalda del otro.</p>
                     </div>
                     <!-- Card 02 (Shifted) -->
-                    <div class="glass-panel p-8 relative overflow-hidden group translate-y-10">
+                    <div class="glass-panel p-6 md:p-8 relative overflow-hidden group md:translate-y-10">
                         <span
-                            class="absolute -bottom-4 -right-4 text-7xl font-headline font-bold text-[#1A1A1A]">02</span>
-                        <h3 class="font-headline text-xl text-white uppercase mb-2 relative z-10">Rigor</h3>
+                            class="absolute -bottom-4 -right-4 text-6xl md:text-7xl font-headline font-bold text-[#1A1A1A]">02</span>
+                        <h3 class="font-headline text-lg md:text-xl text-white uppercase mb-2 relative z-10">Rigor</h3>
                         <p class="text-secondary text-sm relative z-10">Mantenimiento impecable y disciplina en cada
                             formación de ruta.</p>
                     </div>
                     <!-- Card 03 -->
-                    <div class="glass-panel p-8 relative overflow-hidden group">
+                    <div class="glass-panel p-6 md:p-8 relative overflow-hidden group">
                         <span
-                            class="absolute -bottom-4 -right-4 text-7xl font-headline font-bold text-[#1A1A1A]">03</span>
-                        <h3 class="font-headline text-xl text-white uppercase mb-2 relative z-10">Estilo</h3>
+                            class="absolute -bottom-4 -right-4 text-6xl md:text-7xl font-headline font-bold text-[#1A1A1A]">03</span>
+                        <h3 class="font-headline text-lg md:text-xl text-white uppercase mb-2 relative z-10">Estilo</h3>
                         <p class="text-secondary text-sm relative z-10">La estética es nuestra firma. Elegancia pura
                             sobre dos ruedas.</p>
                     </div>
                     <!-- Card 04 (Shifted) -->
-                    <div class="glass-panel p-8 relative overflow-hidden group translate-y-10">
+                    <div class="glass-panel p-6 md:p-8 relative overflow-hidden group md:translate-y-10">
                         <span
-                            class="absolute -bottom-4 -right-4 text-7xl font-headline font-bold text-[#1A1A1A]">04</span>
-                        <h3 class="font-headline text-xl text-white uppercase mb-2 relative z-10">Destino</h3>
+                            class="absolute -bottom-4 -right-4 text-6xl md:text-7xl font-headline font-bold text-[#1A1A1A]">04</span>
+                        <h3 class="font-headline text-lg md:text-xl text-white uppercase mb-2 relative z-10">Destino
+                        </h3>
                         <p class="text-secondary text-sm relative z-10">Buscamos lo inexplorado. Cada rodada es un nuevo
                             horizonte.</p>
                     </div>
@@ -160,47 +180,51 @@
         </section>
         <!-- Beneficios (Timeline) -->
         <section class="py-section_padding bg-surface/50 border-y border-white/5 overflow-hidden" id="beneficios">
-            <div class="max-w-[1400px] mx-auto px-gutter grid grid-cols-1 md:grid-cols-12 gap-20 items-start">
-                <div class="md:col-span-5 sticky top-32">
-                    <h2 class="font-headline text-6xl font-bold uppercase chrome-text mb-10">MEMBRESÍA<br />EXCLUSIVE
+            <div class="max-w-[1400px] mx-auto px-gutter grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-start">
+                <div class="md:col-span-5 md:sticky md:top-32">
+                    <h2 class="font-headline text-4xl md:text-6xl font-bold uppercase chrome-text mb-6 md:mb-10">
+                        MEMBRESÍA<br />EXCLUSIVE
                     </h2>
-                    <div class="asymmetrical-frame max-w-md">
+                    <div class="asymmetrical-frame max-w-md mx-auto md:mx-0">
                         <img alt="Premium Experience"
-                            class="grayscale hover:grayscale-0 transition-all duration-500 rounded-sm shadow-2xl"
+                            class="grayscale hover:grayscale-0 transition-all duration-500 rounded-sm shadow-2xl w-full"
                             loading="lazy" decoding="async" src="assets/images/hero-bg.webp" />
                     </div>
                 </div>
-                <div class="md:col-span-7 relative pl-10 border-l border-tertiary/20">
+                <div class="md:col-span-7 relative pl-8 md:pl-10 border-l border-tertiary/20">
                     <!-- Timeline Item -->
-                    <div class="mb-20 relative">
+                    <div class="mb-12 md:mb-20 relative">
                         <div
-                            class="absolute -left-[50px] top-0 w-5 h-5 rounded-full bg-tertiary gold-glow border-4 border-background">
+                            class="absolute -left-[38px] md:-left-[50px] top-0 w-4 h-4 md:w-5 md:h-5 rounded-full bg-tertiary gold-glow border-4 border-background">
                         </div>
-                        <h3 class="font-headline text-3xl text-white uppercase mb-4">Rodadas Logísticas VIP</h3>
+                        <h3 class="font-headline text-2xl md:text-3xl text-white uppercase mb-4">Rodadas Logísticas VIP
+                        </h3>
                         <p class="text-secondary leading-relaxed max-w-xl">Acompañamiento técnico, escolta y rutas
                             premium diseñadas para el máximo disfrute y seguridad del piloto.</p>
                     </div>
-                    <div class="mb-20 relative">
+                    <div class="mb-12 md:mb-20 relative">
                         <div
-                            class="absolute -left-[50px] top-0 w-5 h-5 rounded-full bg-white/20 border-4 border-background">
+                            class="absolute -left-[38px] md:-left-[50px] top-0 w-4 h-4 md:w-5 md:h-5 rounded-full bg-white/20 border-4 border-background">
                         </div>
-                        <h3 class="font-headline text-3xl text-white uppercase mb-4">Access a Eventos Privados</h3>
+                        <h3 class="font-headline text-2xl md:text-3xl text-white uppercase mb-4">Access a Eventos
+                            Privados</h3>
                         <p class="text-secondary leading-relaxed max-w-xl">Lanzamientos de marcas aliadas, cenas de gala
                             y acceso preferente a los eventos de motociclismo más importantes de la región.</p>
                     </div>
-                    <div class="mb-20 relative">
+                    <div class="mb-12 md:mb-20 relative">
                         <div
-                            class="absolute -left-[50px] top-0 w-5 h-5 rounded-full bg-white/20 border-4 border-background">
+                            class="absolute -left-[38px] md:-left-[50px] top-0 w-4 h-4 md:w-5 md:h-5 rounded-full bg-white/20 border-4 border-background">
                         </div>
-                        <h3 class="font-headline text-3xl text-white uppercase mb-4">Concierge Mecánico</h3>
+                        <h3 class="font-headline text-2xl md:text-3xl text-white uppercase mb-4">Concierge Mecánico</h3>
                         <p class="text-secondary leading-relaxed max-w-xl">Atención prioritaria en talleres certificados
                             y gestión de importación de repuestos exclusivos.</p>
                     </div>
                     <div class="relative">
                         <div
-                            class="absolute -left-[50px] top-0 w-5 h-5 rounded-full bg-white/20 border-4 border-background">
+                            class="absolute -left-[38px] md:-left-[50px] top-0 w-4 h-4 md:w-5 md:h-5 rounded-full bg-white/20 border-4 border-background">
                         </div>
-                        <h3 class="font-headline text-3xl text-white uppercase mb-4">Networking de Alto Nivel</h3>
+                        <h3 class="font-headline text-2xl md:text-3xl text-white uppercase mb-4">Networking de Alto
+                            Nivel</h3>
                         <p class="text-secondary leading-relaxed max-w-xl">Forma parte de una red de contactos
                             influyentes que comparten tu misma pasión por el asfalto.</p>
                     </div>
@@ -336,27 +360,33 @@
         <!-- Eventos & Actividades -->
         <section class="py-section_padding bg-surface/30 border-y border-white/5" id="eventos">
             <div class="max-w-[1400px] mx-auto px-gutter">
-                <h2 class="font-headline text-6xl font-bold uppercase chrome-text mb-8 text-center">EVENTOS &amp;
+                <h2 class="font-headline text-4xl md:text-6xl font-bold uppercase chrome-text mb-8 text-center">EVENTOS
+                    &amp;
                     ACTIVIDADES</h2>
                 <p class="text-secondary max-w-2xl mx-auto text-center mb-12">Vivimos la ruta en todas sus formas.
                     Desde rodadas épicas hasta acción social.</p>
 
                 <!-- Tabs -->
-                <div class="flex flex-wrap justify-center gap-8 mb-12">
-                    <button class="event-tab active text-secondary text-xs font-bold uppercase tracking-widest pb-2"
+                <div class="flex flex-wrap justify-center gap-4 sm:gap-8 mb-12">
+                    <button
+                        class="event-tab active text-secondary text-[10px] sm:text-xs font-bold uppercase tracking-widest pb-2"
                         data-tab="tab-rodadas">Rodadas</button>
-                    <button class="event-tab text-secondary text-xs font-bold uppercase tracking-widest pb-2"
+                    <button
+                        class="event-tab text-secondary text-[10px] sm:text-xs font-bold uppercase tracking-widest pb-2"
                         data-tab="tab-ironman">Ironman</button>
-                    <button class="event-tab text-secondary text-xs font-bold uppercase tracking-widest pb-2"
+                    <button
+                        class="event-tab text-secondary text-[10px] sm:text-xs font-bold uppercase tracking-widest pb-2"
                         data-tab="tab-entrenamiento">Entrenamiento</button>
-                    <button class="event-tab text-secondary text-xs font-bold uppercase tracking-widest pb-2"
+                    <button
+                        class="event-tab text-secondary text-[10px] sm:text-xs font-bold uppercase tracking-widest pb-2"
                         data-tab="tab-social">Social</button>
-                    <button class="event-tab text-secondary text-xs font-bold uppercase tracking-widest pb-2"
+                    <button
+                        class="event-tab text-secondary text-[10px] sm:text-xs font-bold uppercase tracking-widest pb-2"
                         data-tab="tab-gastronomia">Gastronomía</button>
                 </div>
 
                 <!-- Rodadas -->
-                <div class="event-panel active grid grid-cols-2 md:grid-cols-3 gap-4" id="tab-rodadas">
+                <div class="event-panel active grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="tab-rodadas">
                     <div class="relative group overflow-hidden rounded-sm aspect-[4/3]">
                         <img alt="Coveñas"
                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -410,7 +440,7 @@
                 </div>
 
                 <!-- Ironman -->
-                <div class="event-panel grid grid-cols-1 md:grid-cols-2 gap-4" id="tab-ironman">
+                <div class="event-panel grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto" id="tab-ironman">
                     <div class="relative group overflow-hidden rounded-sm aspect-[4/3]">
                         <img alt="Ironman Cartagena"
                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -434,7 +464,7 @@
                 </div>
 
                 <!-- Entrenamiento -->
-                <div class="event-panel grid grid-cols-2 md:grid-cols-3 gap-4" id="tab-entrenamiento">
+                <div class="event-panel grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto" id="tab-entrenamiento">
                     <div class="relative group overflow-hidden rounded-sm aspect-[4/3]">
                         <img alt="Ejercicios"
                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -448,7 +478,7 @@
                 </div>
 
                 <!-- Social -->
-                <div class="event-panel grid grid-cols-2 md:grid-cols-3 gap-4" id="tab-social">
+                <div class="event-panel grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="tab-social">
                     <div class="relative group overflow-hidden rounded-sm aspect-[4/3]">
                         <img alt="Obra Social"
                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -482,7 +512,7 @@
                 </div>
 
                 <!-- Gastronomía -->
-                <div class="event-panel grid grid-cols-1 md:grid-cols-2 gap-4" id="tab-gastronomia">
+                <div class="event-panel grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto" id="tab-gastronomia">
                     <div class="relative group overflow-hidden rounded-sm aspect-[4/3]">
                         <img alt="Restaurante Estación 77"
                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
