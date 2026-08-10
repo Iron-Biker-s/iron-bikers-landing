@@ -1,0 +1,137 @@
+/* ── Nosotros / Valores (grid escalonado) ── */
+.about {
+  padding: var(--section-padding) 0;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.about-intro {
+  max-width: 576px;
+}
+
+.about-title {
+  font-size: clamp(2.5rem, 6vw, 3.75rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.about-text {
+  color: var(--secondary);
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.about-divider {
+  display: flex;
+  gap: 16px;
+}
+
+.about-line {
+  width: 48px;
+  height: 1px;
+  background: var(--primary);
+  margin-top: 12px;
+  flex-shrink: 0;
+}
+
+.about-quote {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--tertiary);
+}
+
+.about-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.about-card {
+  position: relative;
+  padding: 24px 32px;
+  overflow: hidden;
+  background: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.about-card-number {
+  position: absolute;
+  bottom: -16px;
+  right: -16px;
+  font-family: var(--font-headline);
+  font-size: 60px;
+  font-weight: 700;
+  color: #1a1a1a;
+  transition: color 0.3s var(--ease-out);
+  user-select: none;
+}
+
+.about-card-hover-number:hover .about-card-number {
+  color: rgba(225, 29, 46, 0.1);
+}
+
+.about-card-title {
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 10;
+}
+
+.about-card-text {
+  color: var(--secondary);
+  font-size: 14px;
+  line-height: 1.6;
+  position: relative;
+  z-index: 10;
+}
+
+@media (min-width: 640px) {
+  .about-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .about {
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+  }
+
+  .about-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 80px;
+  }
+
+  .about-title {
+    text-align: left;
+  }
+
+  .about-card {
+    padding: 32px;
+  }
+
+  .about-card-shifted {
+    transform: translateY(40px);
+  }
+
+  .about-card-number {
+    font-size: 72px;
+  }
+}

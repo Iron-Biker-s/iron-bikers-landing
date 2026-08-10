@@ -1,0 +1,37 @@
+---
+import { leaders } from "../data/leaders";
+import { Image } from "astro:assets";
+---
+
+<section class="leaders" id="directivos">
+  <div class="leaders-header">
+    <h2 class="leaders-title">Liderazgo &amp; Visión</h2>
+    <p class="leaders-subtitle">
+      Los arquitectos detrás de la ruta. Hombres de asfalto y visión empresarial.
+    </p>
+  </div>
+  <div class="leaders-list">
+    {
+      leaders.map((leader) => (
+        <div class="leader-card">
+          <div class="leader-avatar">
+            <div class="leader-avatar-inner">
+              <div class="leader-avatar-photo">
+                <Image
+                  src={leader.image}
+                  alt={leader.alt}
+                  loading="lazy"
+                  decoding="async"
+                  class="leader-photo"
+                  widths={[192, 384]}
+                />
+              </div>
+            </div>
+          </div>
+          <h3 class="leader-name">{leader.name}</h3>
+          <span class="leader-role">{leader.role}</span>
+        </div>
+      ))
+    }
+  </div>
+</section>

@@ -99,11 +99,13 @@ function doPost(e) {
 
 ## 5. Actualizar la landing page
 
-1. Abre `index.html`.
-2. Busca esta línea en el formulario:
+El formulario de la landing se conecta a tu Google Sheet a través de una variable de entorno:
 
-```html
-<form class="space-y-8" id="contactForm" action="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec" method="POST">
+1. Abre el archivo `.env` en la raíz del proyecto.
+2. Busca esta línea:
+
+```
+PUBLIC_FORM_ACTION=https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
 ```
 
 3. Reemplaza `YOUR_SCRIPT_ID` con el ID de tu URL. Si tu URL es:
@@ -114,11 +116,12 @@ https://script.google.com/macros/s/AKfycbzXXXXXXXX/exec
 
 Entonces usa:
 
-```html
-action="https://script.google.com/macros/s/AKfycbzXXXXXXXX/exec"
+```
+PUBLIC_FORM_ACTION=https://script.google.com/macros/s/AKfycbzXXXXXXXX/exec
 ```
 
-4. Guarda, commitea y sube a GitHub.
+4. No subas `.env` al repositorio. Edita `.env.example` si quieres documentar el cambio.
+5. Guarda, commitea y sube a GitHub.
 
 ## 6. Probar
 

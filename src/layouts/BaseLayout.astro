@@ -1,0 +1,104 @@
+---
+import "../styles/base.css";
+import "../styles/nav.css";
+import "../styles/hero.css";
+import "../styles/statusbar.css";
+import "../styles/about.css";
+import "../styles/benefits.css";
+import "../styles/jersey.css";
+import "../styles/leaders.css";
+import "../styles/events.css";
+import "../styles/testimonials.css";
+import "../styles/alliances.css";
+import "../styles/contact.css";
+import "../styles/footer.css";
+import "@fontsource/oswald/400.css";
+import "@fontsource/oswald/500.css";
+import "@fontsource/oswald/600.css";
+import "@fontsource/oswald/700.css";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/playfair-display/400-italic.css";
+import { site } from "../data/site";
+import logoImg from "../assets/images/logo.webp";
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: site.siteName,
+  url: site.url,
+  logo: `${site.url}${logoImg.src}`,
+  email: site.email,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Cartagena de Indias",
+    addressRegion: "Bolívar",
+    addressCountry: "CO",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: site.email,
+    contactType: "customer support",
+    availableLanguage: "Spanish",
+  },
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: site.siteName,
+  url: site.url,
+  inLanguage: "es-CO",
+  publisher: {
+    "@type": "Organization",
+    name: site.siteName,
+    url: site.url,
+  },
+};
+
+const pageTitle = "Iron Biker's Club Cartagena";
+---
+
+<!DOCTYPE html>
+<html lang="es-CO" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{pageTitle}</title>
+  <meta name="description" content={site.description}>
+  <meta name="author" content={site.siteName}>
+  <meta name="theme-color" content="#080808">
+  <link rel="canonical" href={site.url}>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content={site.siteName}>
+  <meta property="og:title" content={pageTitle}>
+  <meta property="og:description" content={site.description}>
+  <meta property="og:url" content={site.url}>
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:image" content={`${site.url}/images/hero-bg.webp`}>
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={pageTitle}>
+  <meta name="twitter:description" content={site.description}>
+  <meta name="twitter:image" content={`${site.url}/images/hero-bg.webp`}>
+
+  <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} is:inline />
+  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} is:inline />
+</head>
+
+<body>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <slot />
+
+  <script>
+    import "../scripts/scroll-progress.js";
+    import "../scripts/parallax.js";
+    import "../scripts/events-tabs.js";
+    import "../scripts/contact-form.js";
+  </script>
+</body>
+</html>

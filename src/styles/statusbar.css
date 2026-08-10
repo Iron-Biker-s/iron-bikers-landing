@@ -1,0 +1,97 @@
+/* ── Barra de estado (rodada próxima) ── */
+.statusbar {
+  position: relative;
+  z-index: 30;
+  background: var(--surface);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  height: 50px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.statusbar-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--secondary);
+  white-space: nowrap;
+}
+
+.statusbar-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #22c55e;
+  animation: pulse-dot 2s infinite ease-in-out;
+  flex-shrink: 0;
+}
+
+.statusbar-sep {
+  color: rgba(255, 255, 255, 0.2);
+  white-space: nowrap;
+}
+
+.statusbar-highlight {
+  color: var(--tertiary);
+}
+
+/* Versión móvil: dos líneas estáticas */
+.statusbar-mobile {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 16px;
+}
+
+/* Versión desktop: marquee infinito */
+.statusbar-marquee {
+  display: none;
+  overflow: hidden;
+  flex: 1;
+}
+
+.statusbar-track {
+  display: flex;
+  width: max-content;
+  animation: statusbar-marquee 45s linear infinite;
+}
+
+.statusbar-track > * {
+  padding-right: 24px;
+}
+
+@keyframes statusbar-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (min-width: 640px) {
+  .statusbar {
+    height: 60px;
+  }
+}
+
+@media (min-width: 768px) {
+  .statusbar-mobile {
+    display: none;
+  }
+
+  .statusbar-marquee {
+    display: flex;
+    align-items: center;
+  }
+}

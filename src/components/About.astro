@@ -1,0 +1,40 @@
+---
+import { values } from "../data/values";
+---
+
+<section class="about" id="nosotros">
+  <div class="about-grid">
+    <div class="about-intro">
+      <h2 class="about-title">
+        Forjados en<br />
+        el hierro
+      </h2>
+      <p class="about-text">
+        En Iron Biker's Club Cartagena, no solo rodamos; definimos el estándar del
+        motociclismo de alta gama en la costa. Nuestra esencia combina el rigor técnico
+        con la sofisticación de un estilo de vida sin concesiones.
+      </p>
+      <div class="about-divider">
+        <div class="about-line"></div>
+        <p class="about-quote">Pasión, Respeto y Kilómetros de Historia.</p>
+      </div>
+    </div>
+    <div class="about-cards">
+      {
+        values.map((value, index) => (
+          <div
+            class:list={[
+              "about-card",
+              value.shifted && "about-card-shifted",
+              index === 0 && "about-card-hover-number",
+            ]}
+          >
+            <span class="about-card-number" aria-hidden="true">{value.number}</span>
+            <h3 class="about-card-title">{value.title}</h3>
+            <p class="about-card-text">{value.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

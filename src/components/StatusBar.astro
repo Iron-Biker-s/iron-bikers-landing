@@ -1,0 +1,55 @@
+---
+interface StatusItem {
+  type: "item" | "highlight" | "sep";
+  text: string;
+  dot?: boolean;
+  duplicate?: boolean;
+}
+
+const statusItems: StatusItem[] = [
+  { type: "item", text: "Próxima rodada: 15 de Julio", dot: true },
+  { type: "sep", text: "—" },
+  { type: "item", text: "Destino: Playa Blanca" },
+  { type: "sep", text: "—" },
+  { type: "highlight", text: "Cupos: 12 disponibles" },
+  { type: "sep", text: "/" },
+];
+
+const marqueeItems: StatusItem[] = [false, true].flatMap((duplicate) =>
+  statusItems.map((item) => ({ ...item, duplicate }))
+);
+---
+
+<div class="statusbar">
+  <div class="statusbar-mobile">
+    <span class="statusbar-item">
+      <span class="statusbar-dot"></span>
+      Próxima rodada: 15 de Julio
+    </span>
+    <span class="statusbar-item">
+      Destino: Playa Blanca <span class="statusbar-sep">&mdash;</span>
+      <span class="statusbar-highlight">Cupos: 12</span>
+    </span>
+  </div>
+  <div class="statusbar-marquee">
+    <div class="statusbar-track">
+      {
+        marqueeItems.map((item) =>
+          item.type === "sep" ? (
+            <span class="statusbar-sep" aria-hidden={item.duplicate || undefined}>
+              {item.text}
+            </span>
+          ) : (
+            <span
+              class:list={["statusbar-item", item.type === "highlight" && "statusbar-highlight"]}
+              aria-hidden={item.duplicate || undefined}
+            >
+              {item.dot && <span class="statusbar-dot" aria-hidden="true"></span>}
+              {item.text}
+            </span>
+          )
+        )
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+---
+import { eventTabs } from "../data/events";
+import { Image } from "astro:assets";
+---
+
+<section class="events" id="eventos">
+  <div class="events-inner">
+    <h2 class="events-title">Eventos &amp; Actividades</h2>
+    <p class="events-subtitle">
+      Vivimos la ruta en todas sus formas. Desde rodadas épicas hasta acción social.
+    </p>
+
+    <div class="events-tabs" role="tablist" aria-label="Categorías de eventos">
+      {
+        eventTabs.map((tab, index) => (
+          <button
+            class:list={["event-tab", index === 0 && "active"]}
+            data-tab={tab.id}
+            role="tab"
+            aria-selected={index === 0}
+            aria-controls={tab.id}
+          >
+            {tab.label}
+          </button>
+        ))
+      }
+    </div>
+
+    {
+      eventTabs.map((tab, index) => (
+        <div
+          class:list={["event-panel", index === 0 && "active", `event-panel-${tab.maxWidth}`]}
+          id={tab.id}
+          role="tabpanel"
+        >
+          {
+            tab.items.map((item) => (
+              <div class="event-card">
+                <Image
+                  src={item.image}
+                  alt={item.alt}
+                  loading="lazy"
+                  decoding="async"
+                  class="event-image"
+                />
+                <div class="event-overlay">
+                  <h4 class="event-name">{item.title}</h4>
+                  <p class="event-tag">{item.tag}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      ))
+    }
+  </div>
+</section>

@@ -1,0 +1,18 @@
+---
+import { site } from "../data/site";
+---
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#" aria-label="Ir al inicio">
+      {site.siteNameShort.toUpperCase()}
+    </a>
+    <div class="nav-links">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#beneficios">Beneficios</a>
+      <a href="#eventos">Eventos</a>
+      <a href="#contacto" class="nav-link-active">Contacto</a>
+    </div>
+    <a href="#contacto" class="btn nav-cta">Únete al club</a>
+  </div>
+</nav>

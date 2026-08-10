@@ -1,0 +1,236 @@
+/* ──────────────────────────────────────────────────────────────
+   IRON BIKER'S CLUB CARTAGENA — Design System
+   Conversión de Tailwind (CDN) a CSS puro, siguiendo la
+   arquitectura de biker-os-landing
+   ────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Palette Iron Biker's */
+  --primary: #E11D2E;      /* Ruby Red */
+  --secondary: #A8B2C1;    /* Cold Silver */
+  --tertiary: #F5C542;     /* Amber Gold */
+  --background: #080808;   /* Carbon Black */
+  --surface: #141414;      /* Obsidian Gray */
+
+  /* Tipografía */
+  --font-headline: 'Oswald', 'Inter', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-quote: 'Playfair Display', Georgia, serif;
+
+  /* Layout */
+  --section-padding: 120px;
+  --gutter: 24px;
+  --max-width: 1400px;
+
+  /* Misc */
+  --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--background);
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+/* Barra de progreso de scroll */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--primary);
+  z-index: 100;
+  transition: width 0.1s linear;
+}
+
+/* Utilidades */
+.hidden {
+  display: none !important;
+}
+
+.text-secondary {
+  color: var(--secondary);
+}
+
+.text-tertiary {
+  color: var(--tertiary);
+}
+
+/* Texto con degradado cromado (rubio → blanco → rubio) */
+.chrome-text {
+  background: linear-gradient(to bottom, var(--tertiary) 0%, #ffffff 50%, var(--tertiary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Panel de vidrio esmerilado */
+.glass-panel {
+  background: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Glows */
+.ruby-glow:hover {
+  box-shadow: 0 0 20px rgba(225, 29, 46, 0.6);
+}
+
+.gold-glow {
+  box-shadow: 0 0 25px rgba(245, 197, 66, 0.3);
+}
+
+/* Punto pulsante */
+@keyframes pulse-dot {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+/* Degradado animado rubí → dorado */
+.ruby-gold-gradient {
+  background: linear-gradient(45deg, var(--primary), var(--tertiary));
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Fondo parallax del hero */
+.parallax-bg {
+  transform: translateZ(-1px) scale(2);
+}
+
+/* Marco asimétrico */
+.asymmetrical-frame {
+  position: relative;
+}
+
+.asymmetrical-frame::after {
+  content: '';
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--tertiary);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s var(--ease-out);
+}
+
+.btn-outline-gold {
+  background: transparent;
+  border: 1px solid var(--tertiary);
+  color: var(--tertiary);
+  padding: 16px 40px;
+}
+
+.btn-outline-gold:hover {
+  background: var(--tertiary);
+  color: var(--background);
+}

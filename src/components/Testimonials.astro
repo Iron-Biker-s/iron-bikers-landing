@@ -1,0 +1,36 @@
+---
+import { testimonials } from "../data/testimonials";
+import { Image } from "astro:assets";
+---
+
+<section class="testimonials" id="testimonios">
+  <div class="testimonials-inner">
+    <h2 class="testimonials-title">Testimonios</h2>
+    <div class="testimonials-grid">
+      {
+        testimonials.map((testimonial) => (
+          <article class="testimonial-card">
+            <div class="testimonial-mark" aria-hidden="true">&ldquo;</div>
+            <p class="testimonial-quote">{testimonial.quote}</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">
+                <Image
+                  src={testimonial.image}
+                  alt={testimonial.alt}
+                  loading="lazy"
+                  decoding="async"
+                  class="testimonial-photo"
+                  widths={[96]}
+                />
+              </div>
+              <div>
+                <h4 class="testimonial-name">{testimonial.name}</h4>
+                <span class="testimonial-role">{testimonial.role}</span>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

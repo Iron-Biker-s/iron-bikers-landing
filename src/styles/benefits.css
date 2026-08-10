@@ -1,0 +1,137 @@
+/* ── Beneficios (timeline con columna sticky) ── */
+.benefits {
+  padding: var(--section-padding) 0;
+  background: rgba(20, 20, 20, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.benefits-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.benefits-side {
+  position: sticky;
+}
+
+.benefits-title {
+  font-size: clamp(2.5rem, 6vw, 3.75rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.benefits-frame {
+  position: relative;
+  max-width: 448px;
+  margin: 0 auto;
+}
+
+.benefits-frame::after {
+  content: '';
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--tertiary);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.benefits-frame-img {
+  width: 100%;
+  border-radius: 2px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  filter: grayscale(1);
+  transition: filter 0.5s var(--ease-out);
+}
+
+.benefits-frame:hover .benefits-frame-img {
+  filter: grayscale(0);
+}
+
+.benefits-timeline {
+  position: relative;
+  padding-left: 32px;
+  border-left: 1px solid rgba(245, 197, 66, 0.2);
+}
+
+.benefit-item {
+  position: relative;
+  margin-bottom: 48px;
+}
+
+.benefit-item:last-child {
+  margin-bottom: 0;
+}
+
+.benefit-dot {
+  position: absolute;
+  left: -38px;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  border: 4px solid var(--background);
+  box-shadow: 0 0 25px rgba(245, 197, 66, 0.3);
+}
+
+.benefit-item-featured .benefit-dot {
+  background: var(--tertiary);
+}
+
+.benefit-item:not(.benefit-item-featured) .benefit-dot {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.benefit-title {
+  font-size: clamp(1.5rem, 3.5vw, 1.875rem);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.benefit-text {
+  color: var(--secondary);
+  line-height: 1.7;
+  max-width: 576px;
+}
+
+@media (min-width: 768px) {
+  .benefits-grid {
+    grid-template-columns: 5fr 7fr;
+    gap: 80px;
+  }
+
+  .benefits-side {
+    position: sticky;
+    top: 128px;
+  }
+
+  .benefits-title {
+    text-align: left;
+    margin-bottom: 40px;
+  }
+
+  .benefits-timeline {
+    padding-left: 40px;
+  }
+
+  .benefit-dot {
+    left: -50px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .benefit-item {
+    margin-bottom: 80px;
+  }
+}

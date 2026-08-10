@@ -1,0 +1,64 @@
+---
+import { site } from "../data/site";
+---
+
+<section class="contact" id="contacto">
+  <div class="contact-bg" aria-hidden="true">
+    <img
+      src="/images/hero-bg.webp"
+      alt=""
+      loading="lazy"
+      decoding="async"
+      class="contact-bg-img"
+    />
+    <div class="contact-bg-overlay"></div>
+  </div>
+  <div class="contact-inner">
+    <div class="contact-panel">
+      <h2 class="contact-title">
+        Solicita tu<br />
+        ingreso
+      </h2>
+      <form class="contact-form" id="contactForm" action={site.formAction} method="POST">
+        <div class="contact-field">
+          <input
+            class="contact-input"
+            name="nombre"
+            placeholder=" "
+            required
+            type="text"
+          />
+          <label class="contact-label">Nombre Completo</label>
+        </div>
+        <div class="contact-field">
+          <input
+            class="contact-input"
+            name="telefono"
+            placeholder=" "
+            required
+            type="tel"
+          />
+          <label class="contact-label">Número de Teléfono</label>
+        </div>
+        <div class="contact-row">
+          <div class="contact-field">
+            <input class="contact-input" name="marca" placeholder=" " required type="text" />
+            <label class="contact-label">Marca</label>
+          </div>
+          <div class="contact-field">
+            <input class="contact-input" name="modelo" placeholder=" " required type="text" />
+            <label class="contact-label">Modelo</label>
+          </div>
+          <div class="contact-field">
+            <input class="contact-input" name="placa" placeholder=" " required type="text" />
+            <label class="contact-label">Placa</label>
+          </div>
+        </div>
+        <p class="contact-response hidden" id="formResponse"></p>
+        <button class="contact-submit" type="submit">
+          Enviar solicitud
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

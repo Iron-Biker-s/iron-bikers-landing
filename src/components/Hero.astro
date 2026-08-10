@@ -1,0 +1,39 @@
+---
+import logoImg from "../assets/images/logo.webp";
+---
+
+<header class="hero">
+  <div
+    class="hero-bg parallax-bg"
+    id="heroParallax"
+    style={`background-image: url('/images/hero-bg.webp');`}
+    role="img"
+    aria-label="Fondo del hero: miembros del club en ruta"
+  >
+    <div class="hero-bg-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-logo">
+      <img src={logoImg.src} alt="Iron Biker's Club Logo" width="160" height="160" />
+    </div>
+    <h1 class="hero-title">
+      Poder &amp; Lealtad<br />
+      <span>En el Asfalto</span>
+    </h1>
+    <p class="hero-quote">&ldquo;La fraternidad no se hereda, se conquista en la vía.&rdquo;</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-value">50+</span>
+        <span class="hero-stat-label">Miembros</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-value">100+</span>
+        <span class="hero-stat-label">Rodadas</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-value">4</span>
+        <span class="hero-stat-label">Años</span>
+      </div>
+    </div>
+  </div>
+</header>

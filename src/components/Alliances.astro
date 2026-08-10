@@ -1,0 +1,37 @@
+---
+import { alliances } from "../data/alliances";
+import { Image } from "astro:assets";
+---
+
+<section class="alliances" id="alianzas">
+  <div class="alliances-inner">
+    <div class="alliances-header">
+      <h2 class="alliances-title">Aliados Estratégicos</h2>
+      <p class="alliances-subtitle">
+        Marcas y empresas que comparten nuestra pasión por el motociclismo de alto nivel.
+      </p>
+    </div>
+    <div class="alliances-grid">
+      {
+        alliances.map((alliance) => (
+          <div class="alliance-card">
+            <div class="alliance-logo">
+              <Image
+                src={alliance.logo}
+                alt={alliance.alt}
+                loading="lazy"
+                decoding="async"
+                class="alliance-logo-img"
+                widths={[320]}
+              />
+            </div>
+            <div class="alliance-info">
+              <h3 class="alliance-name">{alliance.name}</h3>
+              <span class="alliance-category">{alliance.category}</span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,37 @@
+---
+import logoImg from "../assets/images/logo.webp";
+---
+
+<section class="jersey" id="jersey">
+  <div class="jersey-grid">
+    <div class="jersey-visual">
+      <div class="jersey-glow" aria-hidden="true"></div>
+      <div class="jersey-panel">
+        <img
+          src={logoImg.src}
+          alt="Jersey oficial del club"
+          class="jersey-logo"
+          loading="lazy"
+          decoding="async"
+          width="320"
+          height="320"
+        />
+        <div class="jersey-badge">
+          <span>Edición Limitada</span>
+        </div>
+      </div>
+    </div>
+    <div class="jersey-info">
+      <h2 class="jersey-title">
+        Porta los<br />
+        colores con orgullo
+      </h2>
+      <p class="jersey-text">
+        El Jersey Oficial de Iron Biker's es más que una prenda; es el distintivo de
+        pertenencia a la élite. Fabricado con materiales técnicos de alto rendimiento y
+        bordados de precisión.
+      </p>
+      <a href="#contacto" class="btn btn-outline-gold">Ver jersey oficial</a>
+    </div>
+  </div>
+</section>
