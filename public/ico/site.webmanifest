@@ -1,0 +1,21 @@
+{
+  "name": "Iron Biker's Club Cartagena",
+  "short_name": "Iron Biker's",
+  "description": "Club de motociclismo de alta gama en Cartagena. Pasión, lealtad y estilo sobre dos ruedas.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080808",
+  "theme_color": "#080808",
+  "icons": [
+    {
+      "src": "/ico/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/ico/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

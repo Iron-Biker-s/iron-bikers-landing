@@ -12,6 +12,7 @@ import "../styles/testimonials.css";
 import "../styles/alliances.css";
 import "../styles/contact.css";
 import "../styles/footer.css";
+import "../styles/splash.css";
 import "@fontsource/oswald/400.css";
 import "@fontsource/oswald/500.css";
 import "@fontsource/oswald/600.css";
@@ -71,6 +72,12 @@ const pageTitle = "Iron Biker's Club Cartagena";
   <meta name="theme-color" content="#080808">
   <link rel="canonical" href={site.url}>
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/ico/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/ico/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/ico/apple-touch-icon.png">
+  <link rel="manifest" href="/ico/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#080808">
+  <meta name="msapplication-TileImage" content="/ico/ms-icon-144x144.png">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content={site.siteName}>
@@ -79,6 +86,7 @@ const pageTitle = "Iron Biker's Club Cartagena";
   <meta property="og:url" content={site.url}>
   <meta property="og:locale" content="es_CO">
   <meta property="og:image" content={`${site.url}/images/og-image.png`}>
+  <meta property="og:image:secure_url" content={`${site.url}/images/og-image.png`}>
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/png">
@@ -104,12 +112,16 @@ const pageTitle = "Iron Biker's Club Cartagena";
       .hero-content > * {
         animation: none !important;
       }
+      .splash {
+        display: none !important;
+      }
     </style>
   </noscript>
 
   <slot />
 
   <script>
+    import "../scripts/splash.js";
     import "../scripts/scroll-progress.js";
     import "../scripts/parallax.js";
     import "../scripts/events-tabs.js";

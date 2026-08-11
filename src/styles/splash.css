@@ -1,0 +1,240 @@
+/* ── Splash loader de marca (motivo motociclista) ── */
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  overflow: hidden;
+  transition: opacity 0.45s var(--ease-out), visibility 0.45s var(--ease-out);
+}
+
+.splash::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(225, 29, 46, 0.2), transparent 60%);
+  pointer-events: none;
+}
+
+.splash.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.splash-mark {
+  width: 88px;
+  height: 88px;
+  animation: splash-logo-pulse 1.6s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+}
+
+.splash-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.splash-stage {
+  position: relative;
+  width: min(560px, 92vw);
+  height: 140px;
+  z-index: 2;
+}
+
+/* En pantallas pequeñas se escala toda la escena (moto + carretera) para que no se salga */
+@media (max-width: 640px) {
+  .splash-stage {
+    transform: scale(0.68);
+  }
+}
+
+@media (max-width: 380px) {
+  .splash-stage {
+    transform: scale(0.55);
+  }
+}
+
+/* Carretera: tramos dorados sobre asfalto, borde rubí */
+.splash-road {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 14px;
+  background:
+    repeating-linear-gradient(90deg, var(--tertiary) 0 22px, transparent 22px 44px),
+    linear-gradient(180deg, #161616, #0a0a0a);
+  animation: splash-road-scroll 0.55s linear infinite;
+  opacity: 0.85;
+}
+
+.splash-road::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -2px;
+  height: 2px;
+  background: var(--primary);
+}
+
+/* La moto cruza de izquierda a derecha */
+.splash-bike {
+  position: absolute;
+  left: -180px;
+  bottom: 27px;
+  width: 170px;
+  height: 113px;
+  animation: splash-moto-drive 4.2s cubic-bezier(0.6, 0.05, 0.4, 0.95) infinite;
+}
+
+.splash-bike-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  animation: splash-bike-bob 0.42s ease-in-out infinite alternate;
+  transform-origin: center bottom;
+}
+
+.splash-bike-inner img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Humo del escape (parte trasera de la moto, lado izquierdo) */
+.splash-puffs {
+  position: absolute;
+  bottom: 34px;
+  left: 6px;
+  width: 80px;
+  height: 24px;
+  pointer-events: none;
+}
+
+.splash-puff {
+  position: absolute;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(245, 197, 66, 0.35);
+  animation: splash-puff 0.9s ease-out infinite;
+}
+
+.splash-puff:nth-child(2) {
+  left: 18px;
+  animation-delay: 0.3s;
+}
+
+.splash-puff:nth-child(3) {
+  left: 36px;
+  animation-delay: 0.6s;
+}
+
+/* Barra de revoluciones */
+.splash-rev {
+  position: relative;
+  z-index: 2;
+  width: 280px;
+  max-width: 80vw;
+  height: 6px;
+  background: #181818;
+  overflow: hidden;
+}
+
+.splash-rev::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--tertiary) 50%, transparent);
+  animation: splash-rev-sweep 1.1s linear infinite;
+}
+
+.splash-tag {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-headline);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--tertiary);
+}
+
+@keyframes splash-logo-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.06);
+    opacity: 0.85;
+  }
+}
+
+@keyframes splash-road-scroll {
+  from {
+    background-position: 0 0, 0 0;
+  }
+
+  to {
+    background-position: -44px 0, 0 0;
+  }
+}
+
+@keyframes splash-moto-drive {
+  0% {
+    left: -180px;
+  }
+
+  100% {
+    left: calc(100% + 30px);
+  }
+}
+
+@keyframes splash-bike-bob {
+  from {
+    transform: translateY(0) rotate(-0.6deg);
+  }
+
+  to {
+    transform: translateY(-2px) rotate(0.6deg);
+  }
+}
+
+@keyframes splash-puff {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translate(-24px, -16px) scale(1.8);
+    opacity: 0;
+  }
+}
+
+@keyframes splash-rev-sweep {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash {
+    display: none !important;
+  }
+}
