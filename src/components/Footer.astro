@@ -15,9 +15,9 @@ import logoImg from "../assets/images/logo.webp";
       <img src={logoImg.src} alt="" class="footer-logo-reflect" width="160" height="160" loading="lazy" decoding="async" />
     </div>
     <nav class="footer-links" aria-label="Enlaces legales">
-      <a href="#">Términos</a>
-      <a href="#">Privacidad</a>
-      <a href="#">Soporte</a>
+      <a href={site.privacyUrl} target="_blank" rel="noopener">Política de privacidad</a>
+      <a href={site.deleteAccountUrl} target="_blank" rel="noopener">Eliminar cuenta</a>
+      <a href="#contacto">Soporte</a>
     </nav>
     <div class="footer-contact">
       <p>
