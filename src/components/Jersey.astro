@@ -1,5 +1,8 @@
 ---
+import { getEntry } from "astro:content";
 import logoImg from "../assets/images/logo.webp";
+
+const { data: jersey } = (await getEntry("jersey", "jersey"))!;
 ---
 
 <section class="jersey" id="jersey">
@@ -23,15 +26,11 @@ import logoImg from "../assets/images/logo.webp";
     </div>
     <div class="jersey-info reveal reveal-delay-1">
       <h2 class="jersey-title">
-        Porta los<br />
-        colores con orgullo
+        {jersey.titleLine1}<br />
+        {jersey.titleLine2}
       </h2>
-      <p class="jersey-text">
-        El Jersey Oficial de Iron Biker's es más que una prenda; es el distintivo de
-        pertenencia a la élite. Fabricado con materiales técnicos de alto rendimiento y
-        bordados de precisión.
-      </p>
-      <a href="#contacto" class="btn btn-outline-gold">Ver jersey oficial</a>
+      <p class="jersey-text">{jersey.text}</p>
+      <a href="#contacto" class="btn btn-outline-gold">{jersey.button}</a>
     </div>
   </div>
 </section>

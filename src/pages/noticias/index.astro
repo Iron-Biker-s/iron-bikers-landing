@@ -1,0 +1,59 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { getCover } from "../../lib/image";
+import "../../styles/news.css";
+
+const noticias = (await getCollection("news")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("es-CO", { day: "numeric", month: "long", year: "numeric" });
+---
+
+<BaseLayout title="Noticias — Iron Biker's" description="Lo último del club: rodadas, talleres, eventos y novedades de Iron Biker's Club Cartagena.">
+  <main class="news-page">
+    <section class="news-hero">
+      <div class="news-hero-inner">
+        <span class="news-kicker">&middot; El club al día</span>
+        <h1 class="news-title">Noticias <span>del club.</span></h1>
+        <p class="news-subtitle">
+          Rodadas, talleres, eventos y todo lo que mueve a la manada.
+        </p>
+      </div>
+    </section>
+
+    <section class="news-list">
+      {
+        noticias.map(async (nota) => {
+          const cover = await getCover(nota.data.cover, [480, 720]);
+          return (
+            <a class="news-card" href={`/noticias/${nota.id}`}>
+              <div class="news-card-media">
+                <img
+                  src={cover.src}
+                  srcset={cover.srcSet.attribute}
+                  sizes="(max-width: 640px) 100vw, 280px"
+                  alt={nota.data.title}
+                  loading="lazy"
+                  decoding="async"
+                  class="news-card-img"
+                />
+              </div>
+              <div class="news-card-body">
+                <div class="news-card-meta">
+                  <time datetime={nota.data.date.toISOString()}>{formatDate(nota.data.date)}</time>
+                  <span class="news-card-author">{nota.data.author}</span>
+                </div>
+                <h2 class="news-card-title">{nota.data.title}</h2>
+                <p class="news-card-summary">{nota.data.summary}</p>
+                <span class="news-card-link">Leer nota &rarr;</span>
+              </div>
+            </a>
+          );
+        })
+      }
+    </section>
+  </main>
+</BaseLayout>

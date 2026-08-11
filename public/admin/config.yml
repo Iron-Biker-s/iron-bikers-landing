@@ -1,0 +1,332 @@
+backend:
+  name: github
+  repo: Iron-Biker-s/iron-bikers-landing
+  branch: main
+
+# ── PRODUCCIÓN ──────────────────────────────────────────────────
+# local_backend desactivado: el panel en prod usa GitHub backend.
+# Para editar desde prod necesitas OAuth de GitHub (ver CMS.md).
+# ────────────────────────────────────────────────────────────────
+# En desarrollo local: pon `true` aquí, corre `bun run cms:local`
+# y entra a http://localhost:4321/admin/index.html
+local_backend: false
+
+media_folder: "public/images"
+public_folder: "/images"
+
+site_url: https://www.ironbikers.co
+
+admin_css:
+  - /admin/admin.css
+
+collections:
+  # ─────────────────────────── Grupo A ───────────────────────────
+  # Configuraciones de secciones: 1 archivo por sección.
+  - name: site
+    label: "Configuración del sitio"
+    folder: "src/content/site"
+    create: false
+    delete: false
+    format: json
+    extension: json
+    editor:
+      preview: false
+    fields:
+      - { label: "Nombre del club", name: "siteName", widget: "string" }
+      - { label: "Nombre corto", name: "siteNameShort", widget: "string" }
+      - { label: "Descripción (SEO)", name: "description", widget: "text" }
+      - { label: "Ciudad", name: "city", widget: "string" }
+      - { label: "Email", name: "email", widget: "string" }
+      - { label: "NIT", name: "nit", widget: "string" }
+      - { label: "URL Política de privacidad", name: "privacyUrl", widget: "string" }
+      - { label: "URL Eliminar cuenta", name: "deleteAccountUrl", widget: "string" }
+
+  - name: social
+    label: "Redes sociales"
+    folder: "src/content/social"
+    create: false
+    delete: false
+    format: json
+    extension: json
+    editor:
+      preview: false
+    fields:
+      - label: "Instagram"
+        name: "instagram"
+        widget: "object"
+        fields:
+          - { label: "Handle (ej: @club)", name: "handle", widget: "string", required: false }
+          - { label: "URL", name: "url", widget: "string", required: false }
+      - label: "Facebook"
+        name: "facebook"
+        widget: "object"
+        fields:
+          - { label: "Handle", name: "handle", widget: "string", required: false }
+          - { label: "URL", name: "url", widget: "string", required: false }
+      - label: "TikTok"
+        name: "tiktok"
+        widget: "object"
+        fields:
+          - { label: "Handle", name: "handle", widget: "string", required: false }
+          - { label: "URL", name: "url", widget: "string", required: false }
+      - label: "WhatsApp"
+        name: "whatsapp"
+        widget: "object"
+        fields:
+          - { label: "Handle (ej: Grupo oficial)", name: "handle", widget: "string", required: false }
+          - { label: "URL", name: "url", widget: "string", required: false }
+
+  - name: hero
+    label: "Hero (portada)"
+    folder: "src/content/hero"
+    create: false
+    delete: false
+    format: json
+    extension: json
+    editor:
+      preview: false
+    fields:
+      - { label: "Badge", name: "badge", widget: "string", hint: "Dejar vacío para ocultarlo" }
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Título destacado (2ª línea)", name: "titleSpan", widget: "string" }
+      - { label: "Frase", name: "quote", widget: "string" }
+      - label: "Estadísticas"
+        name: "stats"
+        widget: "list"
+        fields:
+          - { label: "Valor (ej: 50+)", name: "value", widget: "string" }
+          - { label: "Etiqueta (ej: Miembros)", name: "label", widget: "string" }
+
+  - name: statusbar
+    label: "Barra de rodada"
+    folder: "src/content/statusbar"
+    create: false
+    delete: false
+    format: json
+    extension: json
+    editor:
+      preview: false
+    fields:
+      - { label: "Próxima rodada", name: "rodada", widget: "string" }
+      - { label: "Destino", name: "destino", widget: "string" }
+      - { label: "Cupos", name: "cupos", widget: "string" }
+
+  - name: about
+    label: "Nosotros"
+    folder: "src/content/about"
+    create: false
+    delete: false
+    format: json
+    extension: json
+    editor:
+      preview: false
+    fields:
+      - { label: "Título (línea 1)", name: "titleLine1", widget: "string" }
+      - { label: "Título (línea 2)", name: "titleLine2", widget: "string" }
+      - { label: "Texto", name: "text", widget: "text" }
+      - { label: "Cita", name: "quote", widget: "string" }
+
+  - name: benefits
+    label: "Membresía / Beneficios"
+    folder: "src/content/benefits"
+    create: false
+    delete: false
+    format: json
+    extension: json
+    editor:
+      preview: false
+    fields:
+      - { label: "Título (línea 1)", name: "titleLine1", widget: "string" }
+      - { label: "Título (línea 2)", name: "titleLine2", widget: "string" }
+      - label: "Beneficios"
+        name: "items"
+        widget: "list"
+        fields:
+          - { label: "Título", name: "title", widget: "string" }
+          - { label: "Descripción", name: "description", widget: "text" }
+          - { label: "Destacado (punto dorado)", name: "featured", widget: "boolean", default: false }
+
+  - name: jersey
+    label: "Jersey"
+    folder: "src/content/jersey"
+    create: false
+    delete: false
+    format: json
+    extension: json
+    editor:
+      preview: false
+    fields:
+      - { label: "Título (línea 1)", name: "titleLine1", widget: "string" }
+      - { label: "Título (línea 2)", name: "titleLine2", widget: "string" }
+      - { label: "Texto", name: "text", widget: "text" }
+      - { label: "Texto del botón", name: "button", widget: "string" }
+
+  - name: contact
+    label: "Sección de contacto"
+    folder: "src/content/contact"
+    create: false
+    delete: false
+    format: json
+    extension: json
+    editor:
+      preview: false
+    fields:
+      - { label: "Título (línea 1)", name: "titleLine1", widget: "string" }
+      - { label: "Título (línea 2)", name: "titleLine2", widget: "string" }
+
+  - name: footer
+    label: "Pie de página"
+    folder: "src/content/footer"
+    create: false
+    delete: false
+    format: json
+    extension: json
+    editor:
+      preview: false
+    fields:
+      - { label: "Copyright", name: "copyright", widget: "string" }
+      - { label: "NIT", name: "nit", widget: "string" }
+
+  # ─────────────────────────── Grupo B ───────────────────────────
+  # Contenido con múltiples entradas.
+
+  - name: values
+    label: "Valores"
+    label_singular: "Valor"
+    folder: "src/content/values"
+    create: true
+    delete: true
+    format: json
+    extension: json
+    slug: "{{title}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Número", name: "number", widget: "string" }
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Descripción", name: "description", widget: "text" }
+      - { label: "Desplazado (escalonado)", name: "shifted", widget: "boolean", default: false }
+
+  - name: pilots
+    label: "Pilotos y directiva"
+    label_singular: "Piloto"
+    folder: "src/content/pilots"
+    create: true
+    delete: true
+    format: json
+    extension: json
+    slug: "{{name}}"
+    media_folder: "public/images/pilots"
+    public_folder: "/images/pilots"
+    editor:
+      preview: false
+    fields:
+      - { label: "Nombre", name: "name", widget: "string" }
+      - { label: "Cargo / Rol", name: "role", widget: "string" }
+      - { label: "Grupo", name: "group", widget: "string", default: "Directiva" }
+      - { label: "Foto", name: "image", widget: "image", choose_url: false }
+      - { label: "Texto alternativo (accesibilidad)", name: "alt", widget: "string" }
+
+  - name: events
+    label: "Eventos"
+    label_singular: "Evento"
+    folder: "src/content/events"
+    create: true
+    delete: true
+    format: json
+    extension: json
+    slug: "{{title}}"
+    media_folder: "public/images/events"
+    public_folder: "/images/events"
+    editor:
+      preview: false
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Etiqueta corta (ej: Rodada Costera)", name: "tag", widget: "string" }
+      - label: "Categoría"
+        name: "categoria"
+        widget: "select"
+        options: ["Rodadas", "Ironman", "Entrenamiento", "Social", "Gastronomía"]
+      - { label: "Imagen", name: "image", widget: "image", choose_url: false }
+      - { label: "Texto alternativo (accesibilidad)", name: "alt", widget: "string" }
+
+  - name: testimonials
+    label: "Testimonios"
+    label_singular: "Testimonio"
+    folder: "src/content/testimonials"
+    create: true
+    delete: true
+    format: json
+    extension: json
+    slug: "{{name}}"
+    media_folder: "public/images/testimonials"
+    public_folder: "/images/testimonials"
+    editor:
+      preview: false
+    fields:
+      - { label: "Cita", name: "quote", widget: "text" }
+      - { label: "Nombre", name: "name", widget: "string" }
+      - { label: "Rol (ej: Miembro)", name: "role", widget: "string" }
+      - { label: "Foto", name: "image", widget: "image", choose_url: false }
+      - { label: "Texto alternativo (accesibilidad)", name: "alt", widget: "string" }
+
+  - name: alliances
+    label: "Aliados"
+    label_singular: "Aliado"
+    folder: "src/content/alliances"
+    create: true
+    delete: true
+    format: json
+    extension: json
+    slug: "{{name}}"
+    media_folder: "public/images/aliances"
+    public_folder: "/images/aliances"
+    editor:
+      preview: false
+    fields:
+      - { label: "Nombre", name: "name", widget: "string" }
+      - { label: "Categoría", name: "category", widget: "string" }
+      - { label: "Logo", name: "logo", widget: "image", choose_url: false }
+      - { label: "Texto alternativo (accesibilidad)", name: "alt", widget: "string" }
+
+  - name: gallery
+    label: "Galería"
+    label_singular: "Foto"
+    folder: "src/content/gallery"
+    create: true
+    delete: true
+    format: json
+    extension: json
+    slug: "{{title}}"
+    media_folder: "public/images/gallery"
+    public_folder: "/images/gallery"
+    editor:
+      preview: false
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Categoría", name: "category", widget: "string" }
+      - { label: "Imagen", name: "image", widget: "image", choose_url: false }
+      - { label: "Texto alternativo (accesibilidad)", name: "alt", widget: "string" }
+
+  - name: news
+    label: "Noticias"
+    label_singular: "Noticia"
+    folder: "src/content/news"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} — {{date}}"
+    sortable_fields: [date, title]
+    media_folder: "public/images/news"
+    public_folder: "/images/news"
+    fields:
+      - { label: "Título", name: "title", widget: "string", hint: "Título de la noticia" }
+      - { label: "Fecha", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Autor", name: "author", widget: "string", default: "Iron Biker's" }
+      - { label: "Resumen", name: "summary", widget: "text", hint: "2-3 líneas que se muestran en la lista" }
+      - label: "Etiquetas"
+        name: "tags"
+        widget: "list"
+        default: ["club"]
+        field: { label: "Etiqueta", name: "tag", widget: "string" }
+      - { label: "Imagen de portada", name: "cover", widget: "image", choose_url: false }
+      - { label: "Contenido", name: "body", widget: "markdown" }

@@ -1,0 +1,67 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+import { getCover } from "../../lib/image";
+import "../../styles/news.css";
+
+export async function getStaticPaths() {
+  const noticias = await getCollection("news");
+  return noticias.map((nota) => ({
+    params: { slug: nota.id },
+    props: { nota },
+  }));
+}
+
+const { nota } = Astro.props;
+const { Content } = await render(nota);
+const { title, date, author, summary, tags, cover } = nota.data;
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString("es-CO", { day: "numeric", month: "long", year: "numeric" });
+
+const coverImg = await getCover(cover, [720, 1080]);
+---
+
+<BaseLayout title={`${title} — Iron Biker's`} description={summary}>
+  <main class="news-page">
+    <article class="news-article">
+      <a class="news-back" href="/noticias">&larr; Volver a noticias</a>
+
+      <header class="news-article-header">
+        <div class="news-article-meta">
+          <time datetime={date.toISOString()}>{formatDate(date)}</time>
+          <span>&middot;</span>
+          <span>{author}</span>
+        </div>
+        <h1 class="news-article-title">{title}</h1>
+        <p class="news-article-summary">{summary}</p>
+        {
+          tags.length > 0 && (
+            <div class="news-tags">
+              {tags.map((tag) => <span class="news-tag">{tag}</span>)}
+            </div>
+          )
+        }
+      </header>
+
+      <figure class="news-article-figure">
+        <img
+          src={coverImg.src}
+          srcset={coverImg.srcSet.attribute}
+          sizes="(max-width: 768px) 100vw, 760px"
+          alt={title}
+          class="news-article-cover"
+        />
+      </figure>
+
+      <div class="news-body">
+        <Content />
+      </div>
+
+      <footer class="news-article-footer">
+        <span>&mdash; {author}, Iron Biker's Club Cartagena</span>
+        <a class="news-back" href="/noticias">&larr; Más noticias</a>
+      </footer>
+    </article>
+  </main>
+</BaseLayout>

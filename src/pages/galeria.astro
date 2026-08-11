@@ -1,0 +1,68 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { getCover } from "../lib/image";
+import "../styles/gallery.css";
+
+const galleryItems = await getCollection("gallery");
+const images = await Promise.all(
+  galleryItems.map((item) => getCover(item.data.image, [480, 960]))
+);
+---
+
+<BaseLayout title="Galería — Iron Biker's" description="Cada rodada, cada recuerdo. Fotos y momentos del club.">
+  <main class="gallery-page">
+    <section class="gallery-hero">
+      <div class="gallery-hero-inner">
+        <span class="gallery-kicker">&middot; Archivo visual del club</span>
+        <h1 class="gallery-title">Cada rodada, <span>cada recuerdo.</span></h1>
+        <p class="gallery-subtitle">Haz clic en cualquier foto para verla en grande.</p>
+      </div>
+    </section>
+
+    <section class="gallery-masonry">
+      {
+        galleryItems.map(({ data: item }, index) => (
+          <button
+            class="gallery-item"
+            data-gallery-item
+            data-title={item.title}
+            data-category={item.category}
+            data-full={item.image}
+            type="button"
+            aria-label={`Ver ${item.title} en grande`}
+          >
+            <img
+              src={images[index].src}
+              srcset={images[index].srcSet.attribute}
+              sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 33vw"
+              alt={item.alt}
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="gallery-item-overlay">
+              <span class="gallery-item-title">{item.title}</span>
+              <span class="gallery-item-category">{item.category}</span>
+            </span>
+          </button>
+        ))
+      }
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Cerrar">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" type="button" aria-label="Anterior">&larr;</button>
+    <figure class="lightbox-stage">
+      <img id="lightboxImg" src="" alt="" />
+      <figcaption class="lightbox-caption">
+        <span class="lightbox-caption-title" id="lightboxTitle"></span>
+        <span class="lightbox-caption-category" id="lightboxCategory"></span>
+      </figcaption>
+    </figure>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" type="button" aria-label="Siguiente">&rarr;</button>
+  </div>
+
+  <script>
+    import "../scripts/gallery.js";
+  </script></BaseLayout>

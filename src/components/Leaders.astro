@@ -1,6 +1,12 @@
 ---
-import { leaders } from "../data/leaders";
-import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { getCover } from "../lib/image";
+
+const pilots = (await getCollection("pilots")).sort((a, b) =>
+  a.data.name.localeCompare(b.data.name)
+);
+
+const images = await Promise.all(pilots.map((pilot) => getCover(pilot.data.image, [192, 384])));
 ---
 
 <section class="leaders" id="directivos">
@@ -12,26 +18,27 @@ import { Image } from "astro:assets";
   </div>
   <div class="leaders-list">
     {
-      leaders.map((leader, index) => (
+      pilots.map(({ data: pilot }, index) => (
         <div
           class:list={["leader-card", "reveal", `reveal-delay-${(index % 3) + 1}`]}
         >
           <div class="leader-avatar">
             <div class="leader-avatar-inner">
               <div class="leader-avatar-photo">
-                <Image
-                  src={leader.image}
-                  alt={leader.alt}
+                <img
+                  src={images[index].src}
+                  srcset={images[index].srcSet.attribute}
+                  sizes="192px"
+                  alt={pilot.alt}
                   loading="lazy"
                   decoding="async"
                   class="leader-photo"
-                  widths={[192, 384]}
                 />
               </div>
             </div>
           </div>
-          <h3 class="leader-name">{leader.name}</h3>
-          <span class="leader-role">{leader.role}</span>
+          <h3 class="leader-name">{pilot.name}</h3>
+          <span class="leader-role">{pilot.role}</span>
         </div>
       ))
     }

@@ -1,6 +1,32 @@
 ---
-import { eventTabs } from "../data/events";
-import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { getCover } from "../lib/image";
+
+/* Orden de las pestañas y ancho del panel por categoría */
+const categoryOrder = ["Rodadas", "Ironman", "Entrenamiento", "Social", "Gastronomía"];
+const panelWidth: Record<string, "full" | "3xl" | "xl"> = {
+  Rodadas: "full",
+  Ironman: "3xl",
+  Entrenamiento: "xl",
+  Social: "full",
+  Gastronomía: "3xl",
+};
+
+const events = await getCollection("events");
+
+const categories = [...new Set(events.map((e) => e.data.categoria))].sort(
+  (a, b) => {
+    const ia = categoryOrder.indexOf(a);
+    const ib = categoryOrder.indexOf(b);
+    return (ia === -1 ? categoryOrder.length : ia) - (ib === -1 ? categoryOrder.length : ib);
+  }
+);
+
+const imagesByCategory = new Map<string, Awaited<ReturnType<typeof getCover>>[]>();
+for (const categoria of categories) {
+  const items = events.filter((e) => e.data.categoria === categoria);
+  imagesByCategory.set(categoria, await Promise.all(items.map((e) => getCover(e.data.image, [480, 720]))));
+}
 ---
 
 <section class="events" id="eventos">
@@ -12,48 +38,54 @@ import { Image } from "astro:assets";
 
     <div class="events-tabs reveal reveal-delay-2" role="tablist" aria-label="Categorías de eventos">
       {
-        eventTabs.map((tab, index) => (
+        categories.map((categoria, index) => (
           <button
             class:list={["event-tab", index === 0 && "active"]}
-            data-tab={tab.id}
+            data-tab={`tab-${index}`}
             role="tab"
             aria-selected={index === 0}
-            aria-controls={tab.id}
+            aria-controls={`tab-${index}`}
           >
-            {tab.label}
+            {categoria}
           </button>
         ))
       }
     </div>
 
     {
-      eventTabs.map((tab, index) => (
-        <div
-          class:list={["event-panel", index === 0 && "active", `event-panel-${tab.maxWidth}`]}
-          id={tab.id}
-          role="tabpanel"
-        >
-          {
-            tab.items.map((item, cardIndex) => (
-              <div
-                class:list={["event-card", "reveal", `reveal-delay-${(cardIndex % 3) + 1}`]}
-              >
-                <Image
-                  src={item.image}
-                  alt={item.alt}
-                  loading="lazy"
-                  decoding="async"
-                  class="event-image"
-                />
-                <div class="event-overlay">
-                  <h4 class="event-name">{item.title}</h4>
-                  <p class="event-tag">{item.tag}</p>
+      categories.map((categoria, index) => {
+        const items = events.filter((e) => e.data.categoria === categoria);
+        const images = imagesByCategory.get(categoria)!;
+        return (
+          <div
+            class:list={["event-panel", index === 0 && "active", `event-panel-${panelWidth[categoria] ?? "full"}`]}
+            id={`tab-${index}`}
+            role="tabpanel"
+          >
+            {
+              items.map(({ data: event }, cardIndex) => (
+                <div
+                  class:list={["event-card", "reveal", `reveal-delay-${(cardIndex % 3) + 1}`]}
+                >
+                  <img
+                    src={images[cardIndex].src}
+                    srcset={images[cardIndex].srcSet.attribute}
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                    alt={event.alt}
+                    loading="lazy"
+                    decoding="async"
+                    class="event-image"
+                  />
+                  <div class="event-overlay">
+                    <h4 class="event-name">{event.title}</h4>
+                    <p class="event-tag">{event.tag}</p>
+                  </div>
                 </div>
-              </div>
-            ))
-          }
-        </div>
-      ))
+              ))
+            }
+          </div>
+        );
+      })
     }
   </div>
 </section>

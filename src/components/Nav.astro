@@ -1,16 +1,20 @@
 ---
-import { site } from "../data/site";
+import { getEntry } from "astro:content";
+
+const { data: siteInfo } = (await getEntry("site", "site"))!;
 ---
 
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a class="nav-brand" href="#" aria-label="Ir al inicio">
-      {site.siteNameShort.toUpperCase()}
+      {siteInfo.siteNameShort.toUpperCase()}
     </a>
     <div class="nav-links">
       <a href="#nosotros">Nosotros</a>
       <a href="#beneficios">Beneficios</a>
       <a href="#eventos">Eventos</a>
+      <a href="/galeria">Galería</a>
+      <a href="/noticias">Noticias</a>
       <a href="#contacto" class="nav-link-active">Contacto</a>
     </div>
     <a href="#contacto" class="btn nav-cta">Únete al club</a>

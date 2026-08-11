@@ -1,0 +1,11 @@
+{
+  "badge": "Club de motociclismo de Cartagena",
+  "title": "PODER & LEALTAD",
+  "titleSpan": "EN EL ASFALTO",
+  "quote": "La fraternidad no se hereda, se conquista en la vía.",
+  "stats": [
+    { "value": "50+", "label": "Miembros" },
+    { "value": "100+", "label": "Rodadas" },
+    { "value": "4", "label": "Años" }
+  ]
+}

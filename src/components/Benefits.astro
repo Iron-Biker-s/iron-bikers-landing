@@ -1,13 +1,15 @@
 ---
-import { benefits } from "../data/benefits";
+import { getEntry } from "astro:content";
+
+const { data: benefits } = (await getEntry("benefits", "benefits"))!;
 ---
 
 <section class="benefits" id="beneficios">
   <div class="benefits-grid">
     <div class="benefits-side reveal">
       <h2 class="benefits-title">
-        Membresía<br />
-        Exclusive
+        {benefits.titleLine1}<br />
+        {benefits.titleLine2}
       </h2>
       <div class="benefits-frame">
         <img
@@ -21,7 +23,7 @@ import { benefits } from "../data/benefits";
     </div>
     <div class="benefits-timeline">
       {
-        benefits.map((benefit, index) => (
+        benefits.items.map((benefit, index) => (
           <div
             class:list={[
               "benefit-item",

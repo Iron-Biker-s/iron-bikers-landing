@@ -1,5 +1,8 @@
 ---
+import { getEntry } from "astro:content";
 import { site } from "../data/site";
+
+const { data: contact } = (await getEntry("contact", "contact"))!;
 ---
 
 <section class="contact" id="contacto">
@@ -16,8 +19,8 @@ import { site } from "../data/site";
   <div class="contact-inner">
     <div class="contact-panel reveal">
       <h2 class="contact-title">
-        Solicita tu<br />
-        ingreso
+        {contact.titleLine1}<br />
+        {contact.titleLine2}
       </h2>
       <form class="contact-form" id="contactForm" action={site.formAction} method="POST">
         <div class="contact-field">

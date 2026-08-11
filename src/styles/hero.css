@@ -53,6 +53,23 @@
   object-fit: contain;
 }
 
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border: 1px solid rgba(245, 197, 66, 0.35);
+  border-radius: 9999px;
+  color: var(--tertiary);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 24px;
+  animation: hero-in 0.7s var(--ease-out) both;
+  animation-delay: 0.05s;
+}
+
 .hero-title {
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 700;

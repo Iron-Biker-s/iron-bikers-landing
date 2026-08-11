@@ -1,6 +1,11 @@
 ---
-import { testimonials } from "../data/testimonials";
-import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { getCover } from "../lib/image";
+
+const testimonials = await getCollection("testimonials");
+const images = await Promise.all(
+  testimonials.map((t) => getCover(t.data.image, [96]))
+);
 ---
 
 <section class="testimonials" id="testimonios">
@@ -8,7 +13,7 @@ import { Image } from "astro:assets";
     <h2 class="testimonials-title reveal">Testimonios</h2>
     <div class="testimonials-grid">
       {
-        testimonials.map((testimonial, index) => (
+        testimonials.map(({ data: testimonial }, index) => (
           <article
             class:list={[
               "testimonial-card",
@@ -20,13 +25,14 @@ import { Image } from "astro:assets";
             <p class="testimonial-quote">{testimonial.quote}</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">
-                <Image
-                  src={testimonial.image}
+                <img
+                  src={images[index].src}
+                  srcset={images[index].srcSet.attribute}
+                  sizes="48px"
                   alt={testimonial.alt}
                   loading="lazy"
                   decoding="async"
                   class="testimonial-photo"
-                  widths={[96]}
                 />
               </div>
               <div>

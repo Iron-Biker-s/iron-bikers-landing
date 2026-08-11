@@ -1,6 +1,11 @@
 ---
-import { alliances } from "../data/alliances";
-import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { getCover } from "../lib/image";
+
+const alliances = await getCollection("alliances");
+const logos = await Promise.all(
+  alliances.map((a) => getCover(a.data.logo, [320]))
+);
 ---
 
 <section class="alliances" id="alianzas">
@@ -13,18 +18,19 @@ import { Image } from "astro:assets";
     </div>
     <div class="alliances-grid">
       {
-        alliances.map((alliance, index) => (
+        alliances.map(({ data: alliance }, index) => (
           <div
             class:list={["alliance-card", "reveal", `reveal-delay-${(index % 3) + 1}`]}
           >
             <div class="alliance-logo">
-              <Image
-                src={alliance.logo}
+              <img
+                src={logos[index].src}
+                srcset={logos[index].srcSet.attribute}
+                sizes="160px"
                 alt={alliance.alt}
                 loading="lazy"
                 decoding="async"
                 class="alliance-logo-img"
-                widths={[320]}
               />
             </div>
             <div class="alliance-info">

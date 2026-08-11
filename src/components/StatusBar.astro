@@ -1,22 +1,27 @@
 ---
+import { getEntry } from "astro:content";
+
 interface StatusItem {
-  type: "item" | "highlight" | "sep";
   text: string;
+  highlight?: boolean;
   dot?: boolean;
+  sep?: string;
   duplicate?: boolean;
 }
 
-const statusItems: StatusItem[] = [
-  { type: "item", text: "Próxima rodada: 15 de Julio", dot: true },
-  { type: "sep", text: "—" },
-  { type: "item", text: "Destino: Playa Blanca" },
-  { type: "sep", text: "—" },
-  { type: "highlight", text: "Cupos: 12 disponibles" },
-  { type: "sep", text: "/" },
+const { data: statusbar } = (await getEntry("statusbar", "statusbar"))!;
+
+const baseItems: StatusItem[] = [
+  { text: statusbar.rodada, dot: true },
+  { text: "—", sep: "—" },
+  { text: statusbar.destino },
+  { text: "—", sep: "—" },
+  { text: statusbar.cupos, highlight: true },
+  { text: "/", sep: "/" },
 ];
 
 const marqueeItems: StatusItem[] = [false, true].flatMap((duplicate) =>
-  statusItems.map((item) => ({ ...item, duplicate }))
+  baseItems.map((item) => ({ ...item, duplicate }))
 );
 ---
 
@@ -24,24 +29,22 @@ const marqueeItems: StatusItem[] = [false, true].flatMap((duplicate) =>
   <div class="statusbar-mobile">
     <span class="statusbar-item">
       <span class="statusbar-dot"></span>
-      Próxima rodada: 15 de Julio
+      {statusbar.rodada}
     </span>
     <span class="statusbar-item">
-      Destino: Playa Blanca <span class="statusbar-sep">&mdash;</span>
-      <span class="statusbar-highlight">Cupos: 12</span>
+      {statusbar.destino} <span class="statusbar-sep">&mdash;</span>
+      <span class="statusbar-highlight">{statusbar.cupos}</span>
     </span>
   </div>
   <div class="statusbar-marquee">
     <div class="statusbar-track">
       {
         marqueeItems.map((item) =>
-          item.type === "sep" ? (
-            <span class="statusbar-sep" aria-hidden={item.duplicate || undefined}>
-              {item.text}
-            </span>
+          item.sep ? (
+            <span class="statusbar-sep" aria-hidden={item.duplicate || undefined}>{item.sep}</span>
           ) : (
             <span
-              class:list={["statusbar-item", item.type === "highlight" && "statusbar-highlight"]}
+              class:list={["statusbar-item", item.highlight && "statusbar-highlight"]}
               aria-hidden={item.duplicate || undefined}
             >
               {item.dot && <span class="statusbar-dot" aria-hidden="true"></span>}

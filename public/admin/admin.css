@@ -1,0 +1,59 @@
+/* Tema oscuro del panel Decap, acorde a la marca Iron Biker's */
+:root {
+  --primary: #E11D2E;
+  --tertiary: #F5C542;
+  --background: #080808;
+  --surface: #141414;
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+html,
+body,
+#root,
+.app-main {
+  background: var(--background) !important;
+  color: #A8B2C1 !important;
+}
+
+.app-header,
+.app-header .header-wrap,
+.sidebar {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+}
+
+.app-header .breadcrumbs a {
+  color: #ffffff !important;
+}
+
+.sidebar .nav-sidebar .nav-item.active,
+.sidebar .nav-sidebar .nav-item:hover {
+  color: var(--primary) !important;
+}
+
+button[type="submit"],
+.btn,
+.btn-green {
+  background: var(--primary) !important;
+}
+
+.editor-toolbar,
+.editor-container,
+.pane-content,
+.pane-meta,
+.entry-card {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+}
+
+.pane-meta .meta {
+  color: #A8B2C1 !important;
+}
+
+input,
+textarea,
+select {
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+  border-color: var(--border) !important;
+}

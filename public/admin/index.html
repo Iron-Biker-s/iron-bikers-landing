@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Panel de contenido — Iron Biker's</title>
+  <script>
+    /* Debe ir ANTES de cargar decap-cms.js para evitar la auto-inicialización */
+    window.CMS_MANUAL_INIT = true;
+  </script>
+  <link rel="stylesheet" href="https://unpkg.com/decap-cms@^3.0.0/dist/cms.css" />
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    /*
+     * Decap 3.x expone dos constructos globales para vistas previas:
+     * `createClass` (define el componente) y `h` (React.createElement).
+     * No viven en window.CMS.
+     */
+    var NewsPreview = createClass({
+      render: function () {
+        var entry = this.props.entry;
+        var widgetFor = this.props.widgetFor;
+        var getAsset = this.props.getAsset;
+
+        var cover = entry.getIn(["data", "cover"]);
+        var coverUrl = cover ? getAsset(cover).toString() : null;
+
+        var rawDate = entry.getIn(["data", "date"]);
+        var date = rawDate
+          ? new Date(rawDate).toLocaleDateString("es-CO", { day: "numeric", month: "long", year: "numeric" })
+          : "";
+
+        return h(
+          "div",
+          { style: { background: "#080808", color: "#A8B2C1", fontFamily: "Inter, sans-serif", minHeight: "100vh", padding: "48px 24px" } },
+          h("div", { style: { maxWidth: 760, margin: "0 auto" } },
+            h("span", { style: { color: "#A8B2C1", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em" } }, date),
+            h("h1", { style: { fontFamily: "Oswald, sans-serif", fontSize: 40, fontWeight: 700, textTransform: "uppercase", color: "#fff", margin: "8px 0 16px", lineHeight: 1.1 } }, entry.getIn(["data", "title"])),
+            h("p", { style: { fontSize: 17, lineHeight: 1.7, margin: 0 } }, entry.getIn(["data", "summary"])),
+            coverUrl &&
+              h("img", { src: coverUrl, alt: entry.getIn(["data", "title"]), style: { width: "100%", margin: "24px 0", borderRadius: 8, display: "block" } }),
+            h("div", { style: { lineHeight: 1.8, fontSize: 16 } }, widgetFor("body"))
+          )
+        );
+      },
+    });
+
+    CMS.registerPreviewTemplate("news", NewsPreview);
+    CMS.init();
+  </script>
+</body>
+</html>
