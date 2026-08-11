@@ -138,6 +138,9 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -0.05em;
+  background: linear-gradient(45deg, var(--primary), var(--tertiary));
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s var(--ease-out);
 }
