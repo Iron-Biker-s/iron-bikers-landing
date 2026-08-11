@@ -78,12 +78,15 @@ const pageTitle = "Iron Biker's Club Cartagena";
   <meta property="og:description" content={site.description}>
   <meta property="og:url" content={site.url}>
   <meta property="og:locale" content="es_CO">
-  <meta property="og:image" content={`${site.url}/images/hero-bg.webp`}>
+  <meta property="og:image" content={`${site.url}/images/og-image.png`}>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content={pageTitle}>
   <meta name="twitter:description" content={site.description}>
-  <meta name="twitter:image" content={`${site.url}/images/hero-bg.webp`}>
+  <meta name="twitter:image" content={`${site.url}/images/og-image.png`}>
 
   <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} is:inline />
   <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} is:inline />
