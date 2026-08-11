@@ -4,7 +4,7 @@ import { Image } from "astro:assets";
 ---
 
 <section class="leaders" id="directivos">
-  <div class="leaders-header">
+  <div class="leaders-header reveal">
     <h2 class="leaders-title">Liderazgo &amp; Visión</h2>
     <p class="leaders-subtitle">
       Los arquitectos detrás de la ruta. Hombres de asfalto y visión empresarial.
@@ -12,8 +12,10 @@ import { Image } from "astro:assets";
   </div>
   <div class="leaders-list">
     {
-      leaders.map((leader) => (
-        <div class="leader-card">
+      leaders.map((leader, index) => (
+        <div
+          class:list={["leader-card", "reveal", `reveal-delay-${(index % 3) + 1}`]}
+        >
           <div class="leader-avatar">
             <div class="leader-avatar-inner">
               <div class="leader-avatar-photo">

@@ -43,6 +43,8 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 50px rgba(0, 210, 253, 0.2);
+  animation: hero-in 0.7s var(--ease-out) both;
+  animation-delay: 0.05s;
 }
 
 .hero-logo img {
@@ -61,6 +63,8 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: hero-in 0.7s var(--ease-out) both;
+  animation-delay: 0.15s;
 }
 
 .hero-title span {
@@ -73,6 +77,8 @@
   font-size: clamp(1.5rem, 3vw, 1.875rem);
   color: var(--tertiary);
   margin-bottom: 48px;
+  animation: hero-in 0.7s var(--ease-out) both;
+  animation-delay: 0.3s;
 }
 
 .hero-stats {
@@ -81,6 +87,8 @@
   justify-content: center;
   gap: 48px;
   margin-top: 40px;
+  animation: hero-in 0.7s var(--ease-out) both;
+  animation-delay: 0.45s;
 }
 
 .hero-stat {

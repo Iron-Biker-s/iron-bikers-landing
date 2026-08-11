@@ -4,7 +4,7 @@ import { benefits } from "../data/benefits";
 
 <section class="benefits" id="beneficios">
   <div class="benefits-grid">
-    <div class="benefits-side">
+    <div class="benefits-side reveal">
       <h2 class="benefits-title">
         Membresía<br />
         Exclusive
@@ -21,8 +21,15 @@ import { benefits } from "../data/benefits";
     </div>
     <div class="benefits-timeline">
       {
-        benefits.map((benefit) => (
-          <div class:list={["benefit-item", benefit.featured && "benefit-item-featured"]}>
+        benefits.map((benefit, index) => (
+          <div
+            class:list={[
+              "benefit-item",
+              benefit.featured && "benefit-item-featured",
+              "reveal",
+              `reveal-delay-${(index % 3) + 1}`,
+            ]}
+          >
             <span class="benefit-dot" aria-hidden="true"></span>
             <h3 class="benefit-title">{benefit.title}</h3>
             <p class="benefit-text">{benefit.description}</p>

@@ -95,6 +95,18 @@ const pageTitle = "Iron Biker's Club Cartagena";
 <body>
   <div class="scroll-progress" id="scrollProgress"></div>
 
+  <noscript>
+    <style>
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .hero-content > * {
+        animation: none !important;
+      }
+    </style>
+  </noscript>
+
   <slot />
 
   <script>
@@ -102,6 +114,7 @@ const pageTitle = "Iron Biker's Club Cartagena";
     import "../scripts/parallax.js";
     import "../scripts/events-tabs.js";
     import "../scripts/contact-form.js";
+    import "../scripts/reveal.js";
   </script>
 </body>
 </html>

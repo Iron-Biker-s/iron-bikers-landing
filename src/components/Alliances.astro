@@ -5,7 +5,7 @@ import { Image } from "astro:assets";
 
 <section class="alliances" id="alianzas">
   <div class="alliances-inner">
-    <div class="alliances-header">
+    <div class="alliances-header reveal">
       <h2 class="alliances-title">Aliados Estratégicos</h2>
       <p class="alliances-subtitle">
         Marcas y empresas que comparten nuestra pasión por el motociclismo de alto nivel.
@@ -13,8 +13,10 @@ import { Image } from "astro:assets";
     </div>
     <div class="alliances-grid">
       {
-        alliances.map((alliance) => (
-          <div class="alliance-card">
+        alliances.map((alliance, index) => (
+          <div
+            class:list={["alliance-card", "reveal", `reveal-delay-${(index % 3) + 1}`]}
+          >
             <div class="alliance-logo">
               <Image
                 src={alliance.logo}

@@ -5,11 +5,17 @@ import { Image } from "astro:assets";
 
 <section class="testimonials" id="testimonios">
   <div class="testimonials-inner">
-    <h2 class="testimonials-title">Testimonios</h2>
+    <h2 class="testimonials-title reveal">Testimonios</h2>
     <div class="testimonials-grid">
       {
-        testimonials.map((testimonial) => (
-          <article class="testimonial-card">
+        testimonials.map((testimonial, index) => (
+          <article
+            class:list={[
+              "testimonial-card",
+              "reveal",
+              `reveal-delay-${(index % 3) + 1}`,
+            ]}
+          >
             <div class="testimonial-mark" aria-hidden="true">&ldquo;</div>
             <p class="testimonial-quote">{testimonial.quote}</p>
             <div class="testimonial-author">
