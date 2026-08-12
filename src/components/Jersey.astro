@@ -1,8 +1,9 @@
 ---
 import { getEntry } from "astro:content";
-import logoImg from "../assets/images/logo.webp";
+import { getCover } from "../lib/image";
 
 const { data: jersey } = (await getEntry("jersey", "jersey"))!;
+const jerseyImg = await getCover(jersey.image, [480, 640]);
 ---
 
 <section class="jersey" id="jersey">
@@ -11,13 +12,13 @@ const { data: jersey } = (await getEntry("jersey", "jersey"))!;
       <div class="jersey-glow" aria-hidden="true"></div>
       <div class="jersey-panel">
         <img
-          src={logoImg.src}
-          alt="Jersey oficial del club"
+          src={jerseyImg.src}
+          srcset={jerseyImg.srcSet.attribute}
+          sizes="320px"
+          alt={jersey.imageAlt}
           class="jersey-logo"
           loading="lazy"
           decoding="async"
-          width="320"
-          height="320"
         />
         <div class="jersey-badge">
           <span>Edición Limitada</span>

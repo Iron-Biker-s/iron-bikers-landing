@@ -89,6 +89,8 @@ const jersey = defineCollection({
     titleLine2: z.string(),
     text: z.string(),
     button: z.string(),
+    image: z.string(),
+    imageAlt: z.string(),
   }),
 });
 

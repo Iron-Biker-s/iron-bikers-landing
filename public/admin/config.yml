@@ -166,6 +166,8 @@ collections:
     delete: false
     format: json
     extension: json
+    media_folder: "public/images"
+    public_folder: "/images"
     editor:
       preview: false
     fields:
@@ -173,6 +175,8 @@ collections:
       - { label: "Título (línea 2)", name: "titleLine2", widget: "string" }
       - { label: "Texto", name: "text", widget: "text" }
       - { label: "Texto del botón", name: "button", widget: "string" }
+      - { label: "Imagen", name: "image", widget: "image", choose_url: false }
+      - { label: "Texto alternativo (accesibilidad)", name: "imageAlt", widget: "string" }
 
   - name: contact
     label: "Sección de contacto"
