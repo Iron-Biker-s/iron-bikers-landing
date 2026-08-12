@@ -1,7 +1,8 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import { getCover } from "../lib/image";
 
+const { data: sections } = (await getEntry("sections", "sections"))!;
 const alliances = await getCollection("alliances");
 const logos = await Promise.all(
   alliances.map((a) => getCover(a.data.logo, [320]))
@@ -11,10 +12,8 @@ const logos = await Promise.all(
 <section class="alliances" id="alianzas">
   <div class="alliances-inner">
     <div class="alliances-header reveal">
-      <h2 class="alliances-title">Aliados Estratégicos</h2>
-      <p class="alliances-subtitle">
-        Marcas y empresas que comparten nuestra pasión por el motociclismo de alto nivel.
-      </p>
+      <h2 class="alliances-title">{sections.alliancesTitle}</h2>
+      <p class="alliances-subtitle">{sections.alliancesSubtitle}</p>
     </div>
     <div class="alliances-grid">
       {

@@ -1,7 +1,9 @@
 ---
 import { getEntry } from "astro:content";
+import { getCover } from "../lib/image";
 
 const { data: benefits } = (await getEntry("benefits", "benefits"))!;
+const benefitsImg = await getCover(benefits.image, [480, 720]);
 ---
 
 <section class="benefits" id="beneficios">
@@ -13,8 +15,10 @@ const { data: benefits } = (await getEntry("benefits", "benefits"))!;
       </h2>
       <div class="benefits-frame">
         <img
-          src="/images/hero-bg.webp"
-          alt="Experiencia premium del club"
+          src={benefitsImg.src}
+          srcset={benefitsImg.srcSet.attribute}
+          sizes="(max-width: 768px) 100vw, 448px"
+          alt={benefits.imageAlt}
           loading="lazy"
           decoding="async"
           class="benefits-frame-img"

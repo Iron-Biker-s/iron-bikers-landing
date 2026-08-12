@@ -1,9 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import { getCover } from "../lib/image";
 import "../styles/gallery.css";
 
+const { data: sections } = (await getEntry("sections", "sections"))!;
 const galleryItems = await getCollection("gallery");
 const images = await Promise.all(
   galleryItems.map((item) => getCover(item.data.image, [480, 960]))
@@ -15,8 +16,8 @@ const images = await Promise.all(
     <section class="gallery-hero">
       <div class="gallery-hero-inner">
         <span class="gallery-kicker">&middot; Archivo visual del club</span>
-        <h1 class="gallery-title">Cada rodada, <span>cada recuerdo.</span></h1>
-        <p class="gallery-subtitle">Haz clic en cualquier foto para verla en grande.</p>
+        <h1 class="gallery-title">{sections.galleryTitle} <span>{sections.galleryTitleSpan}</span></h1>
+        <p class="gallery-subtitle">{sections.gallerySubtitle}</p>
       </div>
     </section>
 

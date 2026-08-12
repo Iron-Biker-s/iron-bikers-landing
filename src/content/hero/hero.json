@@ -3,6 +3,9 @@
   "title": "PODER & LEALTAD",
   "titleSpan": "EN EL ASFALTO",
   "quote": "La fraternidad no se hereda, se conquista en la vía.",
+  "logo": "/images/logo.webp",
+  "logoAlt": "Iron Biker's Club Logo",
+  "bgImage": "/images/hero-bg.webp",
   "stats": [
     { "value": "50+", "label": "Miembros" },
     { "value": "100+", "label": "Rodadas" },

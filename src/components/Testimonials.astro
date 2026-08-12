@@ -1,7 +1,8 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import { getCover } from "../lib/image";
 
+const { data: sections } = (await getEntry("sections", "sections"))!;
 const testimonials = await getCollection("testimonials");
 const images = await Promise.all(
   testimonials.map((t) => getCover(t.data.image, [96]))
@@ -10,7 +11,7 @@ const images = await Promise.all(
 
 <section class="testimonials" id="testimonios">
   <div class="testimonials-inner">
-    <h2 class="testimonials-title reveal">Testimonios</h2>
+    <h2 class="testimonials-title reveal">{sections.testimonialsTitle}</h2>
     <div class="testimonials-grid">
       {
         testimonials.map(({ data: testimonial }, index) => (

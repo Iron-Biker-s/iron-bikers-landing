@@ -1,6 +1,8 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import { getCover } from "../lib/image";
+
+const { data: sections } = (await getEntry("sections", "sections"))!;
 
 /* Orden de las pestañas y ancho del panel por categoría */
 const categoryOrder = ["Rodadas", "Ironman", "Entrenamiento", "Social", "Gastronomía"];
@@ -31,10 +33,8 @@ for (const categoria of categories) {
 
 <section class="events" id="eventos">
   <div class="events-inner">
-    <h2 class="events-title reveal">Eventos &amp; Actividades</h2>
-    <p class="events-subtitle reveal reveal-delay-1">
-      Vivimos la ruta en todas sus formas. Desde rodadas épicas hasta acción social.
-    </p>
+    <h2 class="events-title reveal">{sections.eventsTitle}</h2>
+    <p class="events-subtitle reveal reveal-delay-1">{sections.eventsSubtitle}</p>
 
     <div class="events-tabs reveal reveal-delay-2" role="tablist" aria-label="Categorías de eventos">
       {

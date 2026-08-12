@@ -31,7 +31,7 @@ const { data: contact } = (await getEntry("contact", "contact"))!;
             required
             type="text"
           />
-          <label class="contact-label">Nombre Completo</label>
+          <label class="contact-label">{contact.nameLabel}</label>
         </div>
         <div class="contact-field">
           <input
@@ -41,25 +41,25 @@ const { data: contact } = (await getEntry("contact", "contact"))!;
             required
             type="tel"
           />
-          <label class="contact-label">Número de Teléfono</label>
+          <label class="contact-label">{contact.phoneLabel}</label>
         </div>
         <div class="contact-row">
           <div class="contact-field">
             <input class="contact-input" name="marca" placeholder=" " required type="text" />
-            <label class="contact-label">Marca</label>
+            <label class="contact-label">{contact.marcaLabel}</label>
           </div>
           <div class="contact-field">
             <input class="contact-input" name="modelo" placeholder=" " required type="text" />
-            <label class="contact-label">Modelo</label>
+            <label class="contact-label">{contact.modeloLabel}</label>
           </div>
           <div class="contact-field">
             <input class="contact-input" name="placa" placeholder=" " required type="text" />
-            <label class="contact-label">Placa</label>
+            <label class="contact-label">{contact.placaLabel}</label>
           </div>
         </div>
         <p class="contact-response hidden" id="formResponse"></p>
         <button class="contact-submit" type="submit">
-          Enviar solicitud
+          {contact.submitLabel}
         </button>
       </form>
     </div>

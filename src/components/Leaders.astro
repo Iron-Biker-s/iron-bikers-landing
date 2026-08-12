@@ -1,7 +1,8 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import { getCover } from "../lib/image";
 
+const { data: sections } = (await getEntry("sections", "sections"))!;
 const pilots = (await getCollection("pilots")).sort((a, b) =>
   a.data.name.localeCompare(b.data.name)
 );
@@ -11,10 +12,8 @@ const images = await Promise.all(pilots.map((pilot) => getCover(pilot.data.image
 
 <section class="leaders" id="directivos">
   <div class="leaders-header reveal">
-    <h2 class="leaders-title">Liderazgo &amp; Visión</h2>
-    <p class="leaders-subtitle">
-      Los arquitectos detrás de la ruta. Hombres de asfalto y visión empresarial.
-    </p>
+    <h2 class="leaders-title">{sections.leadersTitle}</h2>
+    <p class="leaders-subtitle">{sections.leadersSubtitle}</p>
   </div>
   <div class="leaders-list">
     {

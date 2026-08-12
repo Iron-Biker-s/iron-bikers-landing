@@ -107,6 +107,9 @@ collections:
       - { label: "Título", name: "title", widget: "string" }
       - { label: "Título destacado (2ª línea)", name: "titleSpan", widget: "string" }
       - { label: "Frase", name: "quote", widget: "string" }
+      - { label: "Logo (círculo)", name: "logo", widget: "image", choose_url: false }
+      - { label: "Texto alternativo del logo", name: "logoAlt", widget: "string" }
+      - { label: "Imagen de fondo", name: "bgImage", widget: "image", choose_url: false }
       - label: "Estadísticas"
         name: "stats"
         widget: "list"
@@ -158,6 +161,8 @@ collections:
     fields:
       - { label: "Título (línea 1)", name: "titleLine1", widget: "string" }
       - { label: "Título (línea 2)", name: "titleLine2", widget: "string" }
+      - { label: "Imagen", name: "image", widget: "image", choose_url: false }
+      - { label: "Texto alternativo (accesibilidad)", name: "imageAlt", widget: "string" }
       - label: "Beneficios"
         name: "items"
         widget: "list"
@@ -181,6 +186,7 @@ collections:
       - { label: "Título (línea 2)", name: "titleLine2", widget: "string" }
       - { label: "Texto", name: "text", widget: "text" }
       - { label: "Texto del botón", name: "button", widget: "string" }
+      - { label: "Texto del sello (ej: Edición Limitada)", name: "badge", widget: "string" }
       - { label: "Imagen", name: "image", widget: "image", choose_url: false }
       - { label: "Texto alternativo (accesibilidad)", name: "imageAlt", widget: "string" }
 
@@ -197,6 +203,12 @@ collections:
     fields:
       - { label: "Título (línea 1)", name: "titleLine1", widget: "string" }
       - { label: "Título (línea 2)", name: "titleLine2", widget: "string" }
+      - { label: "Etiqueta Nombre", name: "nameLabel", widget: "string" }
+      - { label: "Etiqueta Teléfono", name: "phoneLabel", widget: "string" }
+      - { label: "Etiqueta Marca", name: "marcaLabel", widget: "string" }
+      - { label: "Etiqueta Modelo", name: "modeloLabel", widget: "string" }
+      - { label: "Etiqueta Placa", name: "placaLabel", widget: "string" }
+      - { label: "Texto del botón", name: "submitLabel", widget: "string" }
 
   - name: footer
     identifier_field: copyright
@@ -211,9 +223,35 @@ collections:
     fields:
       - { label: "Copyright", name: "copyright", widget: "string" }
       - { label: "NIT", name: "nit", widget: "string" }
+      - { label: "Línea del club (footer)", name: "clubLine", widget: "string" }
 
   # ─────────────────────────── Grupo B ───────────────────────────
   # Contenido con múltiples entradas.
+
+  - name: sections
+    label: "Títulos de secciones"
+    folder: "src/content/sections"
+    create: false
+    delete: false
+    format: json
+    extension: json
+    identifier_field: leadersTitle
+    editor:
+      preview: false
+    fields:
+      - { label: "Directivos — título", name: "leadersTitle", widget: "string" }
+      - { label: "Directivos — subtítulo", name: "leadersSubtitle", widget: "text" }
+      - { label: "Eventos — título", name: "eventsTitle", widget: "string" }
+      - { label: "Eventos — subtítulo", name: "eventsSubtitle", widget: "text" }
+      - { label: "Testimonios — título", name: "testimonialsTitle", widget: "string" }
+      - { label: "Aliados — título", name: "alliancesTitle", widget: "string" }
+      - { label: "Aliados — subtítulo", name: "alliancesSubtitle", widget: "text" }
+      - { label: "Galería — título (1ª parte)", name: "galleryTitle", widget: "string" }
+      - { label: "Galería — título (2ª parte)", name: "galleryTitleSpan", widget: "string" }
+      - { label: "Galería — subtítulo", name: "gallerySubtitle", widget: "string" }
+      - { label: "Noticias — título", name: "newsTitle", widget: "string" }
+      - { label: "Noticias — título (2ª parte)", name: "newsTitleSpan", widget: "string" }
+      - { label: "Noticias — subtítulo", name: "newsSubtitle", widget: "string" }
 
   - name: values
     identifier_field: title

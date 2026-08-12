@@ -1,9 +1,10 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import { getCover } from "../../lib/image";
 import "../../styles/news.css";
 
+const { data: sections } = (await getEntry("sections", "sections"))!;
 const noticias = (await getCollection("news")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
@@ -17,10 +18,8 @@ const formatDate = (date: Date) =>
     <section class="news-hero">
       <div class="news-hero-inner">
         <span class="news-kicker">&middot; El club al día</span>
-        <h1 class="news-title">Noticias <span>del club.</span></h1>
-        <p class="news-subtitle">
-          Rodadas, talleres, eventos y todo lo que mueve a la manada.
-        </p>
+        <h1 class="news-title">{sections.newsTitle} <span>{sections.newsTitleSpan}</span></h1>
+        <p class="news-subtitle">{sections.newsSubtitle}</p>
       </div>
     </section>
 

@@ -1,6 +1,8 @@
 {
   "titleLine1": "Membresía",
   "titleLine2": "Exclusive",
+  "image": "/images/hero-bg.webp",
+  "imageAlt": "Experiencia premium del club",
   "items": [
     {
       "title": "Rodadas Logísticas VIP",

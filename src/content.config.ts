@@ -39,6 +39,9 @@ const hero = defineCollection({
     title: z.string(),
     titleSpan: z.string(),
     quote: z.string(),
+    logo: z.string(),
+    logoAlt: z.string(),
+    bgImage: z.string(),
     stats: z.array(z.object({ value: z.string(), label: z.string() })).default([]),
   }),
 });
@@ -70,6 +73,8 @@ const benefits = defineCollection({
   schema: z.object({
     titleLine1: z.string(),
     titleLine2: z.string(),
+    image: z.string(),
+    imageAlt: z.string(),
     items: z
       .array(
         z.object({
@@ -90,6 +95,7 @@ const jersey = defineCollection({
     titleLine2: z.string(),
     text: z.string(),
     button: z.string(),
+    badge: z.string(),
     image: z.string(),
     imageAlt: z.string(),
   }),
@@ -101,6 +107,12 @@ const contact = defineCollection({
   schema: z.object({
     titleLine1: z.string(),
     titleLine2: z.string(),
+    nameLabel: z.string(),
+    phoneLabel: z.string(),
+    marcaLabel: z.string(),
+    modeloLabel: z.string(),
+    placaLabel: z.string(),
+    submitLabel: z.string(),
   }),
 });
 
@@ -110,6 +122,27 @@ const footer = defineCollection({
   schema: z.object({
     copyright: z.string(),
     nit: z.string(),
+    clubLine: z.string(),
+  }),
+});
+
+const sections = defineCollection({
+  type: "content_layer",
+  loader: glob({ pattern: "**/*.json", base: "./src/content/sections" }),
+  schema: z.object({
+    leadersTitle: z.string(),
+    leadersSubtitle: z.string(),
+    eventsTitle: z.string(),
+    eventsSubtitle: z.string(),
+    testimonialsTitle: z.string(),
+    alliancesTitle: z.string(),
+    alliancesSubtitle: z.string(),
+    galleryTitle: z.string(),
+    galleryTitleSpan: z.string(),
+    gallerySubtitle: z.string(),
+    newsTitle: z.string(),
+    newsTitleSpan: z.string(),
+    newsSubtitle: z.string(),
   }),
 });
 
@@ -208,6 +241,7 @@ export const collections = {
   jersey,
   contact,
   footer,
+  sections,
   values,
   pilots,
   events,

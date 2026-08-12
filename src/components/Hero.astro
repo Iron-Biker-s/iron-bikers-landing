@@ -1,15 +1,16 @@
 ---
 import { getEntry } from "astro:content";
-import logoImg from "../assets/images/logo.webp";
+import { getCover } from "../lib/image";
 
 const { data: hero } = (await getEntry("hero", "hero"))!;
+const heroLogo = await getCover(hero.logo, [320]);
 ---
 
 <header class="hero">
   <div
     class="hero-bg parallax-bg"
     id="heroParallax"
-    style={`background-image: url('/images/hero-bg.webp');`}
+    style={`background-image: url('${hero.bgImage}');`}
     role="img"
     aria-label="Fondo del hero: miembros del club en ruta"
   >
@@ -17,7 +18,14 @@ const { data: hero } = (await getEntry("hero", "hero"))!;
   </div>
   <div class="hero-content">
     <div class="hero-logo">
-      <img src={logoImg.src} alt="Iron Biker's Club Logo" width="160" height="160" />
+      <img
+        src={heroLogo.src}
+        srcset={heroLogo.srcSet.attribute}
+        sizes="160px"
+        alt={hero.logoAlt}
+        width="160"
+        height="160"
+      />
     </div>
     {hero.badge && <span class="hero-badge">{hero.badge}</span>}
     <h1 class="hero-title">

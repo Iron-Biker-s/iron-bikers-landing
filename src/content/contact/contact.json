@@ -1,4 +1,10 @@
 {
   "titleLine1": "Solicita tu",
-  "titleLine2": "ingreso"
+  "titleLine2": "ingreso",
+  "nameLabel": "Nombre Completo",
+  "phoneLabel": "Número de Teléfono",
+  "marcaLabel": "Marca",
+  "modeloLabel": "Modelo",
+  "placaLabel": "Placa",
+  "submitLabel": "Enviar solicitud"
 }
