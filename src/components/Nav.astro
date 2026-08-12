@@ -6,17 +6,17 @@ const { data: siteInfo } = (await getEntry("site", "site"))!;
 
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a class="nav-brand" href="#" aria-label="Ir al inicio">
+    <a class="nav-brand" href="/" aria-label="Ir al inicio">
       {siteInfo.siteNameShort.toUpperCase()}
     </a>
     <div class="nav-links">
-      <a href="#nosotros">Nosotros</a>
-      <a href="#beneficios">Beneficios</a>
-      <a href="#eventos">Eventos</a>
+      <a href="/#nosotros">Nosotros</a>
+      <a href="/#beneficios">Beneficios</a>
+      <a href="/#eventos">Eventos</a>
       <a href="/galeria">Galería</a>
       <a href="/noticias">Noticias</a>
-      <a href="#contacto" class="nav-link-active">Contacto</a>
+      <a href="/#contacto" class="nav-link-active">Contacto</a>
     </div>
-    <a href="#contacto" class="btn nav-cta">Únete al club</a>
+    <a href="/#contacto" class="btn nav-cta">Únete al club</a>
   </div>
 </nav>

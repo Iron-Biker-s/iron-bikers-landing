@@ -24,6 +24,8 @@ import "@fontsource/playfair-display/400-italic.css";
 import { getEntry } from "astro:content";
 import { site } from "../data/site";
 import logoImg from "../assets/images/logo.webp";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
 
 const { data: siteInfo } = (await getEntry("site", "site"))!;
 
@@ -131,7 +133,11 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
     </style>
   </noscript>
 
+  <Nav />
+
   <slot />
+
+  <Footer />
 
   <script>
     import "../scripts/splash.js";
