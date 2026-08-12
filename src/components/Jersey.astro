@@ -3,7 +3,7 @@ import { getEntry } from "astro:content";
 import { getCover } from "../lib/image";
 
 const { data: jersey } = (await getEntry("jersey", "jersey"))!;
-const jerseyImg = await getCover(jersey.image, [480, 640]);
+const jerseyImg = await getCover(jersey.image, [480, 720, 960]);
 ---
 
 <section class="jersey" id="jersey">
@@ -14,7 +14,7 @@ const jerseyImg = await getCover(jersey.image, [480, 640]);
         <img
           src={jerseyImg.src}
           srcset={jerseyImg.srcSet.attribute}
-          sizes="320px"
+          sizes="(max-width: 640px) 90vw, 420px"
           alt={jersey.imageAlt}
           class="jersey-logo"
           loading="lazy"
