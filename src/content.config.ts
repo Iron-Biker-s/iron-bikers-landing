@@ -23,6 +23,7 @@ const social = defineCollection({
   type: "content_layer",
   loader: glob({ pattern: "**/*.json", base: "./src/content/social" }),
   schema: z.object({
+    label: z.string().default("Redes sociales"),
     instagram: z.object({ handle: z.string(), url: z.string() }),
     facebook: z.object({ handle: z.string(), url: z.string() }),
     tiktok: z.object({ handle: z.string(), url: z.string() }),

@@ -36,6 +36,7 @@ collections:
   # ─────────────────────────── Grupo A ───────────────────────────
   # Configuraciones de secciones: 1 archivo por sección.
   - name: site
+  identifier_field: siteName
     label: "Configuración del sitio"
     folder: "src/content/site"
     create: false
@@ -56,6 +57,7 @@ collections:
 
   - name: social
     label: "Redes sociales"
+    identifier_field: label
     folder: "src/content/social"
     create: false
     delete: false
@@ -64,6 +66,7 @@ collections:
     editor:
       preview: false
     fields:
+      - { label: "Etiqueta", name: "label", widget: "string", default: "Redes sociales" }
       - label: "Instagram"
         name: "instagram"
         widget: "object"
@@ -90,6 +93,7 @@ collections:
           - { label: "URL", name: "url", widget: "string", required: false }
 
   - name: hero
+  identifier_field: title
     label: "Hero (portada)"
     folder: "src/content/hero"
     create: false
@@ -111,6 +115,7 @@ collections:
           - { label: "Etiqueta (ej: Miembros)", name: "label", widget: "string" }
 
   - name: statusbar
+  identifier_field: rodada
     label: "Barra de rodada"
     folder: "src/content/statusbar"
     create: false
@@ -125,6 +130,7 @@ collections:
       - { label: "Cupos", name: "cupos", widget: "string" }
 
   - name: about
+  identifier_field: titleLine1
     label: "Nosotros"
     folder: "src/content/about"
     create: false
@@ -140,6 +146,7 @@ collections:
       - { label: "Cita", name: "quote", widget: "string" }
 
   - name: benefits
+  identifier_field: titleLine1
     label: "Membresía / Beneficios"
     folder: "src/content/benefits"
     create: false
@@ -160,14 +167,13 @@ collections:
           - { label: "Destacado (punto dorado)", name: "featured", widget: "boolean", default: false }
 
   - name: jersey
+  identifier_field: titleLine1
     label: "Jersey"
     folder: "src/content/jersey"
     create: false
     delete: false
     format: json
     extension: json
-    media_folder: "public/images"
-    public_folder: "/images"
     editor:
       preview: false
     fields:
@@ -179,6 +185,7 @@ collections:
       - { label: "Texto alternativo (accesibilidad)", name: "imageAlt", widget: "string" }
 
   - name: contact
+  identifier_field: titleLine1
     label: "Sección de contacto"
     folder: "src/content/contact"
     create: false
@@ -192,6 +199,7 @@ collections:
       - { label: "Título (línea 2)", name: "titleLine2", widget: "string" }
 
   - name: footer
+  identifier_field: copyright
     label: "Pie de página"
     folder: "src/content/footer"
     create: false
@@ -208,6 +216,7 @@ collections:
   # Contenido con múltiples entradas.
 
   - name: values
+  identifier_field: title
     label: "Valores"
     label_singular: "Valor"
     folder: "src/content/values"
@@ -225,6 +234,7 @@ collections:
       - { label: "Desplazado (escalonado)", name: "shifted", widget: "boolean", default: false }
 
   - name: pilots
+  identifier_field: name
     label: "Pilotos y directiva"
     label_singular: "Piloto"
     folder: "src/content/pilots"
@@ -233,8 +243,6 @@ collections:
     format: json
     extension: json
     slug: "{{name}}"
-    media_folder: "public/images/pilots"
-    public_folder: "/images/pilots"
     editor:
       preview: false
     fields:
@@ -253,8 +261,6 @@ collections:
     format: json
     extension: json
     slug: "{{title}}"
-    media_folder: "public/images/events"
-    public_folder: "/images/events"
     editor:
       preview: false
     fields:
@@ -268,6 +274,7 @@ collections:
       - { label: "Texto alternativo (accesibilidad)", name: "alt", widget: "string" }
 
   - name: testimonials
+  identifier_field: name
     label: "Testimonios"
     label_singular: "Testimonio"
     folder: "src/content/testimonials"
@@ -276,8 +283,6 @@ collections:
     format: json
     extension: json
     slug: "{{name}}"
-    media_folder: "public/images/testimonials"
-    public_folder: "/images/testimonials"
     editor:
       preview: false
     fields:
@@ -288,6 +293,7 @@ collections:
       - { label: "Texto alternativo (accesibilidad)", name: "alt", widget: "string" }
 
   - name: alliances
+  identifier_field: name
     label: "Aliados"
     label_singular: "Aliado"
     folder: "src/content/alliances"
@@ -296,8 +302,6 @@ collections:
     format: json
     extension: json
     slug: "{{name}}"
-    media_folder: "public/images/aliances"
-    public_folder: "/images/aliances"
     editor:
       preview: false
     fields:
@@ -307,6 +311,7 @@ collections:
       - { label: "Texto alternativo (accesibilidad)", name: "alt", widget: "string" }
 
   - name: gallery
+  identifier_field: title
     label: "Galería"
     label_singular: "Foto"
     folder: "src/content/gallery"
@@ -315,8 +320,6 @@ collections:
     format: json
     extension: json
     slug: "{{title}}"
-    media_folder: "public/images/gallery"
-    public_folder: "/images/gallery"
     editor:
       preview: false
     fields:
@@ -333,8 +336,6 @@ collections:
     slug: "{{slug}}"
     summary: "{{title}} — {{date}}"
     sortable_fields: [date, title]
-    media_folder: "public/images/news"
-    public_folder: "/images/news"
     fields:
       - { label: "Título", name: "title", widget: "string", hint: "Título de la noticia" }
       - { label: "Fecha", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
