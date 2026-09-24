@@ -141,10 +141,10 @@ la necesite de verdad.
 ### 3.4 Página `/nosotros` ✅ (2026-09-24)
 
 - [x] Hero propio + historia (reutiliza `about`) + cita
-- [x] Misión/visión/objetivos renderizados del cap. 1 del reglamento
-      (una sola fuente de verdad, editable por CMS)
-- [x] **Estructura del club**: organigrama con Asamblea General + Junta
-      Directiva (7 cargos) — colección `nosotros` editable
+- [x] Misión/visión en tarjetas gemelas + objetivos numerados (campos
+      `mision`, `vision`, `objetivos[]` editables por CMS)
+- [x] ~~Estructura del club~~: retirada a petición del usuario (la
+      composición de la directiva sigue documentada en el reglamento cap. 7)
 - [x] Los 4 valores como tarjetas
 - [x] Directivos completos (componente `<Leaders />` reutilizado)
 - [x] CTAs cruzados: "Únete al club" + "Ver reglamento"

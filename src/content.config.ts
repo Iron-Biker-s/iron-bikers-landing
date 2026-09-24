@@ -263,17 +263,9 @@ const nosotros = defineCollection({
     titleSpan: z.string(),
     subtitle: z.string(),
     historiaTitle: z.string(),
-    estructuraTitle: z.string(),
-    estructuraSubtitle: z.string(),
-    organos: z
-      .array(
-        z.object({
-          title: z.string(),
-          text: z.string(),
-          items: z.array(z.string()).default([]),
-        })
-      )
-      .default([]),
+    mision: z.string(),
+    vision: z.string(),
+    objetivos: z.array(z.string()).default([]),
   }),
 });
 

@@ -629,26 +629,12 @@ collections:
         }
       - { label: "Subtítulo", name: "subtitle", widget: "text" }
       - { label: "Historia — título", name: "historiaTitle", widget: "string" }
-      - {
-          label: "Estructura — título",
-          name: "estructuraTitle",
-          widget: "string",
-        }
-      - {
-          label: "Estructura — subtítulo",
-          name: "estructuraSubtitle",
-          widget: "string",
-        }
-      - label: "Órganos de dirección"
-        name: "organos"
+      - { label: "Misión", name: "mision", widget: "text" }
+      - { label: "Visión", name: "vision", widget: "text" }
+      - label: "Objetivos del club"
+        name: "objetivos"
         widget: "list"
-        fields:
-          - { label: "Título", name: "title", widget: "string" }
-          - { label: "Texto", name: "text", widget: "text" }
-          - label: "Ítems / cargos"
-            name: "items"
-            widget: "list"
-            field: { label: "Ítem", name: "item", widget: "string" }
+        field: { label: "Objetivo", name: "objetivo", widget: "text" }
 
   - name: unete
     identifier_field: title

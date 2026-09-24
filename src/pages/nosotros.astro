@@ -1,8 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Leaders from "../components/Leaders.astro";
-import { getCollection, getEntry, render } from "astro:content";
-import "../styles/rules.css";
+import { getCollection, getEntry } from "astro:content";
 import "../styles/nosotros.css";
 
 const { data: meta } = (await getEntry("nosotros", "nosotros"))!;
@@ -10,9 +9,6 @@ const { data: about } = (await getEntry("about", "about"))!;
 const values = (await getCollection("values")).sort((a, b) =>
   a.data.number.localeCompare(b.data.number),
 );
-/* Misión, visión y objetivos viven en el cap. 1 del reglamento (misma fuente) */
-const identificacion = (await getEntry("rules", "01-identificacion"))!;
-const { Content: Identificacion } = await render(identificacion);
 ---
 
 <BaseLayout
@@ -56,35 +52,31 @@ const { Content: Identificacion } = await render(identificacion);
       </div>
     </section>
 
-    <section
-      class="about-mission rule-content"
-      aria-labelledby="about-mission-title"
-    >
-      <h2 id="about-mission-title">{identificacion.data.title}</h2>
-      <Identificacion />
-    </section>
-
-    <section class="about-org" aria-labelledby="about-org-title">
-      <header class="about-section-head">
-        <h2 id="about-org-title">{meta.estructuraTitle}</h2>
-        <p>{meta.estructuraSubtitle}</p>
-      </header>
-      <div class="about-org-grid">
-        {
-          meta.organos.map((organo) => (
-            <div class="about-organ">
-              <h3>{organo.title}</h3>
-              <p>{organo.text}</p>
-              {organo.items.length > 0 && (
-                <ul>
-                  {organo.items.map((item) => (
-                    <li>{item}</li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          ))
-        }
+    <section class="about-mission" aria-label="Misión, visión y objetivos">
+      <div class="about-mv-grid">
+        <div class="about-mv-card">
+          <span class="about-mv-label">Misión</span>
+          <p>{meta.mision}</p>
+        </div>
+        <div class="about-mv-card about-mv-card--gold">
+          <span class="about-mv-label">Visión</span>
+          <p>{meta.vision}</p>
+        </div>
+      </div>
+      <div class="about-objetivos">
+        <h3 class="about-objetivos-title">Objetivos del club</h3>
+        <ol class="about-objetivos-list">
+          {
+            meta.objetivos.map((obj, i) => (
+              <li>
+                <span class="about-objetivos-num">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p>{obj}</p>
+              </li>
+            ))
+          }
+        </ol>
       </div>
     </section>
 

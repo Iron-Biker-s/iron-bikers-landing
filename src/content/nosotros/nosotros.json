@@ -4,18 +4,12 @@
   "titleSpan": "una hermandad",
   "subtitle": "Propietarios de motocicletas unidos por la cultura motociclística, sin distinción de clase, estrato, religión o etnia — recorriendo la geografía colombiana.",
   "historiaTitle": "Nuestra razón de rodar",
-  "estructuraTitle": "Estructura del club",
-  "estructuraSubtitle": "Así nos organizamos: dos órganos de dirección, elegidos por los propios miembros.",
-  "organos": [
-    {
-      "title": "Asamblea General",
-      "text": "La máxima autoridad del club. La forman todos o la mitad más uno de los socios en situación de actividad.",
-      "items": ["Elige a los integrantes de la Junta Directiva", "Aprueba la disolución del club en sesión extraordinaria"]
-    },
-    {
-      "title": "Junta Directiva",
-      "text": "Responsable del manejo del club según el reglamento. Elegida por votación secreta por períodos de dos años, con posibilidad de reelección.",
-      "items": ["Presidente(a)", "Vicepresidente(a)", "Capitán de Ruta", "Secretario(a)", "Tesorero(a)", "Redes sociales", "Sargento de Armas"]
-    }
+  "mision": "Asociar a los propietarios de motocicletas para fomentar la cultura motociclística integrando las personas sin distinción de clase social, estrato económico, religioso o étnico, disfrutando la geografía colombiana en búsqueda de lograr el crecimiento general del club.",
+  "vision": "En el año 2028 el Club será reconocido a nivel nacional e internacional como ejemplo de cultura motociclista representando la marca, a Cartagena y a Colombia.",
+  "objetivos": [
+    "Afianzar en los pilotos oficiales y proyectar en la comunidad la filosofía de la conducción segura mediante actividades de sensibilización y capacitación.",
+    "Crear conciencia del impacto ambiental de las motocicletas y del respeto por los distintos destinos turísticos que ofrece nuestro país.",
+    "Ser multiplicadores de la aplicación de las normas de tránsito mediante el ejemplo.",
+    "Apoyar la labor comercial de nuestros patrocinadores y emprendedores en el mercado como estrategia de colaboración recíproca."
   ]
 }

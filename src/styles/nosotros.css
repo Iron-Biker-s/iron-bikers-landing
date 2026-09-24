@@ -80,7 +80,7 @@
   margin: 0 0 20px;
 }
 
-.about-story-text > p {
+.about-story-text>p {
   color: var(--secondary);
   line-height: 1.8;
   font-size: 1.02rem;
@@ -141,86 +141,97 @@
   line-height: 1.6;
 }
 
-/* Misión / visión / objetivos (contenido del cap. 1 del reglamento) */
+/* Misión / Visión / Objetivos */
 .about-mission {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 32px var(--gutter) 64px;
+  padding: 32px var(--gutter) 72px;
 }
 
-.about-mission > h2 {
+.about-mv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.about-mv-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--primary);
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.about-mv-card--gold {
+  border-left-color: var(--tertiary);
+}
+
+.about-mv-label {
+  display: inline-block;
   font-family: var(--font-headline);
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--tertiary);
+  margin-bottom: 16px;
+}
+
+.about-mv-card p {
+  margin: 0;
+  color: #d7dce3;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.about-objetivos-title {
+  font-family: var(--font-headline);
+  font-size: clamp(1.4rem, 3vw, 2rem);
   text-transform: uppercase;
   text-align: center;
   margin: 0 0 32px;
 }
 
-/* Estructura / organigrama */
-.about-org {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 32px var(--gutter) 64px;
-}
-
-.about-section-head {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.about-section-head h2 {
-  font-family: var(--font-headline);
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  text-transform: uppercase;
-  margin: 0 0 12px;
-}
-
-.about-section-head p {
-  color: var(--secondary);
+.about-objetivos-list {
+  list-style: none;
   margin: 0;
-}
-
-.about-org-grid {
+  padding: 0;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  counter-reset: obj;
 }
 
-.about-organ {
+.about-objetivos-list li {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-top: 3px solid var(--tertiary);
-  border-radius: 16px;
-  padding: 32px;
+  border-radius: 14px;
+  padding: 22px;
+  transition: border-color 0.25s;
 }
 
-.about-organ h3 {
+.about-objetivos-list li:hover {
+  border-color: var(--border-strong);
+}
+
+.about-objetivos-num {
   font-family: var(--font-headline);
-  text-transform: uppercase;
-  font-size: 1.25rem;
-  margin: 0 0 12px;
-  color: var(--tertiary);
-}
-
-.about-organ > p {
-  color: var(--secondary);
-  line-height: 1.7;
-  margin: 0 0 18px;
-  font-size: 0.95rem;
-}
-
-.about-organ ul {
-  margin: 0;
-  padding-left: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  color: #d7dce3;
-  font-size: 0.92rem;
-}
-
-.about-organ li::marker {
+  font-size: 1.4rem;
+  font-weight: 700;
   color: var(--primary);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.about-objetivos-list p {
+  margin: 0;
+  color: var(--secondary);
+  font-size: 0.92rem;
+  line-height: 1.65;
 }
 
 /* CTA final */
@@ -250,9 +261,15 @@
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
+
   .about-story-grid,
-  .about-org-grid {
+  .about-mv-grid,
+  .about-objetivos-list {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .about-story-grid {
     gap: 32px;
   }
 }
