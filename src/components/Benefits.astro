@@ -19,6 +19,8 @@ const benefitsImg = await getCover(benefits.image, [480, 720]);
           srcset={benefitsImg.srcSet.attribute}
           sizes="(max-width: 768px) 100vw, 448px"
           alt={benefits.imageAlt}
+          width={benefitsImg.width}
+          height={benefitsImg.height}
           loading="lazy"
           decoding="async"
           class="benefits-frame-img"
@@ -36,7 +38,7 @@ const benefitsImg = await getCover(benefits.image, [480, 720]);
               `reveal-delay-${(index % 3) + 1}`,
             ]}
           >
-            <span class="benefit-dot" aria-hidden="true"></span>
+            <span class="benefit-dot" aria-hidden="true" />
             <h3 class="benefit-title">{benefit.title}</h3>
             <p class="benefit-text">{benefit.description}</p>
           </div>

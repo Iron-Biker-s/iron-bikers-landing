@@ -25,14 +25,31 @@
   margin: 0 auto;
 }
 
+/*
+ * Grid balanceado: --cols se calcula en Leaders.astro según la cantidad
+ * de directivos para que ninguna fila quede con un solo elemento.
+ */
 .leaders-list {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 var(--gutter);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 64px;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 56px 48px;
+}
+
+@media (min-width: 640px) {
+  .leaders-list {
+    grid-template-columns: repeat(2, minmax(200px, 240px));
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .leaders-list {
+    grid-template-columns: repeat(var(--cols, 3), minmax(200px, 240px));
+  }
 }
 
 .leader-card {
@@ -80,6 +97,26 @@
 
 .leader-card:hover .leader-photo {
   filter: grayscale(0);
+}
+
+/* Monograma para directivos sin foto */
+.leader-avatar-monogram {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-headline);
+  font-size: 56px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--secondary);
+  background: linear-gradient(145deg, #1c1c1c 0%, var(--background) 100%);
+  transition: color 0.3s var(--ease-out);
+}
+
+.leader-card:hover .leader-avatar-monogram {
+  color: var(--tertiary);
 }
 
 .leader-name {

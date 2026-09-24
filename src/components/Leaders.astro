@@ -3,11 +3,40 @@ import { getCollection, getEntry } from "astro:content";
 import { getCover } from "../lib/image";
 
 const { data: sections } = (await getEntry("sections", "sections"))!;
-const pilots = (await getCollection("pilots")).sort((a, b) =>
-  a.data.name.localeCompare(b.data.name)
+/* Orden manual (campo `order`); los que no lo tengan van al final por nombre */
+const pilots = (await getCollection("pilots")).sort(
+  (a, b) =>
+    (a.data.order ?? Number.MAX_SAFE_INTEGER) -
+      (b.data.order ?? Number.MAX_SAFE_INTEGER) ||
+    a.data.name.localeCompare(b.data.name),
 );
 
-const images = await Promise.all(pilots.map((pilot) => getCover(pilot.data.image, [192, 384])));
+const images = await Promise.all(
+  pilots.map((pilot) =>
+    pilot.data.image ? getCover(pilot.data.image, [192, 384]) : null,
+  ),
+);
+
+/*
+ * Columnas que reparten parejo al grupo: ninguna fila queda con un solo
+ * directivo (evita que parezca una jerarquía).
+ */
+const count = pilots.length;
+const cols = Math.min(
+  [3, 4, 5, 2].find((c) => count % c === 0) ??
+    [3, 4, 5, 2].find((c) => count % c >= 2) ??
+    3,
+  count,
+);
+
+const initials = (name: string) =>
+  name
+    .split(/\s+/)
+    .map((word) => word[0])
+    .filter(Boolean)
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
 ---
 
 <section class="leaders" id="directivos">
@@ -15,24 +44,40 @@ const images = await Promise.all(pilots.map((pilot) => getCover(pilot.data.image
     <h2 class="leaders-title">{sections.leadersTitle}</h2>
     <p class="leaders-subtitle">{sections.leadersSubtitle}</p>
   </div>
-  <div class="leaders-list">
+  <div class="leaders-list" style={`--cols: ${cols}`}>
     {
       pilots.map(({ data: pilot }, index) => (
         <div
-          class:list={["leader-card", "reveal", `reveal-delay-${(index % 3) + 1}`]}
+          class:list={[
+            "leader-card",
+            "reveal",
+            `reveal-delay-${(index % 3) + 1}`,
+          ]}
         >
           <div class="leader-avatar">
             <div class="leader-avatar-inner">
               <div class="leader-avatar-photo">
-                <img
-                  src={images[index].src}
-                  srcset={images[index].srcSet.attribute}
-                  sizes="192px"
-                  alt={pilot.alt}
-                  loading="lazy"
-                  decoding="async"
-                  class="leader-photo"
-                />
+                {images[index] ? (
+                  <img
+                    src={images[index]!.src}
+                    srcset={images[index]!.srcSet.attribute}
+                    sizes="192px"
+                    alt={pilot.alt ?? pilot.name}
+                    width={images[index]!.width}
+                    height={images[index]!.height}
+                    loading="lazy"
+                    decoding="async"
+                    class="leader-photo"
+                  />
+                ) : (
+                  <span
+                    class="leader-avatar-monogram"
+                    role="img"
+                    aria-label={pilot.alt ?? pilot.name}
+                  >
+                    {initials(pilot.name)}
+                  </span>
+                )}
               </div>
             </div>
           </div>

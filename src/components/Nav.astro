@@ -2,20 +2,73 @@
 import { getEntry } from "astro:content";
 
 const { data: siteInfo } = (await getEntry("site", "site"))!;
+
+/*
+ * Enlaces: anclas a secciones del home (scroll suave), en el orden del page.
+ * Si existe `page`, el enlace navega a otra página (se marca con ↗).
+ */
+interface NavLink {
+  label: string;
+  href: string;
+  /** id de la sección en home (scroll-spy) */
+  section?: string;
+  /** ruta de página interna (se marca con ↗) */
+  page?: string;
+}
+
+const links: NavLink[] = [
+  { label: "Nosotros", href: "/#nosotros", section: "nosotros" },
+  { label: "Beneficios", href: "/#beneficios", section: "beneficios" },
+  { label: "Directivos", href: "/#directivos", section: "directivos" },
+  { label: "Eventos", href: "/#eventos", section: "eventos" },
+  { label: "Galería", href: "/#galeria", section: "galeria" },
+  { label: "Noticias", href: "/#noticias", section: "noticias" },
+  { label: "Contacto", href: "/#contacto", section: "contacto" },
+];
+
+const path = Astro.url.pathname;
+
+/*
+ * En páginas internas resalta el área actual: un enlace `page` por su ruta;
+ * un enlace `section` cuando la ruta es /<sección> (ej. /noticias → Noticias).
+ */
+const isCurrent = (link: (typeof links)[number]) =>
+  link.page ? path.startsWith(link.page) : path.startsWith(`/${link.section}`);
 ---
 
-<nav class="nav" id="nav">
+<nav class="nav" id="nav" aria-label="Navegación principal">
   <div class="nav-inner">
     <a class="nav-brand" href="/" aria-label="Ir al inicio">
       {siteInfo.siteNameShort.toUpperCase()}
     </a>
-    <div class="nav-links">
-      <a href="/#nosotros">Nosotros</a>
-      <a href="/#beneficios">Beneficios</a>
-      <a href="/#eventos">Eventos</a>
-      <a href="/galeria">Galería</a>
-      <a href="/noticias">Noticias</a>
-      <a href="/#contacto" class="nav-link-active">Contacto</a>
+    <button
+      class="nav-toggle"
+      id="navToggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="navLinks"
+      aria-label="Abrir menú"
+    >
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class:list={{
+              "nav-link-page": link.page,
+              "nav-link-active": isCurrent(link),
+            }}
+            data-section={link.section}
+            aria-current={isCurrent(link) ? "page" : undefined}
+          >
+            {link.label}
+          </a>
+        ))
+      }
     </div>
     <a href="/#contacto" class="btn nav-cta">Únete al club</a>
   </div>

@@ -97,8 +97,8 @@
   transition: top 0.3s var(--ease-out), color 0.3s var(--ease-out);
 }
 
-.contact-input:focus ~ .contact-label,
-.contact-input:not(:placeholder-shown) ~ .contact-label {
+.contact-input:focus~.contact-label,
+.contact-input:not(:placeholder-shown)~.contact-label {
   top: -16px;
   color: var(--tertiary);
 }
@@ -113,6 +113,16 @@
   .contact-row {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+/* Honeypot anti-spam: fuera de pantalla, nunca visible ni enfocable */
+.contact-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
 }
 
 .contact-response {

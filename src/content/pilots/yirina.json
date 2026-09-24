@@ -2,6 +2,7 @@
   "name": "Yirina Amaris",
   "role": "Tesorera",
   "group": "Directiva",
+  "order": 4,
   "image": "/images/pilots/yirina.webp",
   "alt": "Yirina Amaris, tesorera del club"
 }

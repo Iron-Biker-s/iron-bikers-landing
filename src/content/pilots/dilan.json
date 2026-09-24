@@ -2,6 +2,7 @@
   "name": "Dilan Bravo",
   "role": "Vicepresidente",
   "group": "Directiva",
+  "order": 2,
   "image": "/images/pilots/dilan.webp",
   "alt": "Dilan Bravo, vicepresidente"
 }

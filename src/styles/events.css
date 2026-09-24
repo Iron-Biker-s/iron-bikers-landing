@@ -112,6 +112,7 @@
   overflow: hidden;
   border-radius: 2px;
   aspect-ratio: 4 / 3;
+  background: var(--surface);
 }
 
 .event-image {

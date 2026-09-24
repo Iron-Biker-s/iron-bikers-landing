@@ -6,13 +6,23 @@ if (form && responseEl) {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    const formData = new FormData(form);
+
+    /* Honeypot: si el campo invisible tiene valor, es un bot → éxito falso */
+    if (formData.get("empresa")) {
+      responseEl.classList.remove("hidden", "is-error");
+      responseEl.classList.add("is-success");
+      responseEl.innerText = "Solicitud enviada exitosamente.";
+      form.reset();
+      return;
+    }
+
     const btn = form.querySelector('button[type="submit"]');
     const originalText = btn.innerText;
     btn.innerText = "ENVIANDO...";
     btn.disabled = true;
 
     try {
-      const formData = new FormData(form);
       const response = await fetch(form.action, {
         method: "POST",
         body: formData,

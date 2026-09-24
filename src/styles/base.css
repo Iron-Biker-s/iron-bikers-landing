@@ -6,11 +6,20 @@
 
 :root {
   /* Palette Iron Biker's */
-  --primary: #E11D2E;      /* Ruby Red */
-  --secondary: #A8B2C1;    /* Cold Silver */
-  --tertiary: #F5C542;     /* Amber Gold */
-  --background: #080808;   /* Carbon Black */
-  --surface: #141414;      /* Obsidian Gray */
+  --primary: #E11D2E;
+  /* Ruby Red */
+  --secondary: #A8B2C1;
+  /* Cold Silver */
+  --tertiary: #F5C542;
+  /* Amber Gold */
+  --background: #080808;
+  /* Carbon Black */
+  --surface: #141414;
+  /* Obsidian Gray */
+
+  /* Bordes */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
 
   /* Tipografía */
   --font-headline: 'Oswald', 'Inter', sans-serif;
@@ -46,12 +55,55 @@ body {
   overflow-x: hidden;
 }
 
+/* Las secciones ancladas no quedan tapadas por la nav fija */
+section[id] {
+  scroll-margin-top: 90px;
+}
+
+/* Skip link: visible solo al recibir foco por teclado */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: var(--gutter);
+  z-index: 200;
+  background: var(--primary);
+  color: #ffffff;
+  padding: 12px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 0 0 8px 8px;
+  transition: top 0.2s var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  top: 0;
+}
+
+/* Foco de teclado visible en todo el sitio */
+:focus-visible {
+  outline: 2px solid var(--tertiary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* El skip-link ya tiene su propio indicador */
+.skip-link:focus-visible {
+  outline: none;
+}
+
 ::selection {
   background: var(--primary);
   color: #ffffff;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-headline);
   font-weight: 700;
   line-height: 1.1;
@@ -75,7 +127,8 @@ button {
   background: none;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -263,11 +316,25 @@ ul, ol {
   transform: translateY(0);
 }
 
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
-.reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-1 {
+  transition-delay: 0.1s;
+}
+
+.reveal-delay-2 {
+  transition-delay: 0.2s;
+}
+
+.reveal-delay-3 {
+  transition-delay: 0.3s;
+}
+
+.reveal-delay-4 {
+  transition-delay: 0.4s;
+}
+
+.reveal-delay-5 {
+  transition-delay: 0.5s;
+}
 
 /* Usuarios con movimiento reducido: sin animaciones */
 @media (prefers-reduced-motion: reduce) {
@@ -281,11 +348,16 @@ ul, ol {
     transition: none;
   }
 
-  .hero-content > * {
+  .hero-content>* {
     animation: none;
   }
 
   .statusbar-track {
     animation: none;
+  }
+
+  .nav-links,
+  .nav-toggle-bar {
+    transition: none;
   }
 }

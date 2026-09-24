@@ -1,0 +1,95 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import { getCover } from "../lib/image";
+import { formatDate } from "../lib/date";
+import "../styles/news.css";
+
+const { data: sections } = (await getEntry("sections", "sections"))!;
+const MAX_IN_HOME = 6;
+const todas = (await getCollection("news")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+const noticias = todas.slice(0, MAX_IN_HOME);
+const hayArchivo = todas.length > MAX_IN_HOME;
+
+const covers = await Promise.all(
+  noticias.map((nota) => getCover(nota.data.cover, [480, 720])),
+);
+---
+
+<section class="news-home" id="noticias" aria-label="Últimas noticias del club">
+  <div class="news-home-inner">
+    <div class="news-home-header reveal">
+      <span class="news-kicker">&middot; El club al día</span>
+      <h2 class="news-home-title">
+        {sections.newsTitle}
+        <span>{sections.newsTitleSpan}</span>
+      </h2>
+      <p class="news-home-subtitle">{sections.newsSubtitle}</p>
+    </div>
+
+    {
+      noticias.length > 0 ? (
+        <div class="news-home-grid">
+          {noticias.map((nota, index) => (
+            <a
+              class:list={[
+                "news-card",
+                index === 0 && "news-card-featured",
+                "reveal",
+                `reveal-delay-${(index % 3) + 1}`,
+              ]}
+              href={`/noticias/${nota.id}`}
+            >
+              <div class="news-card-media">
+                <img
+                  src={covers[index].src}
+                  srcset={covers[index].srcSet.attribute}
+                  sizes={
+                    index === 0
+                      ? "(max-width: 767px) 100vw, 66vw"
+                      : "(max-width: 767px) 100vw, 33vw"
+                  }
+                  alt={nota.data.title}
+                  width={covers[index].width}
+                  height={covers[index].height}
+                  loading="lazy"
+                  decoding="async"
+                  class="news-card-img"
+                />
+                {nota.data.tags.length > 0 && (
+                  <span class="news-card-tag">{nota.data.tags[0]}</span>
+                )}
+              </div>
+              <div class="news-card-body">
+                <div class="news-card-meta">
+                  <time datetime={nota.data.date.toISOString()}>
+                    {formatDate(nota.data.date)}
+                  </time>
+                  <span class="news-card-author">{nota.data.author}</span>
+                </div>
+                <h3 class="news-card-title">{nota.data.title}</h3>
+                <p class="news-card-summary">{nota.data.summary}</p>
+                <span class="news-card-link">Leer nota &rarr;</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <p class="news-home-empty reveal">
+          Aún no hay noticias publicadas. Vuelve pronto.
+        </p>
+      )
+    }
+
+    {
+      hayArchivo && (
+        <div class="news-home-cta reveal">
+          <a class="btn btn-outline-gold" href="/noticias">
+            Ver archivo completo
+          </a>
+        </div>
+      )
+    }
+  </div>
+</section>

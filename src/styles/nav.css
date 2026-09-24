@@ -31,29 +31,92 @@
   white-space: nowrap;
 }
 
+/* Botón hamburguesa (solo móvil) */
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px;
+  margin-left: auto;
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.25s var(--ease-out), opacity 0.2s var(--ease-out);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Menú desplegable (móvil por defecto) */
 .nav-links {
-  display: none;
-  align-items: center;
-  gap: 40px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 8px var(--gutter) 20px;
+  background: rgba(8, 8, 8, 0.97);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out),
+    visibility 0.2s;
+}
+
+.nav-links.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 .nav-links a {
   color: var(--secondary);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   transition: color 0.2s var(--ease-out);
+}
+
+.nav-links a:last-child {
+  border-bottom: none;
 }
 
 .nav-links a:hover {
   color: var(--primary);
 }
 
+/* Enlaces que llevan a otra página: marcador "↗" */
+.nav-links .nav-link-page::after {
+  content: "\2197";
+  margin-left: 5px;
+  font-size: 0.85em;
+  color: var(--tertiary);
+  opacity: 0.7;
+}
+
+/* Enlace activo: sección visible (scroll-spy) o página actual */
 .nav-links .nav-link-active {
   color: var(--primary);
-  border-bottom: 1px solid rgba(225, 29, 46, 0.4);
-  padding-bottom: 4px;
 }
 
 .nav-cta {
@@ -68,9 +131,41 @@
   box-shadow: 0 0 20px rgba(225, 29, 46, 0.6);
 }
 
-@media (min-width: 768px) {
+/* ── Desktop: barra horizontal, sin hamburguesa ── */
+@media (min-width: 1024px) {
+  .nav-toggle {
+    display: none;
+  }
+
   .nav-links {
-    display: flex;
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+    padding: 0;
+    background: none;
+    border-bottom: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    padding: 0;
+    border-bottom: none;
+  }
+
+  .nav-links .nav-link-active {
+    border-bottom: 1px solid rgba(225, 29, 46, 0.4);
+    padding-bottom: 4px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .nav-links {
+    gap: 36px;
   }
 }
 

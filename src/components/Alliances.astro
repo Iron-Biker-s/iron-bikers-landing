@@ -5,7 +5,7 @@ import { getCover } from "../lib/image";
 const { data: sections } = (await getEntry("sections", "sections"))!;
 const alliances = await getCollection("alliances");
 const logos = await Promise.all(
-  alliances.map((a) => getCover(a.data.logo, [320]))
+  alliances.map((a) => getCover(a.data.logo, [320])),
 );
 ---
 
@@ -19,7 +19,11 @@ const logos = await Promise.all(
       {
         alliances.map(({ data: alliance }, index) => (
           <div
-            class:list={["alliance-card", "reveal", `reveal-delay-${(index % 3) + 1}`]}
+            class:list={[
+              "alliance-card",
+              "reveal",
+              `reveal-delay-${(index % 3) + 1}`,
+            ]}
           >
             <div class="alliance-logo">
               <img
@@ -27,6 +31,8 @@ const logos = await Promise.all(
                 srcset={logos[index].srcSet.attribute}
                 sizes="160px"
                 alt={alliance.alt}
+                width={logos[index].width}
+                height={logos[index].height}
                 loading="lazy"
                 decoding="async"
                 class="alliance-logo-img"

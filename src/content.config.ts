@@ -166,8 +166,11 @@ const pilots = defineCollection({
     name: z.string(),
     role: z.string(),
     group: z.string().default("Directiva"),
-    image: z.string(),
-    alt: z.string(),
+    /* Menor = aparece primero; sin valor se ordena alfabéticamente al final */
+    order: z.number().optional(),
+    /* Sin foto: la tarjeta muestra un monograma con las iniciales */
+    image: z.string().optional(),
+    alt: z.string().optional(),
   }),
 });
 
@@ -190,6 +193,8 @@ const testimonials = defineCollection({
     quote: z.string(),
     name: z.string(),
     role: z.string(),
+    /* Menor = aparece primero; sin valor conserva el orden de archivo */
+    order: z.number().optional(),
     image: z.string(),
     alt: z.string(),
   }),
@@ -212,6 +217,8 @@ const gallery = defineCollection({
   schema: z.object({
     title: z.string(),
     category: z.string(),
+    /* Menor = aparece primero; sin valor conserva el orden de archivo */
+    order: z.number().optional(),
     image: z.string(),
     alt: z.string(),
   }),

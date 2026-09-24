@@ -84,6 +84,7 @@
 .news-card-media {
   aspect-ratio: 16 / 9;
   overflow: hidden;
+  background: var(--background);
 }
 
 .news-card-img {
@@ -152,6 +153,102 @@
     aspect-ratio: auto;
     min-height: 100%;
   }
+}
+
+/* ── Preview en home (sección #noticias) ── */
+.news-home {
+  padding: var(--section-padding) 0;
+  background: var(--surface);
+}
+
+.news-home-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.news-home-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.news-home-title {
+  font-size: clamp(2.25rem, 5vw, 3rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.news-home-title span {
+  color: var(--primary);
+  font-style: italic;
+}
+
+.news-home-subtitle {
+  color: var(--secondary);
+  max-width: 576px;
+  margin: 0 auto;
+}
+
+.news-home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+}
+
+/* En el preview las cards siempre son verticales */
+.news-home-grid .news-card {
+  grid-template-columns: 1fr;
+}
+
+.news-home-grid .news-card-media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  min-height: 0;
+}
+
+/* Badge de tag sobre la imagen */
+.news-card-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+  background: var(--tertiary);
+  color: var(--background);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 6px 12px;
+  border-radius: 9999px;
+}
+
+/* La noticia más reciente se destaca a lo ancho (editorial) */
+@media (min-width: 768px) {
+  .news-home-grid .news-card-featured {
+    grid-column: span 2;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: stretch;
+  }
+
+  .news-home-grid .news-card-featured .news-card-media {
+    aspect-ratio: auto;
+    min-height: 100%;
+  }
+
+  .news-home-grid .news-card-featured .news-card-title {
+    font-size: 1.9rem;
+  }
+}
+
+.news-home-empty {
+  text-align: center;
+  color: var(--secondary);
+}
+
+.news-home-cta {
+  text-align: center;
+  margin-top: 56px;
 }
 
 /* Detalle */
@@ -245,7 +342,7 @@
   line-height: 1.8;
 }
 
-.news-body > *:first-child {
+.news-body>*:first-child {
   margin-top: 0;
 }
 

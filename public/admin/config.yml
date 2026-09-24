@@ -52,8 +52,16 @@ collections:
       - { label: "Ciudad", name: "city", widget: "string" }
       - { label: "Email", name: "email", widget: "string" }
       - { label: "NIT", name: "nit", widget: "string" }
-      - { label: "URL Política de privacidad", name: "privacyUrl", widget: "string" }
-      - { label: "URL Eliminar cuenta", name: "deleteAccountUrl", widget: "string" }
+      - {
+          label: "URL Política de privacidad",
+          name: "privacyUrl",
+          widget: "string",
+        }
+      - {
+          label: "URL Eliminar cuenta",
+          name: "deleteAccountUrl",
+          widget: "string",
+        }
 
   - name: social
     label: "Redes sociales"
@@ -66,30 +74,55 @@ collections:
     editor:
       preview: false
     fields:
-      - { label: "Etiqueta", name: "label", widget: "string", default: "Redes sociales" }
+      - {
+          label: "Etiqueta",
+          name: "label",
+          widget: "string",
+          default: "Redes sociales",
+        }
       - label: "Instagram"
         name: "instagram"
         widget: "object"
         fields:
-          - { label: "Handle (ej: @club)", name: "handle", widget: "string", required: false }
+          - {
+              label: "Handle (ej: @club)",
+              name: "handle",
+              widget: "string",
+              required: false,
+            }
           - { label: "URL", name: "url", widget: "string", required: false }
       - label: "Facebook"
         name: "facebook"
         widget: "object"
         fields:
-          - { label: "Handle", name: "handle", widget: "string", required: false }
+          - {
+              label: "Handle",
+              name: "handle",
+              widget: "string",
+              required: false,
+            }
           - { label: "URL", name: "url", widget: "string", required: false }
       - label: "TikTok"
         name: "tiktok"
         widget: "object"
         fields:
-          - { label: "Handle", name: "handle", widget: "string", required: false }
+          - {
+              label: "Handle",
+              name: "handle",
+              widget: "string",
+              required: false,
+            }
           - { label: "URL", name: "url", widget: "string", required: false }
       - label: "WhatsApp"
         name: "whatsapp"
         widget: "object"
         fields:
-          - { label: "Handle (ej: Grupo oficial)", name: "handle", widget: "string", required: false }
+          - {
+              label: "Handle (ej: Grupo oficial)",
+              name: "handle",
+              widget: "string",
+              required: false,
+            }
           - { label: "URL", name: "url", widget: "string", required: false }
 
   - name: hero
@@ -103,19 +136,46 @@ collections:
     editor:
       preview: false
     fields:
-      - { label: "Badge", name: "badge", widget: "string", hint: "Dejar vacío para ocultarlo" }
+      - {
+          label: "Badge",
+          name: "badge",
+          widget: "string",
+          hint: "Dejar vacío para ocultarlo",
+        }
       - { label: "Título", name: "title", widget: "string" }
-      - { label: "Título destacado (2ª línea)", name: "titleSpan", widget: "string" }
+      - {
+          label: "Título destacado (2ª línea)",
+          name: "titleSpan",
+          widget: "string",
+        }
       - { label: "Frase", name: "quote", widget: "string" }
-      - { label: "Logo (círculo)", name: "logo", widget: "image", choose_url: false }
-      - { label: "Texto alternativo del logo", name: "logoAlt", widget: "string" }
-      - { label: "Imagen de fondo", name: "bgImage", widget: "image", choose_url: false }
+      - {
+          label: "Logo (círculo)",
+          name: "logo",
+          widget: "image",
+          choose_url: false,
+        }
+      - {
+          label: "Texto alternativo del logo",
+          name: "logoAlt",
+          widget: "string",
+        }
+      - {
+          label: "Imagen de fondo",
+          name: "bgImage",
+          widget: "image",
+          choose_url: false,
+        }
       - label: "Estadísticas"
         name: "stats"
         widget: "list"
         fields:
           - { label: "Valor (ej: 50+)", name: "value", widget: "string" }
-          - { label: "Etiqueta (ej: Miembros)", name: "label", widget: "string" }
+          - {
+              label: "Etiqueta (ej: Miembros)",
+              name: "label",
+              widget: "string",
+            }
 
   - name: statusbar
     identifier_field: rodada
@@ -162,14 +222,23 @@ collections:
       - { label: "Título (línea 1)", name: "titleLine1", widget: "string" }
       - { label: "Título (línea 2)", name: "titleLine2", widget: "string" }
       - { label: "Imagen", name: "image", widget: "image", choose_url: false }
-      - { label: "Texto alternativo (accesibilidad)", name: "imageAlt", widget: "string" }
+      - {
+          label: "Texto alternativo (accesibilidad)",
+          name: "imageAlt",
+          widget: "string",
+        }
       - label: "Beneficios"
         name: "items"
         widget: "list"
         fields:
           - { label: "Título", name: "title", widget: "string" }
           - { label: "Descripción", name: "description", widget: "text" }
-          - { label: "Destacado (punto dorado)", name: "featured", widget: "boolean", default: false }
+          - {
+              label: "Destacado (punto dorado)",
+              name: "featured",
+              widget: "boolean",
+              default: false,
+            }
 
   - name: jersey
     identifier_field: titleLine1
@@ -186,9 +255,17 @@ collections:
       - { label: "Título (línea 2)", name: "titleLine2", widget: "string" }
       - { label: "Texto", name: "text", widget: "text" }
       - { label: "Texto del botón", name: "button", widget: "string" }
-      - { label: "Texto del sello (ej: Edición Limitada)", name: "badge", widget: "string" }
+      - {
+          label: "Texto del sello (ej: Edición Limitada)",
+          name: "badge",
+          widget: "string",
+        }
       - { label: "Imagen", name: "image", widget: "image", choose_url: false }
-      - { label: "Texto alternativo (accesibilidad)", name: "imageAlt", widget: "string" }
+      - {
+          label: "Texto alternativo (accesibilidad)",
+          name: "imageAlt",
+          widget: "string",
+        }
 
   - name: contact
     identifier_field: titleLine1
@@ -240,18 +317,50 @@ collections:
       preview: false
     fields:
       - { label: "Directivos — título", name: "leadersTitle", widget: "string" }
-      - { label: "Directivos — subtítulo", name: "leadersSubtitle", widget: "text" }
+      - {
+          label: "Directivos — subtítulo",
+          name: "leadersSubtitle",
+          widget: "text",
+        }
       - { label: "Eventos — título", name: "eventsTitle", widget: "string" }
       - { label: "Eventos — subtítulo", name: "eventsSubtitle", widget: "text" }
-      - { label: "Testimonios — título", name: "testimonialsTitle", widget: "string" }
+      - {
+          label: "Testimonios — título",
+          name: "testimonialsTitle",
+          widget: "string",
+        }
       - { label: "Aliados — título", name: "alliancesTitle", widget: "string" }
-      - { label: "Aliados — subtítulo", name: "alliancesSubtitle", widget: "text" }
-      - { label: "Galería — título (1ª parte)", name: "galleryTitle", widget: "string" }
-      - { label: "Galería — título (2ª parte)", name: "galleryTitleSpan", widget: "string" }
-      - { label: "Galería — subtítulo", name: "gallerySubtitle", widget: "string" }
+      - {
+          label: "Aliados — subtítulo",
+          name: "alliancesSubtitle",
+          widget: "text",
+        }
+      - {
+          label: "Galería — título (1ª parte)",
+          name: "galleryTitle",
+          widget: "string",
+        }
+      - {
+          label: "Galería — título (2ª parte)",
+          name: "galleryTitleSpan",
+          widget: "string",
+        }
+      - {
+          label: "Galería — subtítulo",
+          name: "gallerySubtitle",
+          widget: "string",
+        }
       - { label: "Noticias — título", name: "newsTitle", widget: "string" }
-      - { label: "Noticias — título (2ª parte)", name: "newsTitleSpan", widget: "string" }
-      - { label: "Noticias — subtítulo", name: "newsSubtitle", widget: "string" }
+      - {
+          label: "Noticias — título (2ª parte)",
+          name: "newsTitleSpan",
+          widget: "string",
+        }
+      - {
+          label: "Noticias — subtítulo",
+          name: "newsSubtitle",
+          widget: "string",
+        }
 
   - name: values
     identifier_field: title
@@ -269,7 +378,12 @@ collections:
       - { label: "Número", name: "number", widget: "string" }
       - { label: "Título", name: "title", widget: "string" }
       - { label: "Descripción", name: "description", widget: "text" }
-      - { label: "Desplazado (escalonado)", name: "shifted", widget: "boolean", default: false }
+      - {
+          label: "Desplazado (escalonado)",
+          name: "shifted",
+          widget: "boolean",
+          default: false,
+        }
 
   - name: pilots
     identifier_field: name
@@ -286,9 +400,31 @@ collections:
     fields:
       - { label: "Nombre", name: "name", widget: "string" }
       - { label: "Cargo / Rol", name: "role", widget: "string" }
-      - { label: "Grupo", name: "group", widget: "string", default: "Directiva" }
-      - { label: "Foto", name: "image", widget: "image", choose_url: false }
-      - { label: "Texto alternativo (accesibilidad)", name: "alt", widget: "string" }
+      - {
+          label: "Grupo",
+          name: "group",
+          widget: "string",
+          default: "Directiva",
+        }
+      - {
+          label: "Orden (menor = aparece primero; vacío = alfabético)",
+          name: "order",
+          widget: "number",
+          required: false,
+        }
+      - {
+          label: "Foto (opcional — sin foto se muestran las iniciales)",
+          name: "image",
+          widget: "image",
+          choose_url: false,
+          required: false,
+        }
+      - {
+          label: "Texto alternativo (accesibilidad)",
+          name: "alt",
+          widget: "string",
+          required: false,
+        }
 
   - name: events
     label: "Eventos"
@@ -303,13 +439,22 @@ collections:
       preview: false
     fields:
       - { label: "Título", name: "title", widget: "string" }
-      - { label: "Etiqueta corta (ej: Rodada Costera)", name: "tag", widget: "string" }
+      - {
+          label: "Etiqueta corta (ej: Rodada Costera)",
+          name: "tag",
+          widget: "string",
+        }
       - label: "Categoría"
         name: "categoria"
         widget: "select"
-        options: ["Rodadas", "Ironman", "Entrenamiento", "Social", "Gastronomía"]
+        options:
+          ["Rodadas", "Ironman", "Entrenamiento", "Social", "Gastronomía"]
       - { label: "Imagen", name: "image", widget: "image", choose_url: false }
-      - { label: "Texto alternativo (accesibilidad)", name: "alt", widget: "string" }
+      - {
+          label: "Texto alternativo (accesibilidad)",
+          name: "alt",
+          widget: "string",
+        }
 
   - name: testimonials
     identifier_field: name
@@ -327,8 +472,18 @@ collections:
       - { label: "Cita", name: "quote", widget: "text" }
       - { label: "Nombre", name: "name", widget: "string" }
       - { label: "Rol (ej: Miembro)", name: "role", widget: "string" }
+      - {
+          label: "Orden (menor = aparece primero; vacío = orden de archivo)",
+          name: "order",
+          widget: "number",
+          required: false,
+        }
       - { label: "Foto", name: "image", widget: "image", choose_url: false }
-      - { label: "Texto alternativo (accesibilidad)", name: "alt", widget: "string" }
+      - {
+          label: "Texto alternativo (accesibilidad)",
+          name: "alt",
+          widget: "string",
+        }
 
   - name: alliances
     identifier_field: name
@@ -346,7 +501,11 @@ collections:
       - { label: "Nombre", name: "name", widget: "string" }
       - { label: "Categoría", name: "category", widget: "string" }
       - { label: "Logo", name: "logo", widget: "image", choose_url: false }
-      - { label: "Texto alternativo (accesibilidad)", name: "alt", widget: "string" }
+      - {
+          label: "Texto alternativo (accesibilidad)",
+          name: "alt",
+          widget: "string",
+        }
 
   - name: gallery
     identifier_field: title
@@ -363,8 +522,18 @@ collections:
     fields:
       - { label: "Título", name: "title", widget: "string" }
       - { label: "Categoría", name: "category", widget: "string" }
+      - {
+          label: "Orden (menor = aparece primero; vacío = orden de archivo)",
+          name: "order",
+          widget: "number",
+          required: false,
+        }
       - { label: "Imagen", name: "image", widget: "image", choose_url: false }
-      - { label: "Texto alternativo (accesibilidad)", name: "alt", widget: "string" }
+      - {
+          label: "Texto alternativo (accesibilidad)",
+          name: "alt",
+          widget: "string",
+        }
 
   - name: news
     label: "Noticias"
@@ -375,14 +544,40 @@ collections:
     summary: "{{title}} — {{date}}"
     sortable_fields: [date, title]
     fields:
-      - { label: "Título", name: "title", widget: "string", hint: "Título de la noticia" }
-      - { label: "Fecha", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
-      - { label: "Autor", name: "author", widget: "string", default: "Iron Biker's" }
-      - { label: "Resumen", name: "summary", widget: "text", hint: "2-3 líneas que se muestran en la lista" }
+      - {
+          label: "Título",
+          name: "title",
+          widget: "string",
+          hint: "Título de la noticia",
+        }
+      - {
+          label: "Fecha",
+          name: "date",
+          widget: "datetime",
+          date_format: "YYYY-MM-DD",
+          time_format: false,
+        }
+      - {
+          label: "Autor",
+          name: "author",
+          widget: "string",
+          default: "Iron Biker's",
+        }
+      - {
+          label: "Resumen",
+          name: "summary",
+          widget: "text",
+          hint: "2-3 líneas que se muestran en la lista",
+        }
       - label: "Etiquetas"
         name: "tags"
         widget: "list"
         default: ["club"]
         field: { label: "Etiqueta", name: "tag", widget: "string" }
-      - { label: "Imagen de portada", name: "cover", widget: "image", choose_url: false }
+      - {
+          label: "Imagen de portada",
+          name: "cover",
+          widget: "image",
+          choose_url: false,
+        }
       - { label: "Contenido", name: "body", widget: "markdown" }

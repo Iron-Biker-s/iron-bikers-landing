@@ -5,18 +5,29 @@ import { getCover } from "../lib/image";
 import "../styles/gallery.css";
 
 const { data: sections } = (await getEntry("sections", "sections"))!;
-const galleryItems = await getCollection("gallery");
+const galleryItems = (await getCollection("gallery")).sort(
+  (a, b) =>
+    (a.data.order ?? Number.MAX_SAFE_INTEGER) -
+      (b.data.order ?? Number.MAX_SAFE_INTEGER) ||
+    a.data.title.localeCompare(b.data.title),
+);
 const images = await Promise.all(
-  galleryItems.map((item) => getCover(item.data.image, [480, 960]))
+  galleryItems.map((item) => getCover(item.data.image, [480, 960])),
 );
 ---
 
-<BaseLayout title="Galería — Iron Biker's" description="Cada rodada, cada recuerdo. Fotos y momentos del club.">
-  <main class="gallery-page">
+<BaseLayout
+  title="Galería — Iron Biker's"
+  description="Cada rodada, cada recuerdo. Fotos y momentos del club."
+>
+  <main class="gallery-page" id="contenido" tabindex="-1">
     <section class="gallery-hero">
       <div class="gallery-hero-inner">
         <span class="gallery-kicker">&middot; Archivo visual del club</span>
-        <h1 class="gallery-title">{sections.galleryTitle} <span>{sections.galleryTitleSpan}</span></h1>
+        <h1 class="gallery-title">
+          {sections.galleryTitle}
+          <span>{sections.galleryTitleSpan}</span>
+        </h1>
         <p class="gallery-subtitle">{sections.gallerySubtitle}</p>
       </div>
     </section>
@@ -38,6 +49,8 @@ const images = await Promise.all(
               srcset={images[index].srcSet.attribute}
               sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 33vw"
               alt={item.alt}
+              width={images[index].width}
+              height={images[index].height}
               loading="lazy"
               decoding="async"
             />
@@ -51,9 +64,26 @@ const images = await Promise.all(
     </section>
   </main>
 
-  <div class="lightbox" id="lightbox" hidden>
-    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Cerrar">&times;</button>
-    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" type="button" aria-label="Anterior">&larr;</button>
+  <div
+    class="lightbox"
+    id="lightbox"
+    hidden
+    role="dialog"
+    aria-modal="true"
+    aria-label="Visor de imágenes de la galería"
+  >
+    <button
+      class="lightbox-close"
+      id="lightboxClose"
+      type="button"
+      aria-label="Cerrar">&times;</button
+    >
+    <button
+      class="lightbox-nav lightbox-prev"
+      id="lightboxPrev"
+      type="button"
+      aria-label="Anterior">&larr;</button
+    >
     <figure class="lightbox-stage">
       <img id="lightboxImg" src="" alt="" />
       <figcaption class="lightbox-caption">
@@ -61,9 +91,15 @@ const images = await Promise.all(
         <span class="lightbox-caption-category" id="lightboxCategory"></span>
       </figcaption>
     </figure>
-    <button class="lightbox-nav lightbox-next" id="lightboxNext" type="button" aria-label="Siguiente">&rarr;</button>
+    <button
+      class="lightbox-nav lightbox-next"
+      id="lightboxNext"
+      type="button"
+      aria-label="Siguiente">&rarr;</button
+    >
   </div>
 
   <script>
     import "../scripts/gallery.js";
-  </script></BaseLayout>
+  </script></BaseLayout
+>

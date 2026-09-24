@@ -10,21 +10,28 @@ import Leaders from "../components/Leaders.astro";
 import Events from "../components/Events.astro";
 import Testimonials from "../components/Testimonials.astro";
 import Alliances from "../components/Alliances.astro";
+import News from "../components/News.astro";
+import GalleryPreview from "../components/GalleryPreview.astro";
 import Contact from "../components/Contact.astro";
+import { getEntry } from "astro:content";
+
+const { data: hero } = (await getEntry("hero", "hero"))!;
 ---
 
-<BaseLayout>
+<BaseLayout preloadImage={hero.bgImage}>
   <Splash />
   <Hero />
   <StatusBar />
-  <main>
+  <main id="contenido" tabindex="-1">
     <About />
     <Benefits />
     <Jersey />
     <Leaders />
     <Events />
+    <GalleryPreview />
     <Testimonials />
     <Alliances />
+    <News />
     <Contact />
   </main>
 </BaseLayout>

@@ -3,9 +3,13 @@ import { getCollection, getEntry } from "astro:content";
 import { getCover } from "../lib/image";
 
 const { data: sections } = (await getEntry("sections", "sections"))!;
-const testimonials = await getCollection("testimonials");
+const testimonials = (await getCollection("testimonials")).sort(
+  (a, b) =>
+    (a.data.order ?? Number.MAX_SAFE_INTEGER) -
+    (b.data.order ?? Number.MAX_SAFE_INTEGER),
+);
 const images = await Promise.all(
-  testimonials.map((t) => getCover(t.data.image, [96]))
+  testimonials.map((t) => getCover(t.data.image, [96])),
 );
 ---
 
@@ -22,7 +26,9 @@ const images = await Promise.all(
               `reveal-delay-${(index % 3) + 1}`,
             ]}
           >
-            <div class="testimonial-mark" aria-hidden="true">&ldquo;</div>
+            <div class="testimonial-mark" aria-hidden="true">
+              &ldquo;
+            </div>
             <p class="testimonial-quote">{testimonial.quote}</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">
@@ -31,13 +37,15 @@ const images = await Promise.all(
                   srcset={images[index].srcSet.attribute}
                   sizes="48px"
                   alt={testimonial.alt}
+                  width={images[index].width}
+                  height={images[index].height}
                   loading="lazy"
                   decoding="async"
                   class="testimonial-photo"
                 />
               </div>
               <div>
-                <h4 class="testimonial-name">{testimonial.name}</h4>
+                <h3 class="testimonial-name">{testimonial.name}</h3>
                 <span class="testimonial-role">{testimonial.role}</span>
               </div>
             </div>
