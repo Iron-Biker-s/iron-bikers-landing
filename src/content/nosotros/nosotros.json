@@ -1,0 +1,21 @@
+{
+  "kicker": "El club",
+  "title": "Más que un club,",
+  "titleSpan": "una hermandad",
+  "subtitle": "Propietarios de motocicletas unidos por la cultura motociclística, sin distinción de clase, estrato, religión o etnia — recorriendo la geografía colombiana.",
+  "historiaTitle": "Nuestra razón de rodar",
+  "estructuraTitle": "Estructura del club",
+  "estructuraSubtitle": "Así nos organizamos: dos órganos de dirección, elegidos por los propios miembros.",
+  "organos": [
+    {
+      "title": "Asamblea General",
+      "text": "La máxima autoridad del club. La forman todos o la mitad más uno de los socios en situación de actividad.",
+      "items": ["Elige a los integrantes de la Junta Directiva", "Aprueba la disolución del club en sesión extraordinaria"]
+    },
+    {
+      "title": "Junta Directiva",
+      "text": "Responsable del manejo del club según el reglamento. Elegida por votación secreta por períodos de dos años, con posibilidad de reelección.",
+      "items": ["Presidente(a)", "Vicepresidente(a)", "Capitán de Ruta", "Secretario(a)", "Tesorero(a)", "Redes sociales", "Sargento de Armas"]
+    }
+  ]
+}

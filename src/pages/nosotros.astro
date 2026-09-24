@@ -1,0 +1,104 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Leaders from "../components/Leaders.astro";
+import { getCollection, getEntry, render } from "astro:content";
+import "../styles/rules.css";
+import "../styles/nosotros.css";
+
+const { data: meta } = (await getEntry("nosotros", "nosotros"))!;
+const { data: about } = (await getEntry("about", "about"))!;
+const values = (await getCollection("values")).sort((a, b) =>
+  a.data.number.localeCompare(b.data.number),
+);
+/* Misión, visión y objetivos viven en el cap. 1 del reglamento (misma fuente) */
+const identificacion = (await getEntry("rules", "01-identificacion"))!;
+const { Content: Identificacion } = await render(identificacion);
+---
+
+<BaseLayout
+  title="Nosotros — Iron Biker's"
+  description="Conoce Iron Biker's Club Cartagena: nuestra historia, misión, visión, valores y cómo se organiza el club."
+>
+  <main class="about-page" id="contenido" tabindex="-1">
+    <section class="about-hero">
+      <div class="about-hero-inner">
+        <span class="about-kicker">&middot; {meta.kicker}</span>
+        <h1 class="about-hero-title">
+          {meta.title}
+          <span>{meta.titleSpan}</span>
+        </h1>
+        <p class="about-hero-subtitle">{meta.subtitle}</p>
+      </div>
+    </section>
+
+    <section class="about-story" aria-labelledby="about-story-title">
+      <div class="about-story-grid">
+        <div class="about-story-text">
+          <h2 id="about-story-title">{meta.historiaTitle}</h2>
+          <p>{about.text}</p>
+          <blockquote class="about-story-quote">
+            &ldquo;{about.quote}&rdquo;
+          </blockquote>
+        </div>
+        <div class="about-story-values">
+          {
+            values.map(({ data: value }) => (
+              <div class="about-value">
+                <span class="about-value-num" aria-hidden="true">
+                  {value.number}
+                </span>
+                <h3>{value.title}</h3>
+                <p>{value.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="about-mission rule-content"
+      aria-labelledby="about-mission-title"
+    >
+      <h2 id="about-mission-title">{identificacion.data.title}</h2>
+      <Identificacion />
+    </section>
+
+    <section class="about-org" aria-labelledby="about-org-title">
+      <header class="about-section-head">
+        <h2 id="about-org-title">{meta.estructuraTitle}</h2>
+        <p>{meta.estructuraSubtitle}</p>
+      </header>
+      <div class="about-org-grid">
+        {
+          meta.organos.map((organo) => (
+            <div class="about-organ">
+              <h3>{organo.title}</h3>
+              <p>{organo.text}</p>
+              {organo.items.length > 0 && (
+                <ul>
+                  {organo.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <Leaders />
+
+    <section class="about-cta">
+      <h2>¿Listo para rodar?</h2>
+      <p>
+        Lee el reglamento y solicita tu ingreso — el puesto se gana rodando.
+      </p>
+      <div class="about-cta-actions">
+        <a class="btn" href="/unete">Únete al club</a>
+        <a class="btn btn-outline-gold" href="/reglamento">Ver reglamento</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

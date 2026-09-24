@@ -33,6 +33,10 @@ const heroLogo = await getCover(hero.logo, [320]);
       <span>{hero.titleSpan}</span>
     </h1>
     <p class="hero-quote">&ldquo;{hero.quote}&rdquo;</p>
+    <div class="hero-cta">
+      <a class="btn" href="/unete">Únete al club</a>
+      <a class="btn btn-outline-gold" href="/nosotros">Conócenos</a>
+    </div>
     <div class="hero-stats">
       {
         hero.stats.map((stat) => (

@@ -609,6 +609,47 @@ collections:
       - { label: "Día de zona", name: "diaZona", widget: "string" }
       - { label: "URL del PDF descargable", name: "pdfUrl", widget: "string" }
 
+  - name: nosotros
+    identifier_field: title
+    label: "Nosotros (página)"
+    folder: "src/content/nosotros"
+    create: false
+    delete: false
+    format: json
+    extension: json
+    editor:
+      preview: false
+    fields:
+      - { label: "Kicker", name: "kicker", widget: "string" }
+      - { label: "Título", name: "title", widget: "string" }
+      - {
+          label: "Título destacado (2ª línea)",
+          name: "titleSpan",
+          widget: "string",
+        }
+      - { label: "Subtítulo", name: "subtitle", widget: "text" }
+      - { label: "Historia — título", name: "historiaTitle", widget: "string" }
+      - {
+          label: "Estructura — título",
+          name: "estructuraTitle",
+          widget: "string",
+        }
+      - {
+          label: "Estructura — subtítulo",
+          name: "estructuraSubtitle",
+          widget: "string",
+        }
+      - label: "Órganos de dirección"
+        name: "organos"
+        widget: "list"
+        fields:
+          - { label: "Título", name: "title", widget: "string" }
+          - { label: "Texto", name: "text", widget: "text" }
+          - label: "Ítems / cargos"
+            name: "items"
+            widget: "list"
+            field: { label: "Ítem", name: "item", widget: "string" }
+
   - name: unete
     identifier_field: title
     label: "Únete (página de ingreso)"

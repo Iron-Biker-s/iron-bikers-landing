@@ -1,0 +1,264 @@
+/* ── Nosotros: /nosotros ── */
+.about-page {
+  min-height: 100vh;
+}
+
+/* Hero */
+.about-hero {
+  padding: 96px var(--gutter) 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(225, 29, 46, 0.14), transparent 65%);
+  pointer-events: none;
+}
+
+.about-hero-inner {
+  position: relative;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.about-kicker {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.about-hero-title {
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  margin: 0 0 20px;
+  text-transform: uppercase;
+}
+
+.about-hero-title span {
+  display: block;
+  background: linear-gradient(to bottom, var(--tertiary) 0%, #ffffff 50%, var(--tertiary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-hero-subtitle {
+  max-width: 640px;
+  margin: 0 auto;
+  color: var(--secondary);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* Historia + valores */
+.about-story {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 48px var(--gutter);
+}
+
+.about-story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.about-story-text h2 {
+  font-family: var(--font-headline);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  text-transform: uppercase;
+  margin: 0 0 20px;
+}
+
+.about-story-text > p {
+  color: var(--secondary);
+  line-height: 1.8;
+  font-size: 1.02rem;
+  margin: 0 0 24px;
+}
+
+.about-story-quote {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--tertiary);
+  border-left: 3px solid var(--primary);
+  padding-left: 20px;
+  margin: 0;
+}
+
+.about-story-values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.about-value {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  transition: transform 0.25s, border-color 0.25s;
+}
+
+.about-value:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-strong);
+}
+
+.about-value-num {
+  display: block;
+  font-family: var(--font-headline);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.about-value h3 {
+  font-family: var(--font-headline);
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  margin: 0 0 8px;
+  color: var(--tertiary);
+}
+
+.about-value p {
+  margin: 0;
+  color: var(--secondary);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* Misión / visión / objetivos (contenido del cap. 1 del reglamento) */
+.about-mission {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px var(--gutter) 64px;
+}
+
+.about-mission > h2 {
+  font-family: var(--font-headline);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 0 32px;
+}
+
+/* Estructura / organigrama */
+.about-org {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px var(--gutter) 64px;
+}
+
+.about-section-head {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.about-section-head h2 {
+  font-family: var(--font-headline);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+
+.about-section-head p {
+  color: var(--secondary);
+  margin: 0;
+}
+
+.about-org-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.about-organ {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--tertiary);
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.about-organ h3 {
+  font-family: var(--font-headline);
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  margin: 0 0 12px;
+  color: var(--tertiary);
+}
+
+.about-organ > p {
+  color: var(--secondary);
+  line-height: 1.7;
+  margin: 0 0 18px;
+  font-size: 0.95rem;
+}
+
+.about-organ ul {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #d7dce3;
+  font-size: 0.92rem;
+}
+
+.about-organ li::marker {
+  color: var(--primary);
+}
+
+/* CTA final */
+.about-cta {
+  text-align: center;
+  padding: 32px var(--gutter) 120px;
+}
+
+.about-cta h2 {
+  font-family: var(--font-headline);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+
+.about-cta p {
+  color: var(--secondary);
+  margin: 0 0 28px;
+}
+
+.about-cta-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .about-story-grid,
+  .about-org-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 520px) {
+  .about-story-values {
+    grid-template-columns: 1fr;
+  }
+}

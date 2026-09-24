@@ -128,3 +128,14 @@
   font-weight: 700;
   color: var(--secondary);
 }
+
+/* CTAs del hero */
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+  animation: hero-in 0.7s var(--ease-out) both;
+  animation-delay: 0.38s;
+}
