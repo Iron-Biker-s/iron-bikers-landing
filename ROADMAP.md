@@ -71,6 +71,11 @@ la necesite de verdad.
       disposición), formulario de solicitud al Apps Script con checkboxes de
       reglamento + datos, honeypot y aria-live. Todo el texto editable por
       CMS (`src/content/unete/`). Nav CTA "Únete al club" → `/unete`.
+- [x] **Apps Script mejorado** (`apps-script/Code.gs`): columnas nuevas se
+      crean solas cuando llega un campo desconocido (los datos de /unete se
+      guardan sin tocar la hoja), hojas inexistentes se crean solas,
+      checkboxes "on" → "Sí", y honeypot validado también en el servidor.
+      Requiere republicar el web app con "Nueva versión".
 
 ---
 
