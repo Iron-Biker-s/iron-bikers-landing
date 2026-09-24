@@ -6,7 +6,7 @@ interface StatusItem {
   highlight?: boolean;
   dot?: boolean;
   sep?: string;
-  duplicate?: boolean;
+  hidden?: boolean;
 }
 
 const { data: statusbar } = (await getEntry("statusbar", "statusbar"))!;
@@ -24,9 +24,16 @@ const baseItems: StatusItem[] = [
   { text: "/", sep: "/" },
 ];
 
-const marqueeItems: StatusItem[] = [false, true].flatMap((duplicate) =>
-  baseItems.map((item) => ({ ...item, duplicate })),
-);
+/* La pista debe ser >= 2× el viewport para que el loop translateX(-50%)
+   no deje huecos: repetimos la unidad varias veces por mitad. Solo la
+   primera unidad es visible para lectores de pantalla; el resto va
+   aria-hidden. */
+const REPEAT = 6;
+const marqueeItems: StatusItem[] = Array.from(
+  { length: REPEAT * 2 },
+  (_, repeatIndex) =>
+    baseItems.map((item) => ({ ...item, hidden: repeatIndex > 0 })),
+).flat();
 ---
 
 <div class="statusbar">
@@ -52,10 +59,7 @@ const marqueeItems: StatusItem[] = [false, true].flatMap((duplicate) =>
       {
         marqueeItems.map((item) =>
           item.sep ? (
-            <span
-              class="statusbar-sep"
-              aria-hidden={item.duplicate || undefined}
-            >
+            <span class="statusbar-sep" aria-hidden={item.hidden || undefined}>
               {item.sep}
             </span>
           ) : (
@@ -64,7 +68,7 @@ const marqueeItems: StatusItem[] = [false, true].flatMap((duplicate) =>
                 "statusbar-item",
                 item.highlight && "statusbar-highlight",
               ]}
-              aria-hidden={item.duplicate || undefined}
+              aria-hidden={item.hidden || undefined}
             >
               {item.dot && <span class="statusbar-dot" aria-hidden="true" />}
               {item.text}
