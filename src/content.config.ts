@@ -238,6 +238,33 @@ const news = defineCollection({
   }),
 });
 
+/* Portada y datos fijos de /reglamento (1 archivo) */
+const reglamento = defineCollection({
+  type: "content_layer",
+  loader: glob({ pattern: "**/*.json", base: "./src/content/reglamento" }),
+  schema: z.object({
+    title: z.string(),
+    titleSpan: z.string(),
+    subtitle: z.string(),
+    lema: z.string(),
+    puntoEncuentro: z.string(),
+    diaZona: z.string(),
+    pdfUrl: z.string(),
+  }),
+});
+
+/* Capítulos del reglamento interno (ordenables con `order`) */
+const rules = defineCollection({
+  type: "content_layer",
+  loader: glob({ pattern: "**/*.md", base: "./src/content/rules" }),
+  schema: z.object({
+    title: z.string(),
+    /* Menor = aparece primero en /reglamento y en el índice */
+    order: z.number().default(999),
+    intro: z.string().optional(),
+  }),
+});
+
 export const collections = {
   site,
   social,
@@ -256,4 +283,6 @@ export const collections = {
   alliances,
   gallery,
   news,
+  reglamento,
+  rules,
 };

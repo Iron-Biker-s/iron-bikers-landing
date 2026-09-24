@@ -1,0 +1,349 @@
+/* ── Reglamento: /reglamento ── */
+.rules-page {
+  min-height: 100vh;
+}
+
+/* Hero */
+.rules-hero {
+  padding: 96px var(--gutter) 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.rules-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(225, 29, 46, 0.14), transparent 65%);
+  pointer-events: none;
+}
+
+.rules-hero-inner {
+  position: relative;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.rules-kicker {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.rules-title {
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  margin: 0 0 20px;
+  text-transform: uppercase;
+}
+
+.rules-title span {
+  display: block;
+  background: linear-gradient(to bottom, var(--tertiary) 0%, #ffffff 50%, var(--tertiary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.rules-subtitle {
+  max-width: 620px;
+  margin: 0 auto 28px;
+  color: var(--secondary);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.rules-pdf {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rules-pdf svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Identificación motera */
+.rules-id {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--gutter) 64px;
+  text-align: center;
+}
+
+.rules-id-lema {
+  font-family: var(--font-quote);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-style: italic;
+  color: var(--tertiary);
+  margin: 0 0 32px;
+}
+
+.rules-id-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.rules-id-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--tertiary);
+  border-radius: 12px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rules-id-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--secondary);
+}
+
+.rules-id-item strong {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Layout: índice + capítulos */
+.rules-layout {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter) 120px;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.rules-toc {
+  position: sticky;
+  top: 96px;
+}
+
+.rules-toc-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-left: 1px solid var(--border);
+  padding-left: 0;
+}
+
+.rules-toc-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--tertiary);
+  padding: 0 0 12px 20px;
+}
+
+.rules-toc-link {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 9px 20px;
+  font-size: 0.85rem;
+  color: var(--secondary);
+  border-left: 2px solid transparent;
+  margin-left: -1px;
+  transition: color 0.2s, border-color 0.2s;
+  line-height: 1.35;
+}
+
+.rules-toc-link:hover {
+  color: #fff;
+}
+
+.rules-toc-link.is-active {
+  color: var(--tertiary);
+  border-left-color: var(--tertiary);
+}
+
+.rules-toc-num {
+  font-family: var(--font-headline);
+  font-size: 0.75rem;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* Capítulos */
+.rules-body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.rule-chapter {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  scroll-margin-top: 96px;
+}
+
+.rule-chapter-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+}
+
+.rule-chapter-num {
+  font-family: var(--font-headline);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.rule-chapter-title {
+  font-family: var(--font-headline);
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.rule-chapter-intro {
+  color: var(--secondary);
+  font-style: italic;
+  margin: 0 0 16px;
+  line-height: 1.7;
+}
+
+/* Contenido markdown */
+.rule-content {
+  line-height: 1.8;
+  color: #d7dce3;
+  font-size: 0.98rem;
+}
+
+.rule-content h2,
+.rule-content h3 {
+  font-family: var(--font-headline);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--tertiary);
+  margin: 28px 0 12px;
+  font-size: 1.05rem;
+}
+
+.rule-content h2:first-child,
+.rule-content h3:first-child {
+  margin-top: 0;
+}
+
+.rule-content p {
+  margin: 0 0 14px;
+}
+
+.rule-content ol,
+.rule-content ul {
+  margin: 0 0 14px;
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rule-content li::marker {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.rule-content strong {
+  color: #fff;
+}
+
+.rule-content a {
+  color: var(--tertiary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.rules-foot {
+  text-align: center;
+  color: var(--secondary);
+  font-size: 0.95rem;
+  padding: 8px 0 0;
+}
+
+.rules-foot a {
+  color: var(--tertiary);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .rules-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  /* Índice como barra de chips horizontal pegada bajo el nav */
+  .rules-toc {
+    top: 72px;
+    z-index: 40;
+    margin: 0 calc(var(--gutter) * -1);
+    background: rgba(8, 8, 8, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .rules-toc-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    border-left: none;
+    padding: 10px var(--gutter);
+    gap: 8px;
+    scrollbar-width: none;
+  }
+
+  .rules-toc-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .rules-toc-title {
+    display: none;
+  }
+
+  .rules-toc-link {
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 7px 14px;
+    margin-left: 0;
+    white-space: nowrap;
+    align-items: center;
+  }
+
+  .rules-toc-link.is-active {
+    border-color: var(--tertiary);
+    background: rgba(245, 197, 66, 0.08);
+  }
+}
+
+@media (max-width: 640px) {
+  .rules-id-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rule-chapter {
+    padding: 24px 20px;
+  }
+}

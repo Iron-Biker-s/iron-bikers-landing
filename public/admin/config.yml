@@ -581,3 +581,53 @@ collections:
           choose_url: false,
         }
       - { label: "Contenido", name: "body", widget: "markdown" }
+
+  - name: reglamento
+    identifier_field: title
+    label: "Reglamento (portada)"
+    folder: "src/content/reglamento"
+    create: false
+    delete: false
+    format: json
+    extension: json
+    editor:
+      preview: false
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - {
+          label: "Título destacado (2ª línea)",
+          name: "titleSpan",
+          widget: "string",
+        }
+      - { label: "Subtítulo", name: "subtitle", widget: "text" }
+      - { label: "Lema del club", name: "lema", widget: "string" }
+      - {
+          label: "Punto de encuentro fijo",
+          name: "puntoEncuentro",
+          widget: "string",
+        }
+      - { label: "Día de zona", name: "diaZona", widget: "string" }
+      - { label: "URL del PDF descargable", name: "pdfUrl", widget: "string" }
+
+  - name: rules
+    label: "Reglamento — capítulos"
+    label_singular: "Capítulo"
+    folder: "src/content/rules"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{order}} — {{title}}"
+    sortable_fields: [order, title]
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - {
+          label: "Orden (menor = aparece primero)",
+          name: "order",
+          widget: "number",
+        }
+      - {
+          label: "Introducción (opcional)",
+          name: "intro",
+          widget: "text",
+          required: false,
+        }
+      - { label: "Contenido", name: "body", widget: "markdown" }

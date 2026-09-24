@@ -3,6 +3,9 @@
 Documento de cambios aplicados a la landing y oportunidades de mejora detectadas.
 Fecha: 2026-09-24.
 
+> **Plan de trabajo activo:** ver `ROADMAP.md` — mejoras planeadas contra el
+> sitio de referencia (`clubraideratlantico.com`) con checklist de progreso.
+
 ---
 
 ## Problemas corregidos
