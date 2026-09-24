@@ -33,6 +33,8 @@
   position: relative;
   max-width: 448px;
   margin: 0 auto;
+  /* la caja fija la proporción; la img la rellena en absoluto */
+  aspect-ratio: 16 / 9;
 }
 
 .benefits-frame::after {
@@ -48,9 +50,10 @@
 }
 
 .benefits-frame-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  /* recorte panorámico fijo: proporción cinematográfica, nunca alta */
-  aspect-ratio: 16 / 9;
+  height: 100%;
   object-fit: cover;
   object-position: center;
   border-radius: 2px;
