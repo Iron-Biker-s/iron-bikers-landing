@@ -49,11 +49,10 @@
 
 .benefits-frame-img {
   width: 100%;
-  /* recorte panorámico fijo: la proporción natural de la foto puede ser
-     más alta de lo que el marco tolera visualmente */
-  aspect-ratio: 16 / 10;
+  /* recorte panorámico fijo: proporción cinematográfica, nunca alta */
+  aspect-ratio: 16 / 9;
   object-fit: cover;
-  object-position: center 35%;
+  object-position: center;
   border-radius: 2px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   filter: grayscale(1);
