@@ -65,6 +65,12 @@ la necesite de verdad.
       con scroll-spy (chips horizontales en móvil), tarjeta de identificación
       motera (lema, punto de encuentro, día de zona) y descarga del PDF
       oficial (`public/docs/reglamento.pdf`). Enlace en el footer.
+- [x] **`/unete`** (Fase 1.1): proceso de ingreso por meritocracia en 4 pasos
+      (3 zonas continuas → formato de vinculación → rodada de prueba → piloto
+      oficial), requisitos (moto propia, documentos, equipo mínimo,
+      disposición), formulario de solicitud al Apps Script con checkboxes de
+      reglamento + datos, honeypot y aria-live. Todo el texto editable por
+      CMS (`src/content/unete/`). Nav CTA "Únete al club" → `/unete`.
 
 ---
 
@@ -72,21 +78,22 @@ la necesite de verdad.
 
 > Lo que un visitante espera de un club serio. Todo editable por CMS.
 
-### 3.1 Página `/unete` — "Únete al club"
+### 3.1 Página `/unete` — "Únete al club" ✅ (2026-09-24)
 
-- [ ] Schema `join`/`unete` en `content.config.ts` + sección en CMS
-- [ ] Hero propio con CTA y requisitos resumidos
-- [ ] **Requisitos**: mayoría de edad, licencia vigente, SOAT/documentos al día,
-      moto propia, equipo mínimo (casco certificado, guantes, calzado cerrado)
-- [ ] **Proceso de ingreso** en pasos (solicitud → revisión del comité →
-      aspirante → miembro)
-- [ ] **Formulario de solicitud** (amplía el de contacto, mismo Apps Script):
-      nombre, apellido, teléfono, email, ciudad, fecha de nacimiento,
-      marca/modelo/cilindraje de moto, placa (opcional), experiencia,
-      contacto de emergencia, "¿por qué quieres unirte?",
-      checkbox "Acepto el reglamento" + "Autorizo tratamiento de datos"
-- [ ] Estados de éxito/error claros + redirección a WhatsApp como alternativa
-- [ ] Enlace "Únete" en el nav (CTA destacado) y botones desde Hero/Contacto
+- [x] Schema `unete` en `content.config.ts` + colección en CMS
+- [x] Hero propio con kicker y subtítulo
+- [x] **Requisitos** (4 tarjetas editables): moto propia, documentos al día
+      (SOAT, licencia, matrícula, tecnomecánica), equipo mínimo, disposición
+- [x] **Proceso de ingreso** en 4 pasos según reglamento cap. 2
+      (meritocracia): acércate → intégrate → rueda → piloto oficial
+- [x] **Formulario de solicitud** (`#joinForm`, mismo Apps Script con
+      `formulario=unete` oculto): nombre, teléfono, email, ciudad, marca,
+      modelo, placa, experiencia (select), motivación, contacto de
+      emergencia, checkboxes "Acepto el reglamento" + "Autorizo datos"
+- [x] Estados de éxito/error con `aria-live` + honeypot anti-spam
+- [x] Nav CTA "Únete al club" → `/unete`; enlace a `/reglamento` desde el
+      checkbox y CTA final
+- [ ] Redirección a WhatsApp como alternativa — falta el número oficial
 
 ### 3.2 Página `/reglamento` ✅ (2026-09-24)
 
@@ -101,8 +108,8 @@ la necesite de verdad.
 - [x] Tarjeta de identificación motera: lema, punto fijo (Bomba Petromil,
       San Rafael del Pozón), día de zona (viernes 7 PM)
 - [x] Enlace en footer
-- [ ] Enlace desde `/unete` (checkbox "acepto el reglamento") — pendiente
-      con esa página
+- [x] Enlace desde `/unete` (checkbox "acepto el reglamento" abre
+      `/reglamento` + CTA final "Lee el reglamento completo")
 
 ### 3.3 Página `/cronograma`
 
@@ -204,8 +211,7 @@ Cosas que solo el club puede definir — con esto lleno los textos reales:
 ## 8. Orden sugerido de ejecución
 
 1. ~~Fase 1.2 `/reglamento`~~ ✅ hecho
-2. **Fase 1.1** `/unete` (convierte visitas en miembros — los requisitos ya
-   están definidos por el cap. 2 del reglamento)
+2. ~~Fase 1.1 `/unete`~~ ✅ hecho
 3. **Fase 1.4** `/nosotros` + **3.5** mejoras del home (stats: ~50 miembros)
 4. ~~Fase 1.3 cronograma~~ — pospuesto a decisión del club (queda editable
    por CMS como está)

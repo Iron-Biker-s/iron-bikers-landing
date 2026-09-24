@@ -1,0 +1,49 @@
+{
+  "kicker": "Sé parte del club",
+  "title": "Únete a",
+  "titleSpan": "Iron Biker's",
+  "subtitle": "El ingreso es por mérito: no compras un puesto, lo ganas rodando con nosotros. Así funciona el proceso.",
+  "procesoTitle": "El proceso de ingreso",
+  "procesoSubtitle": "Cuatro pasos. Tu compromiso habla por ti.",
+  "steps": [
+    {
+      "title": "Acércate",
+      "text": "Asiste a tres reuniones o zonas habituales, mínimo y continuas: todos los viernes 7:00 PM en la Bomba Petromil de San Rafael del Pozón."
+    },
+    {
+      "title": "Intégrate",
+      "text": "Demuestra interés y buena integración con el grupo. En tu segunda reunión diligencias el formato de vinculación al club."
+    },
+    {
+      "title": "Rueda con nosotros",
+      "text": "Acompaña una salida por carretera conociendo las señales de mano y las normas de caravana."
+    },
+    {
+      "title": "Piloto oficial",
+      "text": "Cumplido el proceso y manteniéndote activo, te acreditas como miembro oficial del club."
+    }
+  ],
+  "reqTitle": "Lo que necesitas",
+  "reqSubtitle": "Requisitos para rodar con el club.",
+  "requirements": [
+    {
+      "title": "Moto propia",
+      "text": "Cualquier marca y cilindraje es bienvenida."
+    },
+    {
+      "title": "Documentos al día",
+      "text": "SOAT, licencia de conducción, matrícula y revisión tecnomecánica."
+    },
+    {
+      "title": "Equipo mínimo",
+      "text": "Casco certificado, calzado cerrado, guantes y jersey con reflectivo."
+    },
+    {
+      "title": "Disposición",
+      "text": "Participar en las actividades del club y confirmar tu asistencia."
+    }
+  ],
+  "formTitle": "Solicita tu ingreso",
+  "formSubtitle": "Déjanos tus datos y la directiva te contacta para tu primera reunión.",
+  "submitLabel": "Enviar solicitud"
+}

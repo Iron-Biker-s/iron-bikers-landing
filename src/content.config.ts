@@ -253,6 +253,31 @@ const reglamento = defineCollection({
   }),
 });
 
+/* Portada y textos de /unete (1 archivo) */
+const unete = defineCollection({
+  type: "content_layer",
+  loader: glob({ pattern: "**/*.json", base: "./src/content/unete" }),
+  schema: z.object({
+    kicker: z.string(),
+    title: z.string(),
+    titleSpan: z.string(),
+    subtitle: z.string(),
+    procesoTitle: z.string(),
+    procesoSubtitle: z.string(),
+    steps: z
+      .array(z.object({ title: z.string(), text: z.string() }))
+      .default([]),
+    reqTitle: z.string(),
+    reqSubtitle: z.string(),
+    requirements: z
+      .array(z.object({ title: z.string(), text: z.string() }))
+      .default([]),
+    formTitle: z.string(),
+    formSubtitle: z.string(),
+    submitLabel: z.string(),
+  }),
+});
+
 /* Capítulos del reglamento interno (ordenables con `order`) */
 const rules = defineCollection({
   type: "content_layer",
@@ -284,5 +309,6 @@ export const collections = {
   gallery,
   news,
   reglamento,
+  unete,
   rules,
 };

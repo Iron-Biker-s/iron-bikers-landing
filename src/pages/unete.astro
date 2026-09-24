@@ -1,0 +1,260 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getEntry } from "astro:content";
+import { site } from "../data/site";
+import "../styles/unete.css";
+
+const { data: unete } = (await getEntry("unete", "unete"))!;
+---
+
+<BaseLayout
+  title="Únete — Iron Biker's"
+  description="Solicita tu ingreso a Iron Biker's Club Cartagena. El ingreso es por mérito: proceso de aspirante, requisitos y formulario de solicitud."
+>
+  <main class="join-page" id="contenido" tabindex="-1">
+    <section class="join-hero">
+      <div class="join-hero-inner">
+        <span class="join-kicker">&middot; {unete.kicker}</span>
+        <h1 class="join-title">
+          {unete.title}
+          <span>{unete.titleSpan}</span>
+        </h1>
+        <p class="join-subtitle">{unete.subtitle}</p>
+      </div>
+    </section>
+
+    <section class="join-steps" aria-labelledby="join-steps-title">
+      <header class="join-section-head">
+        <h2 id="join-steps-title">{unete.procesoTitle}</h2>
+        <p>{unete.procesoSubtitle}</p>
+      </header>
+      <ol class="join-steps-grid">
+        {
+          unete.steps.map((step, i) => (
+            <li class="join-step">
+              <span class="join-step-num">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="join-reqs" aria-labelledby="join-reqs-title">
+      <header class="join-section-head">
+        <h2 id="join-reqs-title">{unete.reqTitle}</h2>
+        <p>{unete.reqSubtitle}</p>
+      </header>
+      <ul class="join-reqs-grid">
+        {
+          unete.requirements.map((req) => (
+            <li class="join-req">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+              <div>
+                <h3>{req.title}</h3>
+                <p>{req.text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="join-form-section" aria-labelledby="join-form-title">
+      <div class="join-panel">
+        <header class="join-section-head">
+          <h2 id="join-form-title">{unete.formTitle}</h2>
+          <p>{unete.formSubtitle}</p>
+        </header>
+        <form
+          class="join-form"
+          id="joinForm"
+          action={site.formAction}
+          method="POST"
+        >
+          <input type="hidden" name="formulario" value="unete" />
+          <div class="join-row">
+            <div class="join-field">
+              <input
+                class="join-input"
+                id="unete-nombre"
+                name="nombre"
+                placeholder=" "
+                required
+                type="text"
+                autocomplete="name"
+              />
+              <label class="join-label" for="unete-nombre"
+                >Nombre completo</label
+              >
+            </div>
+            <div class="join-field">
+              <input
+                class="join-input"
+                id="unete-telefono"
+                name="telefono"
+                placeholder=" "
+                required
+                type="tel"
+                autocomplete="tel"
+              />
+              <label class="join-label" for="unete-telefono">Teléfono</label>
+            </div>
+          </div>
+          <div class="join-row">
+            <div class="join-field">
+              <input
+                class="join-input"
+                id="unete-email"
+                name="email"
+                placeholder=" "
+                type="email"
+                autocomplete="email"
+              />
+              <label class="join-label" for="unete-email">Email</label>
+            </div>
+            <div class="join-field">
+              <input
+                class="join-input"
+                id="unete-ciudad"
+                name="ciudad"
+                placeholder=" "
+                type="text"
+                autocomplete="address-level2"
+              />
+              <label class="join-label" for="unete-ciudad">Ciudad</label>
+            </div>
+          </div>
+          <div class="join-row join-row-3">
+            <div class="join-field">
+              <input
+                class="join-input"
+                id="unete-marca"
+                name="marca"
+                placeholder=" "
+                required
+                type="text"
+              />
+              <label class="join-label" for="unete-marca">Marca de moto</label>
+            </div>
+            <div class="join-field">
+              <input
+                class="join-input"
+                id="unete-modelo"
+                name="modelo"
+                placeholder=" "
+                required
+                type="text"
+              />
+              <label class="join-label" for="unete-modelo">Modelo</label>
+            </div>
+            <div class="join-field">
+              <input
+                class="join-input"
+                id="unete-placa"
+                name="placa"
+                placeholder=" "
+                type="text"
+              />
+              <label class="join-label" for="unete-placa">Placa</label>
+            </div>
+          </div>
+          <div class="join-field join-field-static">
+            <label class="join-label-static" for="unete-experiencia"
+              >Nivel de experiencia</label
+            >
+            <select
+              class="join-select"
+              id="unete-experiencia"
+              name="experiencia"
+              required
+            >
+              <option value="" disabled selected>Selecciona…</option>
+              <option value="principiante">Principiante</option>
+              <option value="intermedio">Intermedio</option>
+              <option value="avanzado">Avanzado</option>
+            </select>
+          </div>
+          <div class="join-field join-field-static">
+            <label class="join-label-static" for="unete-motivacion"
+              >¿Por qué quieres unirte al club?</label
+            >
+            <textarea
+              class="join-textarea"
+              id="unete-motivacion"
+              name="motivacion"
+              rows="4"
+              required></textarea>
+          </div>
+          <div class="join-field">
+            <input
+              class="join-input"
+              id="unete-emergencia"
+              name="emergencia"
+              placeholder=" "
+              type="text"
+            />
+            <label class="join-label" for="unete-emergencia"
+              >Contacto de emergencia (nombre y teléfono)</label
+            >
+          </div>
+
+          <label class="join-check">
+            <input type="checkbox" name="acepta_reglamento" required />
+            <span
+              >Leí y acepto el
+              <a href="/reglamento" target="_blank" rel="noopener"
+                >reglamento interno</a
+              >
+              del club.</span
+            >
+          </label>
+          <label class="join-check">
+            <input type="checkbox" name="autoriza_datos" required />
+            <span
+              >Autorizo el tratamiento de mis datos personales por el club.</span
+            >
+          </label>
+
+          <!-- Honeypot anti-spam -->
+          <input
+            class="join-honeypot"
+            type="text"
+            name="empresa"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+          />
+          <p
+            class="join-response hidden"
+            id="joinResponse"
+            role="status"
+            aria-live="polite"
+          >
+          </p>
+          <button class="join-submit" type="submit">{unete.submitLabel}</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="join-cta">
+      <p>
+        ¿Quieres conocer las normas primero?
+        <a href="/reglamento">Lee el reglamento completo &rarr;</a>
+      </p>
+    </section>
+  </main>
+</BaseLayout>
