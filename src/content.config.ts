@@ -107,12 +107,8 @@ const contact = defineCollection({
   schema: z.object({
     titleLine1: z.string(),
     titleLine2: z.string(),
-    nameLabel: z.string(),
-    phoneLabel: z.string(),
-    marcaLabel: z.string(),
-    modeloLabel: z.string(),
-    placaLabel: z.string(),
-    submitLabel: z.string(),
+    text: z.string(),
+    ctaLabel: z.string(),
   }),
 });
 

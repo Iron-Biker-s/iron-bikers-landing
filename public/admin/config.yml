@@ -285,12 +285,8 @@ collections:
     fields:
       - { label: "Título (línea 1)", name: "titleLine1", widget: "string" }
       - { label: "Título (línea 2)", name: "titleLine2", widget: "string" }
-      - { label: "Etiqueta Nombre", name: "nameLabel", widget: "string" }
-      - { label: "Etiqueta Teléfono", name: "phoneLabel", widget: "string" }
-      - { label: "Etiqueta Marca", name: "marcaLabel", widget: "string" }
-      - { label: "Etiqueta Modelo", name: "modeloLabel", widget: "string" }
-      - { label: "Etiqueta Placa", name: "placaLabel", widget: "string" }
-      - { label: "Texto del botón", name: "submitLabel", widget: "string" }
+      - { label: "Texto", name: "text", widget: "text" }
+      - { label: "Texto del botón", name: "ctaLabel", widget: "string" }
 
   - name: footer
     identifier_field: copyright

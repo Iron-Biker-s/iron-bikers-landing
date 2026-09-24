@@ -1,10 +1,6 @@
 {
-  "titleLine1": "Solicita tu",
-  "titleLine2": "ingreso",
-  "nameLabel": "Nombre Completo",
-  "phoneLabel": "Número de Teléfono",
-  "marcaLabel": "Marca",
-  "modeloLabel": "Modelo",
-  "placaLabel": "Placa",
-  "submitLabel": "Enviar solicitud"
+  "titleLine1": "¿Listo para",
+  "titleLine2": "rodar?",
+  "text": "El ingreso es por mérito: acércate a la zona de los viernes o deja tu solicitud en la página de ingreso. Para todo lo demás, escríbenos directo.",
+  "ctaLabel": "Ir al formulario de ingreso"
 }

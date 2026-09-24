@@ -1,8 +1,8 @@
 ---
 import { getEntry } from "astro:content";
-import { site } from "../data/site";
 
 const { data: contact } = (await getEntry("contact", "contact"))!;
+const { data: siteInfo } = (await getEntry("site", "site"))!;
 ---
 
 <section class="contact" id="contacto">
@@ -22,101 +22,13 @@ const { data: contact } = (await getEntry("contact", "contact"))!;
         {contact.titleLine1}<br />
         {contact.titleLine2}
       </h2>
-      <form
-        class="contact-form"
-        id="contactForm"
-        action={site.formAction}
-        method="POST"
-      >
-        <div class="contact-field">
-          <input
-            class="contact-input"
-            id="contacto-nombre"
-            name="nombre"
-            placeholder=" "
-            required
-            type="text"
-            autocomplete="name"
-          />
-          <label class="contact-label" for="contacto-nombre"
-            >{contact.nameLabel}</label
-          >
-        </div>
-        <div class="contact-field">
-          <input
-            class="contact-input"
-            id="contacto-telefono"
-            name="telefono"
-            placeholder=" "
-            required
-            type="tel"
-            autocomplete="tel"
-          />
-          <label class="contact-label" for="contacto-telefono"
-            >{contact.phoneLabel}</label
-          >
-        </div>
-        <div class="contact-row">
-          <div class="contact-field">
-            <input
-              class="contact-input"
-              id="contacto-marca"
-              name="marca"
-              placeholder=" "
-              required
-              type="text"
-            />
-            <label class="contact-label" for="contacto-marca"
-              >{contact.marcaLabel}</label
-            >
-          </div>
-          <div class="contact-field">
-            <input
-              class="contact-input"
-              id="contacto-modelo"
-              name="modelo"
-              placeholder=" "
-              required
-              type="text"
-            />
-            <label class="contact-label" for="contacto-modelo"
-              >{contact.modeloLabel}</label
-            >
-          </div>
-          <div class="contact-field">
-            <input
-              class="contact-input"
-              id="contacto-placa"
-              name="placa"
-              placeholder=" "
-              required
-              type="text"
-            />
-            <label class="contact-label" for="contacto-placa"
-              >{contact.placaLabel}</label
-            >
-          </div>
-        </div>
-        <!-- Honeypot anti-spam: invisible para humanos, los bots lo llenan -->
-        <input
-          class="contact-honeypot"
-          type="text"
-          name="empresa"
-          tabindex="-1"
-          autocomplete="off"
-          aria-hidden="true"
-        />
-        <p
-          class="contact-response hidden"
-          id="formResponse"
-          role="status"
-          aria-live="polite"
-        >
-        </p>
-        <button class="contact-submit" type="submit">
-          {contact.submitLabel}
-        </button>
-      </form>
+      <p class="contact-text">{contact.text}</p>
+      <div class="contact-actions">
+        <a class="contact-cta" href="/unete">{contact.ctaLabel}</a>
+        <a class="contact-email" href={`mailto:${siteInfo.email}`}>
+          {siteInfo.email}
+        </a>
+      </div>
     </div>
   </div>
 </section>
