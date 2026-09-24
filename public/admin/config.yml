@@ -190,7 +190,12 @@ collections:
     fields:
       - { label: "Próxima rodada", name: "rodada", widget: "string" }
       - { label: "Destino", name: "destino", widget: "string" }
-      - { label: "Cupos", name: "cupos", widget: "string" }
+      - {
+          label: "Cupos (opcional — vacío lo oculta)",
+          name: "cupos",
+          widget: "string",
+          required: false,
+        }
 
   - name: about
     identifier_field: titleLine1

@@ -52,7 +52,7 @@ const statusbar = defineCollection({
   schema: z.object({
     rodada: z.string(),
     destino: z.string(),
-    cupos: z.string(),
+    cupos: z.string().optional(),
   }),
 });
 

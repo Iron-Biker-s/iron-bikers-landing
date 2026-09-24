@@ -15,13 +15,17 @@ const baseItems: StatusItem[] = [
   { text: statusbar.rodada, dot: true },
   { text: "—", sep: "—" },
   { text: statusbar.destino },
-  { text: "—", sep: "—" },
-  { text: statusbar.cupos, highlight: true },
+  ...(statusbar.cupos
+    ? ([
+        { text: "—", sep: "—" },
+        { text: statusbar.cupos, highlight: true },
+      ] satisfies StatusItem[])
+    : []),
   { text: "/", sep: "/" },
 ];
 
 const marqueeItems: StatusItem[] = [false, true].flatMap((duplicate) =>
-  baseItems.map((item) => ({ ...item, duplicate }))
+  baseItems.map((item) => ({ ...item, duplicate })),
 );
 ---
 
@@ -32,8 +36,15 @@ const marqueeItems: StatusItem[] = [false, true].flatMap((duplicate) =>
       {statusbar.rodada}
     </span>
     <span class="statusbar-item">
-      {statusbar.destino} <span class="statusbar-sep">&mdash;</span>
-      <span class="statusbar-highlight">{statusbar.cupos}</span>
+      {statusbar.destino}
+      {
+        statusbar.cupos && (
+          <>
+            <span class="statusbar-sep">&mdash;</span>
+            <span class="statusbar-highlight">{statusbar.cupos}</span>
+          </>
+        )
+      }
     </span>
   </div>
   <div class="statusbar-marquee">
@@ -41,16 +52,24 @@ const marqueeItems: StatusItem[] = [false, true].flatMap((duplicate) =>
       {
         marqueeItems.map((item) =>
           item.sep ? (
-            <span class="statusbar-sep" aria-hidden={item.duplicate || undefined}>{item.sep}</span>
-          ) : (
             <span
-              class:list={["statusbar-item", item.highlight && "statusbar-highlight"]}
+              class="statusbar-sep"
               aria-hidden={item.duplicate || undefined}
             >
-              {item.dot && <span class="statusbar-dot" aria-hidden="true"></span>}
+              {item.sep}
+            </span>
+          ) : (
+            <span
+              class:list={[
+                "statusbar-item",
+                item.highlight && "statusbar-highlight",
+              ]}
+              aria-hidden={item.duplicate || undefined}
+            >
+              {item.dot && <span class="statusbar-dot" aria-hidden="true" />}
               {item.text}
             </span>
-          )
+          ),
         )
       }
     </div>
