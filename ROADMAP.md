@@ -75,7 +75,16 @@ la necesite de verdad.
       crean solas cuando llega un campo desconocido (los datos de /unete se
       guardan sin tocar la hoja), hojas inexistentes se crean solas,
       checkboxes "on" → "Sí", y honeypot validado también en el servidor.
-      Requiere republicar el web app con "Nueva versión".
+      Requiere republicar el web app con "Nueva versión" (ya desplegado y
+      verificado: fila de prueba OK, honeypot server-side OK).
+- [x] **`/nosotros`** (Fase 1.4): hero propio, historia + cita, los 4 valores,
+      misión/visión/objetivos renderizados desde el cap. 1 del reglamento
+      (misma fuente CMS), **organigrama** (Asamblea General + Junta
+      Directiva con sus 7 cargos, editable), directivos reutilizando
+      `<Leaders />` y CTAs a `/unete` + `/reglamento`.
+- [x] **Hero con doble CTA** (Fase 3.5): "Únete al club" → `/unete` +
+      "Conócenos" → `/nosotros`. Stats ya existían en hero.json
+      (50+ miembros, 100+ rodadas, 4 años).
 
 ---
 
@@ -129,21 +138,26 @@ la necesite de verdad.
       "Ver cronograma completo →"
 - [ ] JSON-LD `Event` por rodada (fecha, lugar) — ellos no pueden indexarlo
 
-### 3.4 Página `/nosotros`
+### 3.4 Página `/nosotros` ✅ (2026-09-24)
 
-- [ ] Historia completa (expande `about`), misión/visión, valores
-- [ ] **Estructura del club**: rangos/roles explicados (visual, con íconos) —
-      equivalente a sus "5 niveles" pero adaptado a Iron Biker's
-- [ ] Directivos completos + aliados
-- [ ] CTAs cruzados: "Conoce el reglamento" / "Únete"
-- [ ] La sección `#nosotros` del home queda como resumen + "Conocer más →"
+- [x] Hero propio + historia (reutiliza `about`) + cita
+- [x] Misión/visión/objetivos renderizados del cap. 1 del reglamento
+      (una sola fuente de verdad, editable por CMS)
+- [x] **Estructura del club**: organigrama con Asamblea General + Junta
+      Directiva (7 cargos) — colección `nosotros` editable
+- [x] Los 4 valores como tarjetas
+- [x] Directivos completos (componente `<Leaders />` reutilizado)
+- [x] CTAs cruzados: "Únete al club" + "Ver reglamento"
+- [ ] La sección `#nosotros` del home enlaza "Conocer más →" (opcional)
 
 ### 3.5 Home — golpe de efecto
 
-- [ ] Hero con tagline fuerte tipo "Hermandad sobre dos ruedas" + doble CTA:
-      **"Únete al club"** (primario) + "Ver cronograma" (secundario)
-- [ ] **Barra de stats**: miembros activos, rodadas realizadas, años rodando,
-      km recorridos (colección `stats` editable o derivada)
+- [x] Hero con doble CTA: **"Únete al club"** → `/unete` +
+      **"Conócenos"** → `/nosotros`
+- [x] **Stats en hero**: editables en `hero.json`
+      (50+ miembros, 100+ rodadas, 4 años) — falta dato real de km/años
+- [ ] Tagline tipo "Hermandad sobre dos ruedas" (opcional: `hero.quote`
+      editable ya permite cambiarlo desde el CMS)
 - [ ] Contador regresivo a la próxima rodada (derivado de `events`)
 - [ ] Sección "Cumpleaños del mes" (opcional, dato simpático de la referencia)
 
@@ -217,10 +231,11 @@ Cosas que solo el club puede definir — con esto lleno los textos reales:
 
 1. ~~Fase 1.2 `/reglamento`~~ ✅ hecho
 2. ~~Fase 1.1 `/unete`~~ ✅ hecho
-3. **Fase 1.4** `/nosotros` + **3.5** mejoras del home (stats: ~50 miembros)
-4. ~~Fase 1.3 cronograma~~ — pospuesto a decisión del club (queda editable
+3. ~~Fase 1.4 `/nosotros`~~ ✅ hecho + hero CTAs del home
+4. **Siguiente**: Fase 2 (categorías de noticias, FAQ, iconos SVG) o
+   diferenciadores de Fase 3 (OG por evento, WhatsApp, PWA)
+5. ~~Fase 1.3 cronograma~~ — pospuesto a decisión del club (queda editable
    por CMS como está)
-5. Fases 2 y 3 según prioridad
 6. Fase 4 cuando haya demanda real del club
 
 ---
