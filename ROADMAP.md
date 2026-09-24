@@ -95,8 +95,14 @@ la necesite de verdad.
 - [x] **Hero renovado**: foto nueva (dos motociclistas a contraluz dorada),
       `min-height: 100svh` + `padding-top` para que el logo respire bajo el
       nav fijo, parallax por `translate3d` con margen de cobertura (-18%).
-- [x] **Membresía**: imagen propia (`membresia.webp`, Royal Enfield roja),
-      "Exclusive" → "Exclusiva", "Access" → "Acceso".
+- [x] **Membresía**: imagen propia (`membresia.webp`, LiveWire naranja),
+      marco con caja 16:9 fija (la img la rellena en absoluto — nunca se
+      deforma), "Exclusive" → "Exclusiva", "Access" → "Acceso".
+- [x] **Eventos ≠ Galería**: las dos secciones eran el mismo patrón (grid de
+      fotos + overlay). Eventos ahora es un **carrusel de pósters 3:4**
+      (scroll-snap, flechas, chip de categoría, tabs intactos) y la galería
+      del home es un **marquee infinito** (loop ×2, pausa al hover/focus,
+      reduced-motion). Dos lenguajes visuales distintos.
 
 ---
 

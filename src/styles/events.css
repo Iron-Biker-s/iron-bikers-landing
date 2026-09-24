@@ -69,49 +69,40 @@
   border-bottom-color: var(--primary);
 }
 
-/* Paneles */
+/* Paneles → carrusel de pósters */
 .event-panel {
   display: none !important;
 }
 
 .event-panel.active {
-  display: grid !important;
-  grid-template-columns: 1fr;
-  gap: 16px;
+  display: block !important;
 }
 
-.event-panel-full {
-  max-width: none;
-}
-
-.event-panel-3xl {
-  max-width: 768px;
-  margin: 0 auto;
-}
-
-.event-panel-xl {
-  max-width: 576px;
-  margin: 0 auto;
-}
-
-@media (min-width: 640px) {
-  .event-panel.active {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 768px) {
-  .event-panel-full.active {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Tarjeta de evento */
-.event-card {
+.event-carousel-wrap {
   position: relative;
+}
+
+.event-carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: 4px 2px 20px;
+}
+
+.event-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Póster de evento (formato vertical 3:4) */
+.event-poster {
+  position: relative;
+  flex: 0 0 clamp(230px, 68vw, 300px);
+  aspect-ratio: 3 / 4;
+  border-radius: 4px;
   overflow: hidden;
-  border-radius: 2px;
-  aspect-ratio: 4 / 3;
+  scroll-snap-align: start;
   background: var(--surface);
 }
 
@@ -122,24 +113,29 @@
   transition: transform 0.7s var(--ease-out);
 }
 
-.event-card:hover .event-image {
-  transform: scale(1.1);
+.event-poster:hover .event-image {
+  transform: scale(1.06);
+}
+
+.event-chip {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 2px;
 }
 
 .event-overlay {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(8, 8, 8, 1) 0%, transparent 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 24px;
-  opacity: 0;
-  transition: opacity 0.3s var(--ease-out);
-}
-
-.event-card:hover .event-overlay {
-  opacity: 1;
+  inset: auto 0 0 0;
+  padding: 64px 20px 20px;
+  background: linear-gradient(to top, rgba(8, 8, 8, 0.95), transparent);
 }
 
 .event-name {
@@ -152,4 +148,47 @@
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+}
+
+/* Flechas del carrusel */
+.event-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(8, 8, 8, 0.75);
+  border: 1px solid rgba(245, 197, 66, 0.4);
+  color: var(--tertiary);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.event-arrow:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+.event-prev {
+  left: -10px;
+}
+
+.event-next {
+  right: -10px;
+}
+
+@media (max-width: 640px) {
+  .event-prev {
+    left: 4px;
+  }
+
+  .event-next {
+    right: 4px;
+  }
 }

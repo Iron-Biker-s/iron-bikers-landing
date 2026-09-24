@@ -3,7 +3,7 @@ import { getCollection, getEntry } from "astro:content";
 import { getCover } from "../lib/image";
 import "../styles/gallery.css";
 
-const MAX_IN_HOME = 6;
+const MAX_IN_HOME = 10;
 const { data: sections } = (await getEntry("sections", "sections"))!;
 const todas = (await getCollection("gallery")).sort(
   (a, b) =>
@@ -30,35 +30,42 @@ const images = await Promise.all(
       <p class="gallery-preview-subtitle">{sections.gallerySubtitle}</p>
     </div>
 
-    <div class="gallery-preview-grid">
-      {
-        items.map(({ data: item }, index) => (
-          <a
-            class:list={[
-              "gallery-item",
-              "reveal",
-              `reveal-delay-${(index % 3) + 1}`,
-            ]}
-            href="/galeria"
-            aria-label={`Ver ${item.title} en la galería`}
-          >
-            <img
-              src={images[index].src}
-              srcset={images[index].srcSet.attribute}
-              sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 33vw"
-              alt={item.alt}
-              width={images[index].width}
-              height={images[index].height}
-              loading="lazy"
-              decoding="async"
-            />
-            <span class="gallery-item-overlay">
-              <span class="gallery-item-title">{item.title}</span>
-              <span class="gallery-item-category">{item.category}</span>
-            </span>
-          </a>
-        ))
-      }
+    {
+      /* Cinta infinita: la pista contiene 2 copias y translateX(-50%)
+        hace el loop perfecto. La segunda copia es aria-hidden. */
+    }
+    <div class="gallery-marquee reveal">
+      <div class="gallery-marquee-track">
+        {
+          [...items, ...items].map(({ data: item }, index) => {
+            const isCopy = index >= items.length;
+            return (
+              <a
+                class="gallery-marquee-item"
+                href="/galeria"
+                aria-label={`Ver ${item.title} en la galería`}
+                aria-hidden={isCopy}
+                tabindex={isCopy ? -1 : 0}
+              >
+                <img
+                  src={images[index % items.length].src}
+                  srcset={images[index % items.length].srcSet.attribute}
+                  sizes="320px"
+                  alt={isCopy ? "" : item.alt}
+                  width={images[index % items.length].width}
+                  height={images[index % items.length].height}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="gallery-item-overlay">
+                  <span class="gallery-item-title">{item.title}</span>
+                  <span class="gallery-item-category">{item.category}</span>
+                </span>
+              </a>
+            );
+          })
+        }
+      </div>
     </div>
 
     {
