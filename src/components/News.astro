@@ -30,12 +30,17 @@ const covers = await Promise.all(
 
     {
       noticias.length > 0 ? (
-        <div class="news-home-grid">
+        <div
+          class:list={[
+            "news-home-grid",
+            noticias.length === 1 && "news-home-grid-solo",
+          ]}
+        >
           {noticias.map((nota, index) => (
             <a
               class:list={[
                 "news-card",
-                index === 0 && "news-card-featured",
+                index === 0 && noticias.length > 1 && "news-card-featured",
                 "reveal",
                 `reveal-delay-${(index % 3) + 1}`,
               ]}
@@ -46,7 +51,7 @@ const covers = await Promise.all(
                   src={covers[index].src}
                   srcset={covers[index].srcSet.attribute}
                   sizes={
-                    index === 0
+                    index === 0 && noticias.length > 1
                       ? "(max-width: 767px) 100vw, 66vw"
                       : "(max-width: 767px) 100vw, 33vw"
                   }

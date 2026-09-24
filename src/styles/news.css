@@ -196,6 +196,12 @@
   gap: 32px;
 }
 
+/* Con una sola noticia: tamaño de card normal, centrada */
+.news-home-grid-solo {
+  grid-template-columns: minmax(300px, 560px);
+  justify-content: center;
+}
+
 /* En el preview las cards siempre son verticales */
 .news-home-grid .news-card {
   grid-template-columns: 1fr;
