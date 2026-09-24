@@ -1,0 +1,39 @@
+---
+/* Visor de imágenes compartido: lo abre cualquier elemento con
+   [data-gallery-item] (galería, pósters de eventos…). */
+---
+
+<div
+  class="lightbox"
+  id="lightbox"
+  hidden
+  role="dialog"
+  aria-modal="true"
+  aria-label="Visor de imágenes"
+>
+  <button
+    class="lightbox-close"
+    id="lightboxClose"
+    type="button"
+    aria-label="Cerrar">&times;</button
+  >
+  <button
+    class="lightbox-nav lightbox-prev"
+    id="lightboxPrev"
+    type="button"
+    aria-label="Anterior">&larr;</button
+  >
+  <figure class="lightbox-stage">
+    <img id="lightboxImg" src="" alt="" />
+    <figcaption class="lightbox-caption">
+      <span class="lightbox-caption-title" id="lightboxTitle"></span>
+      <span class="lightbox-caption-category" id="lightboxCategory"></span>
+    </figcaption>
+  </figure>
+  <button
+    class="lightbox-nav lightbox-next"
+    id="lightboxNext"
+    type="button"
+    aria-label="Siguiente">&rarr;</button
+  >
+</div>

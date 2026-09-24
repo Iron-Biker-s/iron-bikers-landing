@@ -85,14 +85,18 @@ for (const categoria of categories) {
               </button>
               <div class="event-carousel">
                 {items.map(({ data: event }, cardIndex) => (
-                  <a
-                    href="/galeria"
+                  <button
+                    type="button"
                     class:list={[
                       "event-poster",
                       "reveal",
                       `reveal-delay-${(cardIndex % 3) + 1}`,
                     ]}
-                    aria-label={`Ver ${event.title} en la galería`}
+                    data-gallery-item
+                    data-full={event.image}
+                    data-title={event.title}
+                    data-category={event.categoria}
+                    aria-label={`Ver ${event.title} en grande`}
                   >
                     <img
                       src={images[cardIndex].src}
@@ -110,7 +114,7 @@ for (const categoria of categories) {
                       <h4 class="event-name">{event.title}</h4>
                       <p class="event-tag">{event.tag}</p>
                     </div>
-                  </a>
+                  </button>
                 ))}
               </div>
               <button

@@ -95,7 +95,7 @@
   display: none;
 }
 
-/* Póster de evento (formato vertical 3:4) */
+/* Póster de evento (formato vertical 3:4) — es un <button>: reset */
 .event-poster {
   position: relative;
   flex: 0 0 clamp(230px, 68vw, 300px);
@@ -104,6 +104,11 @@
   overflow: hidden;
   scroll-snap-align: start;
   background: var(--surface);
+  padding: 0;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  display: block;
 }
 
 .event-image {
