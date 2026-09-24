@@ -76,10 +76,22 @@ interface Props {
   publishedTime?: string;
   /** Ruta pública de la imagen LCP a precargar */
   preloadImage?: string;
+  /** srcset del preload responsive (imagesrcset) */
+  preloadSrcset?: string;
+  /** sizes del preload responsive (imagesizes) */
+  preloadSizes?: string;
 }
 
-const { title, description, ogType, ogImage, publishedTime, preloadImage } =
-  Astro.props;
+const {
+  title,
+  description,
+  ogType,
+  ogImage,
+  publishedTime,
+  preloadImage,
+  preloadSrcset,
+  preloadSizes,
+} = Astro.props;
 const resolvedTitle = title ?? pageTitle;
 const resolvedDescription = description ?? siteInfo.description;
 const canonical = new URL(Astro.url.pathname, site.url).href;
@@ -150,6 +162,8 @@ const resolvedOgImage = ogImage ?? "/images/og-image.png";
           rel="preload"
           as="image"
           href={preloadImage}
+          imagesrcset={preloadSrcset}
+          imagesizes={preloadSizes}
           fetchpriority="high"
         />
       )

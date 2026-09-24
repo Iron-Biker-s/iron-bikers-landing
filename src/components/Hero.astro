@@ -4,16 +4,33 @@ import { getCover } from "../lib/image";
 
 const { data: hero } = (await getEntry("hero", "hero"))!;
 const heroLogo = await getCover(hero.logo, [320]);
+
+/* La página madre puede pasar `bg` ya optimizado (reusa el preload) */
+interface Props {
+  bg?: Awaited<ReturnType<typeof getCover>>;
+}
+const { bg } = Astro.props;
+const heroBg = bg ?? (await getCover(hero.bgImage, [768, 1280, 1920, 2560]));
 ---
 
 <header class="hero">
   <div
     class="hero-bg parallax-bg"
     id="heroParallax"
-    style={`background-image: url('${hero.bgImage}');`}
     role="img"
     aria-label="Fondo del hero: miembros del club en ruta"
   >
+    <img
+      src={heroBg.src}
+      srcset={heroBg.srcSet.attribute}
+      sizes="100vw"
+      alt=""
+      width={heroBg.width}
+      height={heroBg.height}
+      fetchpriority="high"
+      decoding="async"
+      class="hero-bg-img"
+    />
     <div class="hero-bg-overlay"></div>
   </div>
   <div class="hero-content">

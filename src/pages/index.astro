@@ -14,13 +14,19 @@ import News from "../components/News.astro";
 import GalleryPreview from "../components/GalleryPreview.astro";
 import Contact from "../components/Contact.astro";
 import { getEntry } from "astro:content";
+import { getCover } from "../lib/image";
 
 const { data: hero } = (await getEntry("hero", "hero"))!;
+const heroBg = await getCover(hero.bgImage, [768, 1280, 1920, 2560]);
 ---
 
-<BaseLayout preloadImage={hero.bgImage}>
+<BaseLayout
+  preloadImage={heroBg.src}
+  preloadSrcset={heroBg.srcSet.attribute}
+  preloadSizes="100vw"
+>
   <Splash />
-  <Hero />
+  <Hero bg={heroBg} />
   <StatusBar />
   <main id="contenido" tabindex="-1">
     <About />

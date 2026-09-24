@@ -78,13 +78,25 @@ la necesite de verdad.
       Requiere republicar el web app con "Nueva versión" (ya desplegado y
       verificado: fila de prueba OK, honeypot server-side OK).
 - [x] **`/nosotros`** (Fase 1.4): hero propio, historia + cita, los 4 valores,
-      misión/visión/objetivos renderizados desde el cap. 1 del reglamento
-      (misma fuente CMS), **organigrama** (Asamblea General + Junta
-      Directiva con sus 7 cargos, editable), directivos reutilizando
-      `<Leaders />` y CTAs a `/unete` + `/reglamento`.
+      misión y visión como tarjetas gemelas (rojo/dorado), objetivos
+      numerados 01–04, directivos reutilizando `<Leaders />` y CTAs a
+      `/unete` + `/reglamento`. La sección de organigrama se retiró por
+      decisión del cliente (la composición de la directiva queda en el
+      cap. 7 del reglamento).
 - [x] **Hero con doble CTA** (Fase 3.5): "Únete al club" → `/unete` +
       "Conócenos" → `/nosotros`. Stats ya existían en hero.json
       (50+ miembros, 100+ rodadas, 4 años).
+- [x] **Imágenes responsive reales**: `getCover` resuelve assets de
+      `src/assets/images/` por basename → `astro:assets` emite variantes
+      reales (768/1280/1920/2400w en el hero, 480/720w en membresía) con
+      fallback a `public/` para subidas del CMS. Hero deja de ser
+      `background-image` → `<img>` con `srcset` + `fetchpriority` + preload
+      con `imagesrcset`.
+- [x] **Hero renovado**: foto nueva (dos motociclistas a contraluz dorada),
+      `min-height: 100svh` + `padding-top` para que el logo respire bajo el
+      nav fijo, parallax por `translate3d` con margen de cobertura (-18%).
+- [x] **Membresía**: imagen propia (`membresia.webp`, Royal Enfield roja),
+      "Exclusive" → "Exclusiva", "Access" → "Acceso".
 
 ---
 

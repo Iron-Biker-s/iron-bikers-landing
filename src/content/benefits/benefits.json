@@ -1,7 +1,7 @@
 {
   "titleLine1": "Membresía",
-  "titleLine2": "Exclusive",
-  "image": "/images/hero-bg.webp",
+  "titleLine2": "Exclusiva",
+  "image": "/images/membresia.webp",
   "imageAlt": "Experiencia premium del club",
   "items": [
     {
@@ -10,7 +10,7 @@
       "featured": true
     },
     {
-      "title": "Access a Eventos Privados",
+      "title": "Acceso a Eventos Privados",
       "description": "Lanzamientos de marcas aliadas, cenas de gala y acceso preferente a los eventos de motociclismo más importantes de la región.",
       "featured": false
     },
