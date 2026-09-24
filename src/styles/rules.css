@@ -130,6 +130,7 @@
 .rules-toc {
   position: sticky;
   top: 96px;
+  min-width: 0;
 }
 
 .rules-toc-nav {
@@ -191,6 +192,10 @@
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 32px;
+}
+
+/* [id] sube especificidad sobre section[id] de base.css */
+.rule-chapter[id] {
   scroll-margin-top: 96px;
 }
 
@@ -232,6 +237,13 @@
   line-height: 1.8;
   color: #d7dce3;
   font-size: 0.98rem;
+  overflow-wrap: break-word;
+}
+
+.rule-content pre,
+.rule-content table {
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .rule-content h2,
@@ -291,13 +303,13 @@
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .rules-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 32px;
   }
 
-  /* Índice como barra de chips horizontal pegada bajo el nav */
+  /* Índice como barra de chips horizontal pegada bajo el nav (88px) */
   .rules-toc {
-    top: 72px;
+    top: 88px;
     z-index: 40;
     margin: 0 calc(var(--gutter) * -1);
     background: rgba(8, 8, 8, 0.92);
@@ -308,10 +320,22 @@
   .rules-toc-nav {
     flex-direction: row;
     overflow-x: auto;
+    overscroll-behavior-x: contain;
     border-left: none;
     padding: 10px var(--gutter);
     gap: 8px;
     scrollbar-width: none;
+    /* Fade en los bordes: indica que hay más capítulos a los lados */
+    mask-image: linear-gradient(to right,
+        transparent,
+        #000 24px,
+        #000 calc(100% - 32px),
+        transparent);
+    -webkit-mask-image: linear-gradient(to right,
+        transparent,
+        #000 24px,
+        #000 calc(100% - 32px),
+        transparent);
   }
 
   .rules-toc-nav::-webkit-scrollbar {
@@ -336,9 +360,24 @@
     border-color: var(--tertiary);
     background: rgba(245, 197, 66, 0.08);
   }
+
+  /* nav (88px) + barra de chips (~55px) + respiro */
+  .rule-chapter[id] {
+    scroll-margin-top: 160px;
+  }
 }
 
 @media (max-width: 640px) {
+
+  /* Nav más compacto: 69px */
+  .rules-toc {
+    top: 68px;
+  }
+
+  .rule-chapter[id] {
+    scroll-margin-top: 140px;
+  }
+
   .rules-id-grid {
     grid-template-columns: 1fr;
   }
