@@ -98,11 +98,11 @@ la necesite de verdad.
 - [x] **Membresía**: imagen propia (`membresia.webp`, LiveWire naranja),
       marco con caja 16:9 fija (la img la rellena en absoluto — nunca se
       deforma), "Exclusive" → "Exclusiva", "Access" → "Acceso".
-- [x] **Eventos ≠ Galería**: las dos secciones eran el mismo patrón (grid de
-      fotos + overlay). Eventos ahora es un **carrusel de pósters 3:4**
-      (scroll-snap, flechas, chip de categoría, tabs intactos) y la galería
-      del home es un **marquee infinito** (loop ×2, pausa al hover/focus,
-      reduced-motion). Dos lenguajes visuales distintos.
+- [x] **Eventos ≠ Galería (sin duplicar)**: las dos secciones repetían el
+      mismo patrón de fotos. Eventos ahora es un **carrusel de pósters 3:4**
+      con TODAS las rodadas/actividades (scroll-snap, flechas, chip de
+      categoría) y la sección de galería salió del home — el archivo visual
+      vive solo en `/galeria` (el nav enlaza ahí como página).
 
 ---
 

@@ -1,4 +1,4 @@
-/* ── Eventos & Actividades (tabs + paneles) ── */
+/* ── Eventos & Actividades (carrusel de pósters) ── */
 .events {
   padding: var(--section-padding) 0;
   background: rgba(20, 20, 20, 0.3);
@@ -27,57 +27,7 @@
   text-align: center;
 }
 
-/* Tabs */
-.events-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 48px;
-}
-
-@media (min-width: 640px) {
-  .events-tabs {
-    gap: 32px;
-  }
-}
-
-.event-tab {
-  color: var(--secondary);
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding-bottom: 8px;
-  border-bottom: 2px solid transparent;
-  cursor: pointer;
-  transition: color 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
-}
-
-@media (min-width: 640px) {
-  .event-tab {
-    font-size: 12px;
-  }
-}
-
-.event-tab:hover {
-  color: var(--tertiary);
-}
-
-.event-tab.active {
-  color: var(--tertiary);
-  border-bottom-color: var(--primary);
-}
-
-/* Paneles → carrusel de pósters */
-.event-panel {
-  display: none !important;
-}
-
-.event-panel.active {
-  display: block !important;
-}
-
+/* Carrusel */
 .event-carousel-wrap {
   position: relative;
 }

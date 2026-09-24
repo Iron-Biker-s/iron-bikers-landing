@@ -4,39 +4,10 @@ import { getCover } from "../lib/image";
 
 const { data: sections } = (await getEntry("sections", "sections"))!;
 
-/* Orden de las pestañas por categoría */
-const categoryOrder = [
-  "Rodadas",
-  "Ironman",
-  "Entrenamiento",
-  "Social",
-  "Gastronomía",
-];
-
 const events = await getCollection("events");
-
-const categories = [...new Set(events.map((e) => e.data.categoria))].sort(
-  (a, b) => {
-    const ia = categoryOrder.indexOf(a);
-    const ib = categoryOrder.indexOf(b);
-    return (
-      (ia === -1 ? categoryOrder.length : ia) -
-      (ib === -1 ? categoryOrder.length : ib)
-    );
-  },
+const images = await Promise.all(
+  events.map((e) => getCover(e.data.image, [480, 720])),
 );
-
-const imagesByCategory = new Map<
-  string,
-  Awaited<ReturnType<typeof getCover>>[]
->();
-for (const categoria of categories) {
-  const items = events.filter((e) => e.data.categoria === categoria);
-  imagesByCategory.set(
-    categoria,
-    await Promise.all(items.map((e) => getCover(e.data.image, [480, 720]))),
-  );
-}
 ---
 
 <section class="events" id="eventos">
@@ -46,81 +17,49 @@ for (const categoria of categories) {
       {sections.eventsSubtitle}
     </p>
 
-    <div
-      class="events-tabs reveal reveal-delay-2"
-      role="tablist"
-      aria-label="Categorías de eventos"
-    >
-      {
-        categories.map((categoria, index) => (
-          <button
-            class:list={["event-tab", index === 0 && "active"]}
-            data-tab={`tab-${index}`}
-            role="tab"
-            aria-selected={index === 0}
-            aria-controls={`tab-${index}`}
-          >
-            {categoria}
-          </button>
-        ))
-      }
-    </div>
-
-    {
-      categories.map((categoria, index) => {
-        const items = events.filter((e) => e.data.categoria === categoria);
-        const images = imagesByCategory.get(categoria)!;
-        return (
-          <div
-            class:list={["event-panel", index === 0 && "active"]}
-            id={`tab-${index}`}
-            role="tabpanel"
-          >
-            <div class="event-carousel-wrap">
-              <button
-                class="event-arrow event-prev"
-                aria-label="Desplazar a la izquierda"
-              >
-                ‹
-              </button>
-              <div class="event-carousel">
-                {items.map(({ data: event }, cardIndex) => (
-                  <article
-                    class:list={[
-                      "event-poster",
-                      "reveal",
-                      `reveal-delay-${(cardIndex % 3) + 1}`,
-                    ]}
-                  >
-                    <img
-                      src={images[cardIndex].src}
-                      srcset={images[cardIndex].srcSet.attribute}
-                      sizes="(max-width: 640px) 70vw, 300px"
-                      alt={event.alt}
-                      width={images[cardIndex].width}
-                      height={images[cardIndex].height}
-                      loading="lazy"
-                      decoding="async"
-                      class="event-image"
-                    />
-                    <span class="event-chip">{event.categoria}</span>
-                    <div class="event-overlay">
-                      <h4 class="event-name">{event.title}</h4>
-                      <p class="event-tag">{event.tag}</p>
-                    </div>
-                  </article>
-                ))}
+    <div class="event-carousel-wrap reveal reveal-delay-2">
+      <button
+        class="event-arrow event-prev"
+        aria-label="Desplazar a la izquierda"
+      >
+        ‹
+      </button>
+      <div class="event-carousel">
+        {
+          events.map(({ data: event }, index) => (
+            <article
+              class:list={[
+                "event-poster",
+                "reveal",
+                `reveal-delay-${(index % 3) + 1}`,
+              ]}
+            >
+              <img
+                src={images[index].src}
+                srcset={images[index].srcSet.attribute}
+                sizes="(max-width: 640px) 70vw, 300px"
+                alt={event.alt}
+                width={images[index].width}
+                height={images[index].height}
+                loading="lazy"
+                decoding="async"
+                class="event-image"
+              />
+              <span class="event-chip">{event.categoria}</span>
+              <div class="event-overlay">
+                <h4 class="event-name">{event.title}</h4>
+                <p class="event-tag">{event.tag}</p>
               </div>
-              <button
-                class="event-arrow event-next"
-                aria-label="Desplazar a la derecha"
-              >
-                ›
-              </button>
-            </div>
-          </div>
-        );
-      })
-    }
+            </article>
+          ))
+        }
+      </div>
+      <button
+        class="event-arrow event-next"
+        aria-label="Desplazar a la derecha"
+      >
+        ›
+      </button>
+    </div>
   </div>
 </section>
